@@ -2,13 +2,17 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     store: Ember.inject.service(),
+    globalNotificationStorage: Ember.inject.service(),
+
     model: {
         name: "",
         parentId: ""
     },
 
-    onSave: ()=>{},
-    onCancel: ()=>{},
+    onSave: ()=> {
+    },
+    onCancel: ()=> {
+    },
 
     getProperties() {
         return {
@@ -18,6 +22,7 @@ export default Ember.Component.extend({
     },
     actions: {
         saveHandler(){
+            this.get('globalNotificationStorage').addError("TROLOLO");
             this.get('onSave')(this.getProperties());
         },
         cancelHandler(){
