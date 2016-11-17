@@ -1,0 +1,42 @@
+<article class="container">
+    <div>
+        <h1 class="title">Expense categories</h1>
+        {{#link-to "categories.new" class="button is-primary"}}Add new category{{/link-to}}
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Parent</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each model as |row|}}
+            <tr>
+                <td>{{row.id}}</td>
+                <td>{{row.name}}</td>
+                <td>
+                    {{#if row.parent}}
+                        {{row.parent.name}}
+                    {{else}}
+                        --
+                    {{/if}}
+                </td>
+                <td>
+                    <span class="icon">
+                        {{#link-to "categories.edit" row.id}}
+                            <i class="fa fa-edit"></i>
+                        {{/link-to}}
+                    </span>
+                    <span class="icon">
+                      <i class="fa fa-remove"></i>
+                    </span>
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+    Number of categories: {{model.length}}
+</article>
