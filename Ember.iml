@@ -9,6 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests/unit" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests/integration" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/acceptance" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/bower_components" />
       <excludeFolder url="file://$MODULE_DIR$/dist" />
       <excludeFolder url="file://$MODULE_DIR$/node_modules" />
@@ -17,5 +18,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="node_modules Ember" level="project" />
     <orderEntry type="library" name="bower_components Ember" level="project" />
+    <orderEntry type="library" name="node_modules MicroExpenseTracker" level="project" />
   </component>
 </module>

@@ -1,10 +1,9 @@
-import Ember from 'ember';
+import Ember from "ember";
 
 export default Ember.Service.extend({
-  notifications: [],
+	notifications: Ember.A([]),
 
-  addError(message){
-    alert("added");
-    this.get('notifications').push({message: message});
-  }
+	addError(message){
+		this.get('notifications').pushObject({message: message});
+	}
 });
