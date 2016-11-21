@@ -1,4 +1,4 @@
 <article class="container">
-    <h1 class="title">Edit category "Food -> Dongle"</h1>
-    {{category-editor}}
+    <h1 class="title">Edit category "{{model.model.namePath}}"</h1>
+    {{category-editor categories=model.categories onSave=(action 'onSave') onCancel=(action 'onCancel') model=formModel}}
 </article>

@@ -1,1 +1,50 @@
-{{outlet}}
+<h1 class="container title">Expenses</h1>
+<div class="action-row">
+    <div class="container">
+        <span>Actions</span>
+        {{#link-to "expenses.new" class="button is-primary"}}Add new single expense{{/link-to}}
+        {{#link-to "expenses.receipt" class="button is-primary"}}Add new receipt{{/link-to}}
+    </div>
+</div>
+
+<article class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Product</th>
+            <th>Final price</th>
+            <th>Discount</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each expenses as |row|}}
+            <tr>
+                <td>{{{row.name}}}</td>
+                <td>
+                    {{row.realPrice}}
+                </td>
+                <td>
+                    {{row.discountDisplay}}
+                </td>
+                <td>
+                    {{{row.category.namePathForHtml}}}
+                </td>
+                <td>
+                    <span class="icon">
+                        {{#link-to "expenses.edit" row.id}}
+                            <i class="fa fa-edit"></i>
+                        {{/link-to}}
+                    </span>
+                    <span class="icon">
+                        <a href="#" onclick={{action "deleteExpense" row.id}}>
+                            <i class="fa fa-remove"></i>
+                        </a>
+                    </span>
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</article>

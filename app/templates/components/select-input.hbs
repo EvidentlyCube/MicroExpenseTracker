@@ -1,0 +1,23 @@
+{{#if firstOption}}
+    {{#if (eq selectedValue "")}}
+        <option value="" selected>{{firstOption}}</option>
+    {{else}}
+        <option value="">{{firstOption}}</option>
+    {{/if}}
+{{/if}}
+
+{{#each options as |option|}}
+    {{#if (and option.name option.value)}}
+        {{#if (eq option.value selectedValue)}}
+            <option value="{{option.value}}" selected>{{option.name}}</option>
+        {{else}}
+            <option value="{{option.value}}">{{option.name}}</option>
+        {{/if}}
+    {{else}}
+        {{#if (eq option selectedValue)}}
+            <option value="{{option}}" selected>{{option}}</option>
+        {{else}}
+            <option value="{{option}}">{{option}}</option>
+        {{/if}}
+    {{/if}}
+{{/each}}

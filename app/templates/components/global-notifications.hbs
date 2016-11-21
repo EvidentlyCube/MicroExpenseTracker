@@ -1,4 +1,13 @@
-Notifications count: {{notifications.length}}
-{{#each notifications as |notification|}}
-  <div>{{notification.message}}</div>
-{{/each}}
+{{#if notifications.length}}
+    <div class="notifications-container">
+        <div class="container">
+            {{#each notifications as |notification|}}
+                <div class="notification {{notification.class}}">
+                    <button class="delete" onclick={{action "removeNotification" notification.id}}></button>
+                    {{notification.message}}
+                </div>
+            {{/each}}
+        </div>
+    </div>
+{{/if}}
+

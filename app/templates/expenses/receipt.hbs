@@ -1,0 +1,12 @@
+<article class="container">
+    <h1 class="title">Add a new receipt</h1>
+    <form onsubmit={{action 'saveHandler'}}>
+        {{#each-in modelsProvider as |index model|}}
+            {{expenses-editor index=index model=model options=expenseCategories onChange=(action 'expenseChanged')}}
+        {{/each-in}}
+        <p class="control">
+            <button class="category-save button is-success">Save</button>
+            <button class="category-save button is-outlined" onclick={{action "cancelHandler"}}>Cancel</button>
+        </p>
+    </form>
+</article>

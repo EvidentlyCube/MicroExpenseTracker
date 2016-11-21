@@ -11,16 +11,17 @@ Router.map(function () {
         this.route('new');
 
         this.route('edit', {
-            path: 'categories/edit/:id'
+            path: 'categories/edit/:category_id'
         });
     });
     this.route('expenses', function () {
-        this.route('index');
-        this.route('new');
+      this.route('index');
+      this.route('new');
 
-        this.route('edit', {
-            path: 'expenses/edit/:id'
-        });
+      this.route('edit', {
+          path: 'expenses/edit/:expense_id'
+      });
+      this.route('receipt');
     });
 });
 

@@ -1,22 +1,24 @@
-<article class="container">
-    <div>
-        <h1 class="title">Expense categories</h1>
-        {{#link-to "categories.new" class="button is-primary"}}Add new category{{/link-to}}
+    <h1 class="container title">Expense categories</h1>
+    <div class="action-row">
+        <div class="container">
+            <span>Actions</span>
+            {{#link-to "categories.new" class="button is-primary"}}Add new category{{/link-to}}
+            </div>
     </div>
+
+    <article class="container">
     <table class="table">
         <thead>
         <tr>
-            <th>#</th>
-            <th>Name</th>
+            <th>Namepath</th>
             <th>Parent</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        {{#each model as |row|}}
+        {{#each sortedCategories as |row|}}
             <tr>
-                <td>{{row.id}}</td>
-                <td>{{row.name}}</td>
+                <td>{{{row.namePathForHtml}}}</td>
                 <td>
                     {{#if row.parent}}
                         {{row.parent.name}}
@@ -31,12 +33,13 @@
                         {{/link-to}}
                     </span>
                     <span class="icon">
-                      <i class="fa fa-remove"></i>
+                        <a href="#" onclick={{action "deleteCategory" row.id}}>
+                            <i class="fa fa-remove"></i>
+                        </a>
                     </span>
                 </td>
             </tr>
         {{/each}}
         </tbody>
     </table>
-    Number of categories: {{model.length}}
 </article>

@@ -5,5 +5,9 @@ export default Ember.Service.extend({
 
     getAll(){
         return this.get('store').findAll('category');
+    },
+
+    getAllSortedByPath(){
+        return this.get('store').findAll('category').then(rows => rows.sortBy('rootName', 'namePath'));
     }
 });

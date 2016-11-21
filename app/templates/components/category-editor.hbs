@@ -1,18 +1,20 @@
 <div class="columns">
     <div class="column is-12 is-6-tablet is-4-desktop">
-        <p class="control">
-            <label class="label">Name</label>
-            <input class="category-name input" required value={{model.name}}>
-        </p>
-        <p class="control">
-            <label class="label">Parent category</label>
-            <select class="category-parent-id select is-fullwidth" value={{model.parentId}}>
-                <option value="">None</option>
-            </select>
-        </p>
-        <p class="control">
-            <a class="category-save button is-success" onclick={{action "saveHandler"}}>Save</a>
-            <a class="category-save button is-outlined" onclick={{action "cancelHandler"}}>Cancel</a>
-        </p>
+        <form onsubmit={{action "saveHandler"}}>
+            <input class="category-id" type="hidden" value={{model.id}}>
+            <p class="control">
+                <label class="label">Name*</label>
+                <input class="category-name input" required value={{model.name}}>
+            </p>
+            <p class="control">
+                <label class="label">Parent category</label>
+
+                {{select-input class="category-parent-id select is-fullwidth" options=categoriesData selectedValue=model.parentId  firstOption="-None-"}}
+            </p>
+            <p class="control">
+                <button class="category-save button is-success">Save</button>
+                <button class="category-save button is-outlined" onclick={{action "cancelHandler"}}>Cancel</button>
+            </p>
+        </form>
     </div>
 </div>
