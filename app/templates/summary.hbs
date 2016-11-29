@@ -1,0 +1,5 @@
+<h1 class="container title">Expenses summary</h1>
+
+{{#each-in expensesSumByDate as |date sum|}}
+    <strong>{{date}}</strong>: {{sum}}<br>
+{{/each-in}}

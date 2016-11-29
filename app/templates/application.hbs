@@ -1,16 +1,54 @@
 <header>
     <div class="container">
         <div class="headers">
-            <h1 class="title">Micro Expense Tracker</h1>
-            <h4 class="subtitle">Track your daily expenses faster than you can type!</h4>
+            <h1 class="title">{{t "app.title"}}</h1>
+            <h4 class="subtitle">{{t "app.subtitle"}}</h4>
         </div>
         <nav>
-            <strong>Main menu:</strong>
-            {{#link-to "categories.index"}}Categories{{/link-to}}
-            {{#link-to "expenses.index"}}Expenses{{/link-to}}
+            <strong>{{t "navigation.main_menu"}}</strong>
+            {{#link-to "categories.index"}}{{t "navigation.categories"}}{{/link-to}}
+            {{#link-to "expenses.index"}}{{t "navigation.expenses"}}{{/link-to}}
+            {{#link-to "summary"}}{{t "navigation.summary"}}{{/link-to}}
+            {{#if (eq i18n.locale 'en')}}
+                <a onclick={{action 'switchToPolish'}}>Zmień na Polski</a>
+            {{else}}
+                <a onclick={{action 'switchToEnglish'}}>Switch to English</a>
+            {{/if}}
         </nav>
     </div>
 </header>
 
 {{global-notifications}}
 {{outlet}}
+
+<footer>
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <h4>{{{t "footer.header_1"}}}</h4>
+                <p>{{{t "footer.body_1"}}}</p>
+            </div>
+            <div class="column">
+                <h4>{{{t "footer.header_2"}}}</h4>
+                <p>{{{t "footer.body_2"}}}</p>
+            </div>
+            <div class="column">
+                <h4>{{{t "footer.header_3"}}}</h4>
+                <p>{{{t "footer.body_3"}}}</p>
+            </div>
+            <div class="column">
+                <h4>Todo</h4>
+                <ul class="todo">
+                    <li>Make it possible to edit a single expense</li>
+                    <li>Add summary tab, filtered per month, showing results per category</li>
+                    <li>Add autofill for expenses</li>
+                    <li>Investigate adding <a href="https://developers.google.com/identity/protocols/OAuth2UserAgent">Google Drive storage support</a></li>
+                </ul>
+            </div>
+        </div>
+        <ul class="credits">
+            <li>{{{t "footer.made_by"}}}</li>
+            <li>{{{t "footer.thanks"}}}</li>
+        </ul>
+    </div>
+</footer>

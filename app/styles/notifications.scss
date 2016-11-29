@@ -14,6 +14,22 @@
   }
 }
 
+.notification.is-success strong {
+  color: white;
+}
+
+.notification.is-warning strong{
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.notification.is-danger strong{
+  color: white;
+}
+
+.notification strong{
+  color: white;
+}
+
 .notifications-container .notification {
   -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fadein 1s; /* Firefox < 16 */

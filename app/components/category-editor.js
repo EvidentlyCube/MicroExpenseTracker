@@ -10,7 +10,7 @@ export default Ember.Component.extend({
 
     categoriesData: Ember.computed('categories', function () {
         return this.get('categories')
-            .filter(row => row.get('id') != this.get('model').id)
+            .filter(row => row.get('id') !== this.get('model').id)
             .map(function (category) {
                 return {
                     name: category.get('namePath'),

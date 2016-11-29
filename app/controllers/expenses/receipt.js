@@ -1,102 +1,60 @@
 import Ember from 'ember';
-
-const ExpenseEditorModel = Ember.Object.extend({
-    name: "",
-    price: 0,
-    category: "",
-    discount: 0,
-    errors: [],
-
-    isEmpty(){
-        return this.name === ""
-            && (this.price === 0 || this.price === "")
-            && this.category === ""
-            && (this.discount === 0 || this.price === "");
-    }
-});
+import ExpenseEditorData from '../../frontend-data/expense-editor-data';
 
 export default Ember.Controller.extend({
+    i18n: Ember.inject.service(),
+    modelSaver: Ember.inject.service('receipt/model-saver'),
+    modelValidator: Ember.inject.service('receipt/model-validator'),
     globalNotificationStorage: Ember.inject.service(),
-    store: Ember.inject.service(),
 
-    models: Ember.A([
-        ExpenseEditorModel.create(),
-        ExpenseEditorModel.create()
-    ]),
+    expenses: null,
+    receiptDate: new Date(),
 
-    modelsProvider: Ember.computed('models.[]', function () {
-        return this.get('models');
-    }),
-
-    expenseCategories: Ember.computed('model', function () {
-        var newList = this.model.map(row => row.get('namePath'));
-        newList.unshift('');
+    expenseCategories: Ember.computed.alias('model', function () {
+        let newList = this.get('model');
+        newList.unshift({});
 
         return newList;
     }),
 
-    validateModel(model){
-        var errors = [];
-
-        if (!model.isEmpty()) {
-            var name = model.get('name');
-            var price = model.get('price');
-            var discount = model.get('discount');
-
-            if (name.length < 1) {
-                errors.push('name');
-            }
-
-            if (price < 0.01) {
-                errors.push('price');
-            }
-
-            if (discount < 0 || discount > 100) {
-                errors.push('discount');
-            }
-        }
-
-        model.set('errors', Ember.A(errors));
+    resetModel(){
+        this.set('receiptDate', new Date());
+        this.set('expenses', Ember.A([
+            ExpenseEditorData.create(),
+            ExpenseEditorData.create()
+        ]));
     },
 
     actions: {
+        dateChanged(newDate){
+            this.set('receiptDate', newDate);
+        },
+
         expenseChanged(index, model){
-            var models = this.get('models');
+            let expenses = this.get('expenses');
 
-            this.validateModel(model);
+            this.get('modelValidator').validateModel(model);
 
-            models[index] = model;
-            if (index === models.length - 1) {
-                models.pushObject(new ExpenseEditorModel());
-                this.set('models', models);
+            expenses[index] = model;
+            if (index === expenses.length - 1) {
+                expenses.pushObject(new ExpenseEditorData());
+                this.set('expenses', expenses);
             }
         },
 
         saveHandler(){
-            var self = this;
-            var isError = false;
-            this.get('models').forEach(function (model) {
-                if (!model.isEmpty()) {
-                    self.validateModel(model);
-                    isError = isError || model.get('errors').length > 0;
-                }
-            });
+            const i18n = this.get('i18n');
+            const validator = this.get('modelValidator');
+            const modelSaver = this.get('modelSaver');
+            const globalNotificationStorage = this.get('globalNotificationStorage');
+            const expenses = this.get('expenses');
 
-            if (isError) {
-                this.get('globalNotificationStorage').addError("Errors have been found in the form. Please fix the highlighted fields.", 2000);
+            if (validator.validateModels(expenses)) {
+                globalNotificationStorage.addError(i18n.t('section.expenses.notifications.fix_form'), 2000);
             } else {
-                var promises = [];
-                this.get('models').forEach(function(model){
-                    if (model.isEmpty()){
-                        return;
-                    }
-
-                    var expense = this.get('store').createRecord('expense', {
-                        name: model.name,
-                        price: model.price,
-                        discount: model.discount / 100,
-
-                    });
+                modelSaver.saveModels(expenses, this.get('receiptDate')).then(() => {
+                    globalNotificationStorage.addSuccess(i18n.t('section.expenses.notifications.created_receipt'), 2000);
+                    this.transitionToRoute('expenses.index');
                 });
             }
 
@@ -104,7 +62,7 @@ export default Ember.Controller.extend({
         },
 
         cancelHandler(){
-
+            this.transitionToRoute('expenses.index');
         }
     }
 });

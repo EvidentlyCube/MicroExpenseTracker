@@ -5,6 +5,11 @@ export default DS.Model.extend({
     name: DS.attr('string'),
     price: DS.attr('number'),
     discount: DS.attr('number'),
+    purchasedAt: DS.attr('date'),
+    createdAt: DS.attr('date'),
+    updatedAt: DS.attr('date'),
+
+
     category: DS.belongsTo('category'),
 
     realPrice: Ember.computed('price', 'discount', function(){

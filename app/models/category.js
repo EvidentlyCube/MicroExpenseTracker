@@ -48,5 +48,9 @@ export default DS.Model.extend({
         }
 
         return name;
-    })
+    }),
+
+    isCategory(category){
+        return this === category || (this.get('parent') && this.get('parent').isCategory(category));
+    }
 });

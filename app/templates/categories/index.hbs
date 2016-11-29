@@ -1,8 +1,8 @@
-    <h1 class="container title">Expense categories</h1>
+    <h1 class="container title">{{t "section.categories.title"}}</h1>
     <div class="action-row">
         <div class="container">
-            <span>Actions</span>
-            {{#link-to "categories.new" class="button is-primary"}}Add new category{{/link-to}}
+            <span>{{t "section.categories.index.operations"}}</span>
+            {{#link-to "categories.new" class="button is-primary"}}{{t "section.categories.index.add_new_category"}}{{/link-to}}
             </div>
     </div>
 
@@ -10,9 +10,8 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Namepath</th>
-            <th>Parent</th>
-            <th>Actions</th>
+            <th>{{t "section.categories.index.name_path"}}</th>
+            <th>{{t "section.categories.index.actions"}}</th>
         </tr>
         </thead>
         <tbody>
@@ -20,20 +19,13 @@
             <tr>
                 <td>{{{row.namePathForHtml}}}</td>
                 <td>
-                    {{#if row.parent}}
-                        {{row.parent.name}}
-                    {{else}}
-                        --
-                    {{/if}}
-                </td>
-                <td>
                     <span class="icon">
-                        {{#link-to "categories.edit" row.id}}
+                        {{#link-to "categories.edit" row.id title=(t "section.categories.index.action.edit" category=row.namePath)}}
                             <i class="fa fa-edit"></i>
                         {{/link-to}}
                     </span>
                     <span class="icon">
-                        <a href="#" onclick={{action "deleteCategory" row.id}}>
+                        <a href="#" onclick={{action "deleteCategory" row.id}} title={{t "section.categories.index.action.delete" category=row.namePath}}>
                             <i class="fa fa-remove"></i>
                         </a>
                     </span>

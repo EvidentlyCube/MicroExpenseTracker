@@ -5,5 +5,11 @@ export default Ember.Route.extend({
 
     model(){
         return this.get('categoryProvider').getAllSortedByPath();
+    },
+
+    setupController(controller, model){
+        this._super(controller, model);
+
+        controller.resetModel();
     }
 });
