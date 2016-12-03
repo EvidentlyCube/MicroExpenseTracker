@@ -47,5 +47,7 @@ module.exports = function (environment) {
 
     }
 
+    ENV.apiHost = 'http://localhost/met_api/index.php';
+
     return ENV;
 };
