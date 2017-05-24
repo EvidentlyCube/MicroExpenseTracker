@@ -12,7 +12,7 @@ export default Ember.Service.extend({
 	notifications: Ember.A([]),
 
 	addMessage(message, className, timeout){
-		var id = this.get('idCounter');
+		const id = this.get('idCounter');
 		this.get('notifications').pushObject(GlobalNotification.create({
 			id: id,
 			message: message,
@@ -37,8 +37,8 @@ export default Ember.Service.extend({
 	},
 
 	removeNotification(id){
-		var notifications = this.get('notifications');
-		var notification = notifications.findBy('id', id);
+		const notifications = this.get('notifications');
+		const notification = notifications.findBy('id', id);
 
 		if (notification && notification.get('hiding') === false) {
 			notification.set('hiding', true);

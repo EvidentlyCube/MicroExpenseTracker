@@ -6,8 +6,8 @@ export default Ember.Controller.extend({
 	globalNotificationStorage: Ember.inject.service(),
 
 	formModel: Ember.computed('model', function () {
-		var model = this.get('model').model;
-		var parent = model.get('parent');
+		const model = this.get('model').model;
+		const parent = model.get('parent');
 
 		return {
 			id: model.get('id'),

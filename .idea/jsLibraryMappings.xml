@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{bower_components Ember, bower_components MicroExpenseTracker, node_modules Ember, node_modules MicroExpenseTracker}" />
-    <includedPredefinedLibrary name="ECMAScript 6" />
+    <file url="PROJECT" libraries="{bower_components Ember, bower_components MicroExpenseTracker}" />
   </component>
 </project>

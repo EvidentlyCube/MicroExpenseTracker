@@ -2,7 +2,7 @@
 
 module.exports = function (environment) {
     var ENV = {
-        modulePrefix: 'shopping-expenses',
+        modulePrefix: 'micro-expense-tracker',
         environment: environment,
         rootURL: '/',
         // locationType: 'auto',

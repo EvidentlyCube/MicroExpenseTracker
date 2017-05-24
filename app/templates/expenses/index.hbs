@@ -53,7 +53,7 @@
 	                    {{/link-to}}
                     </span>
 					<span class="icon">
-                        <a href="#" onclick={{action "deleteExpense" row.id}} title={{t "section.expenses.index.action.delete" expense=row.name}}>
+                        <a href="#" {{action "deleteExpense" row.id}} title={{t "section.expenses.index.action.delete" expense=row.name}}>
                             <i class="fa fa-remove"></i>
                         </a>
                     </span>

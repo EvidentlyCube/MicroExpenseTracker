@@ -3,8 +3,8 @@
 		<form onsubmit={{action "saveHandler"}}>
 			<input class="category-id" type="hidden" value={{model.id}}>
 			<p class="control">
-				<label class="label">{{t "section.categories.form.name"}}*</label>
-				<input class="category-name input" required value={{model.name}}>
+				<label for="category-name-input" class="label">{{t "section.categories.form.name"}}*</label>
+				<input id="category-name-input" class="category-name input" required value={{model.name}}>
 			</p>
 			<p class="control">
 				<label class="label">{{t "section.categories.form.parent"}}</label>
