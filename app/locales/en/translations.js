@@ -12,7 +12,8 @@ export default {
 		main_menu: 'Main menu:',
 		categories: "Categories",
 		summary: "Summary",
-		expenses: "Expenses"
+		expenses: "Expenses",
+		options: "Options"
 	},
 	footer: {
 		made_by: 'Website made by <a href="http://mauft.com">Maurycy Zarzycki Mauft.com</a>.',

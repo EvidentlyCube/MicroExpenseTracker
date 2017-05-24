@@ -5,12 +5,10 @@
   "private": true,
   "directories": {
     "doc": "doc",
-    "test": "tests"
   },
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test",
     "dist": "ember build & node scripts/build-nw.js"
   },
   "repository": "",
