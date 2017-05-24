@@ -3,8 +3,7 @@ import DS from "ember-data";
 
 export default DS.Model.extend({
 	name: DS.attr('string'),
-	parent: DS.belongsTo('category', {inverse: 'children', async: false}),
-	children: DS.hasMany('category', { inverse: 'parent', async: false}),
+	parent: DS.belongsTo('category', {inverse: null, async: false}),
 
 	indentedName: Ember.computed('name', 'parent', 'parent.name', 'parent.parent', function () {
 		let parent = this.get('parent');
@@ -50,8 +49,8 @@ export default DS.Model.extend({
 		return name;
 	}),
 
-	hasChildren: Ember.computed('children.[]', function () {
-		return this.get('children').length > 0;
+	hasChildren: Ember.computed(function () {
+		return this.get('store').peekAll('category').filter(cat => cat.get('parent') === this).length > 0;
 	}),
 
 	isCategory(category){
