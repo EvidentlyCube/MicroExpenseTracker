@@ -8,6 +8,9 @@ module.exports = function (defaults) {
         // "ember-cli-qunit": {
         //     useLintTree: false
         // }
+	    sassOptions: {
+	        extension: 'sass'
+        },
 	    'ember-cli-babel': {
 		    includePolyfill: true
 	    }
