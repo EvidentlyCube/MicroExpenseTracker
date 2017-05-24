@@ -1,12 +1,12 @@
-import Ember from 'ember';
+import Ember from "ember";
 
 export default Ember.Component.extend({
-    id: "",
-    class: "",
-    name: "",
-    tagName: "select",
+	id: "",
+	class: "",
+	name: "",
+	tagName: "select",
 
-    options: [],
-    selectedValue: "",
-    firstOption: ""
+	options: [],
+	selectedValue: "",
+	firstOption: ""
 });

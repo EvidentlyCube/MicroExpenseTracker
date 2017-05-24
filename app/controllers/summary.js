@@ -1,29 +1,46 @@
-import Ember from 'ember';
-import moment from 'moment';
-import _ from 'lodash/lodash';
+import Ember from "ember";
 
 export default Ember.Controller.extend({
-    expenses: Ember.computed.alias('model.expenses'),
+	monthsService: Ember.inject.service(),
+	summaryService: Ember.inject.service(),
 
-    expensesByDate: null,
-    expensesSumByDate: null,
+	expenses: Ember.computed.alias('model.expenses'),
+	categories: Ember.computed.alias('model.categories'),
+	currentMonth: null,
 
-    resetSummaryData(){
-        const expenses = this.get('expenses');
-        const expensesByDate = _.groupBy(expenses.toArray(), this._lodashGroupByYearMonth);
+	totalSum: 0,
+	uncategorizedSum: 0,
+	expensesPerCategory: null,
+	filteredExpenses: Ember.computed.filter('expenses', function (expense) {
+		return expense.get('purchasedAt') >= this.get('currentMonth.startDate')
+			&& expense.get('purchasedAt') <= this.get('currentMonth.endDate');
+	}),
 
-        const expensesSumByDate = _.mapValues(expensesByDate, expenses => {
-            return _.reduce(expenses, (sum, expense) => sum + expense.get('price'), 0);
-        });
+	init(){
+		this.set('currentMonth', this.get('monthsService').getCurrentMonthObject());
+	},
 
-        console.log(expensesByDate);
-        console.log(expensesSumByDate);
+	resetSummaryData(){
+		let [totalSum, uncategorizedSum, expensesPerCategory] = this.get('summaryService').calculateExpenseData(
+			this.get('filteredExpenses'),
+			this.get('categories')
+		);
 
-        this.set('expensesByDate', expensesByDate);
-        this.set('expensesSumByDate', expensesSumByDate);
-    },
+		expensesPerCategory = expensesPerCategory.sortBy('category.namePath');
 
-    _lodashGroupByYearMonth(expense){
-        return moment(expense).format('YYYY-MM');
-    }
+		this.set('totalSum', totalSum);
+		this.set('uncategorizedSum', uncategorizedSum);
+		this.set('expensesPerCategory', expensesPerCategory);
+	},
+
+	actions: {
+		switchMonth(delta){
+			const currentMonth = this.get('currentMonth');
+			const monthsService = this.get('monthsService');
+
+			this.set('currentMonth', monthsService.getMonthObjectByDelta(currentMonth, delta));
+			this.notifyPropertyChange('expenses');
+			this.resetSummaryData();
+		}
+	}
 });

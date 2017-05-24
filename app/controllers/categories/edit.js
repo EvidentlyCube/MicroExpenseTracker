@@ -1,41 +1,53 @@
-import Ember from 'ember';
+import Ember from "ember";
 
 export default Ember.Controller.extend({
-    store: Ember.inject.service(),
-    globalNotificationStorage: Ember.inject.service(),
+	i18n: Ember.inject.service(),
+	store: Ember.inject.service(),
+	globalNotificationStorage: Ember.inject.service(),
 
-    formModel: Ember.computed('model', function(){
-        var model = this.get('model').model;
-        var parent = model.get('parent');
+	formModel: Ember.computed('model', function () {
+		var model = this.get('model').model;
+		var parent = model.get('parent');
 
-        return {
-            id: model.get('id'),
-            name: model.get('name'),
-            parentId: parent ? parent.get('id') : null
-        };
-    }),
+		return {
+			id: model.get('id'),
+			name: model.get('name'),
+			parentId: parent ? parent.get('id') : null
+		};
+	}),
 
-    actions: {
-        onSave(properties){
-            var self = this;
-            var record = this.get('store').peekRecord('category', properties.id);
-            var oldName = record.get('name');
+	actions: {
+		onSave(properties){
+			const i18n = this.get('i18n');
+			const globalNotificationStorage = this.get('globalNotificationStorage');
+			const category = this.get('store').peekRecord('category', properties.id);
 
-            if (record){
-                record.set('name', properties.name);
-                record.set('parent', this.get('store').peekRecord('category', properties.parentId));
+			if (category) {
+				category.set('name', properties.name);
+				category.set('parent', this.get('store').peekRecord('category', properties.parentId));
 
-                record.save().then(function(){
-                    self.get('globalNotificationStorage').addSuccess(`Category "${oldName}" changed to "${record.get('name')}"`, 2000);
-                    self.transitionToRoute('categories.index');
-                });
-            } else {
-                self.get('globalNotificationStorage').addError(`Category no longer exists and cannot be modified added`, 4000);
-                self.transitionToRoute('categories.index');
-            }
-        },
-        onCancel(){
-            this.transitionToRoute('categories.index');
-        }
-    }
+				category.save()
+					.then(() => {
+						const message = i18n.t('section.categories.notifications.updated', {
+							name: category.get('namePathForHtml')
+						});
+						globalNotificationStorage.addSuccess(message, 2000);
+						this.transitionToRoute('categories.index');
+					})
+					.catch((error) => {
+						const message = i18n.t('section.categories.notifications.save_failed', {
+							error: Ember.get(error, 'errors.0.title')
+						});
+						globalNotificationStorage.addError(message, 4000);
+						category.deleteRecord();
+					});
+			} else {
+				globalNotificationStorage.addError(i18n.t('section.categories.notifications.missing_category_update'), 4000);
+				this.transitionToRoute('categories.index');
+			}
+		},
+		onCancel(){
+			this.transitionToRoute('categories.index');
+		}
+	}
 });

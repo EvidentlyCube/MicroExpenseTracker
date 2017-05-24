@@ -1,6 +1,5 @@
-import DS from 'ember-data';
-import ENV from '../config/environment';
+import LSAdapter from "ember-localstorage-adapter";
 
-export default DS.RESTAdapter.extend({
-    host: ENV.apiHost
+export default LSAdapter.extend({
+	namespace: 'met-data'
 });

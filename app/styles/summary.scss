@@ -1,0 +1,36 @@
+.summary{
+	width: auto;
+	max-width: 1200px;
+	margin: auto;
+
+	tr.has-children{
+		opacity: 0.5;
+	}
+
+	tr:nth-child(2n){
+		background: #F8F8F8;
+	}
+	tr:hover{
+		background: #E0E0E0;
+		opacity: 1;
+	}
+	tr > *{
+		padding: 4px 10px;
+	}
+
+	tr.no-category{
+		background: #FFAAAA;
+	}
+
+	tr.sum{
+		background: #00ebc3;
+	}
+
+	.category{
+		padding-right: 20px;
+	}
+	.value,
+	.percent{
+		text-align: right;
+	}
+	}

@@ -1,4 +1,3 @@
-import DS from 'ember-data';
+import {LSSerializer} from "ember-localstorage-adapter";
 
-export default DS.RESTSerializer.extend({
-});
+export default LSSerializer.extend();

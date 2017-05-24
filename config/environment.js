@@ -5,7 +5,8 @@ module.exports = function (environment) {
         modulePrefix: 'shopping-expenses',
         environment: environment,
         rootURL: '/',
-        locationType: 'auto',
+        // locationType: 'auto',
+	    locationType: 'hash',
         defaultLocale: 'en',
         EmberENV: {
             FEATURES: {

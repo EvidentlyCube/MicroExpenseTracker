@@ -19,6 +19,7 @@
     <orderEntry type="library" name="node_modules Ember" level="project" />
     <orderEntry type="library" name="bower_components Ember" level="project" />
     <orderEntry type="library" name="node_modules MicroExpenseTracker" level="project" />
+    <orderEntry type="library" name="bower_components MicroExpenseTracker" level="project" />
     <orderEntry type="module-library">
       <library name="PHP Runtime" type="php">
         <CLASSES>

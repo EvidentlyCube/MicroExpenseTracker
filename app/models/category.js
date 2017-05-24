@@ -1,56 +1,61 @@
-import Ember from 'ember';
-import DS from 'ember-data';
+import Ember from "ember";
+import DS from "ember-data";
 
 export default DS.Model.extend({
-    name: DS.attr('string'),
-    parent: DS.belongsTo('category', {inverse: null, async: false}),
+	name: DS.attr('string'),
+	parent: DS.belongsTo('category', {inverse: 'children', async: false}),
+	children: DS.hasMany('category', { inverse: 'parent', async: false}),
 
-    indentedName: Ember.computed('name', 'parent', 'parent.name', 'parent.parent', function(){
-        var parent = this.get('parent');
+	indentedName: Ember.computed('name', 'parent', 'parent.name', 'parent.parent', function () {
+		let parent = this.get('parent');
+		let indent = "";
 
-        var indent = "";
+		while (parent) {
+			indent += "&nbsp;-&nbsp;";
+			parent = parent.get('parent');
+		}
 
-        while(parent){
-            indent += "&nbsp;-&nbsp;";
-            parent = parent.get('parent');
-        }
+		return indent + this.get('name');
+	}),
 
-        return indent + this.get('name');
-    }),
+	namePath: Ember.computed('name', 'parent', 'parent.parent', 'parent.namePath', function () {
+		const parent = this.get('parent');
 
-    namePath: Ember.computed('name', 'parent', 'parent.parent', 'parent.namePath', function(){
-        var parent = this.get('parent');
+		if (parent) {
+			return parent.get('namePath') + " -> " + this.get('name');
+		} else {
+			return this.get('name');
+		}
+	}),
 
-        if (parent){
-            return parent.get('namePath') + " -> " + this.get('name');
-        } else {
-            return this.get('name');
-        }
-    }),
+	namePathForHtml: Ember.computed('name', 'parent', 'parent.parent', 'parent.namePath', function () {
+		const parent = this.get('parent');
 
-    namePathForHtml: Ember.computed('name', 'parent', 'parent.parent', 'parent.namePath', function(){
-        var parent = this.get('parent');
+		if (parent) {
+			return `${parent.get('namePath')} -> <strong>${this.get('name')}</strong>`;
+		} else {
+			return `<strong>${this.get('name')}</strong>`;
+		}
+	}),
 
-        if (parent){
-            return `${parent.get('namePath')} -> <strong>${this.get('name')}</strong>`;
-        } else {
-            return `<strong>${this.get('name')}</strong>`;
-        }
-    }),
+	rootName: Ember.computed('name', 'parent', 'parent.parent', 'parent.name', 'parent.rootName', function () {
+		let name = this.get('name');
+		let parent = this.get('parent');
 
-    rootName: Ember.computed('name', 'parent', 'parent.parent', 'parent.name', 'parent.rootName', function(){
-        var name = this.get('name');
-        var parent = this.get('parent');
+		while (parent) {
+			name = parent.get('name');
+			parent = parent.get('parent');
+		}
 
-        while(parent){
-            name = parent.get('name');
-            parent = parent.get('parent');
-        }
+		return name;
+	}),
 
-        return name;
-    }),
+	hasChildren: Ember.computed('children.[]', function () {
+		return this.get('children').length > 0;
+	}),
 
-    isCategory(category){
-        return this === category || (this.get('parent') && this.get('parent').isCategory(category));
-    }
+	isCategory(category){
+		return this === category || (this.get('parent') && this.get('parent').isCategory(category));
+	}
+
 });

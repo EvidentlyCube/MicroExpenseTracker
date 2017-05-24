@@ -1,47 +1,47 @@
-import Ember from 'ember';
+import Ember from "ember";
 
 export default Ember.Component.extend({
-    categories: [],
-    model: {
-        id: "",
-        name: "",
-        parentId: ""
-    },
+	categories: [],
+	model: {
+		id: "",
+		name: "",
+		parentId: ""
+	},
 
-    categoriesData: Ember.computed('categories', function () {
-        return this.get('categories')
-            .filter(row => row.get('id') !== this.get('model').id)
-            .map(function (category) {
-                return {
-                    name: category.get('namePath'),
-                    value: category.get('id')
-                };
-            });
-    }),
+	categoriesData: Ember.computed('categories', function () {
+		return this.get('categories')
+			.filter(row => row.get('id') !== this.get('model').id)
+			.map(function (category) {
+				return {
+					name: category.get('namePath'),
+					value: category.get('id')
+				};
+			});
+	}),
 
-    onSave: ()=> {
-    },
-    onCancel: ()=> {
-    },
+	onSave: () => {
+	},
+	onCancel: () => {
+	},
 
-    getProperties() {
-        return {
-            id: this.$('.category-id').val(),
-            name: this.$('.category-name').val(),
-            parentId: this.$('.category-parent-id').val()
-        };
-    },
+	getProperties() {
+		return {
+			id: this.$('.category-id').val(),
+			name: this.$('.category-name').val(),
+			parentId: this.$('.category-parent-id').val()
+		};
+	},
 
-    actions: {
-        saveHandler(){
-            this.get('onSave')(this.getProperties());
+	actions: {
+		saveHandler(){
+			this.get('onSave')(this.getProperties());
 
-            return false;
-        },
-        cancelHandler(){
-            this.get('onCancel')(this.getProperties());
+			return false;
+		},
+		cancelHandler(){
+			this.get('onCancel')(this.getProperties());
 
-            return false;
-        }
-    }
+			return false;
+		}
+	}
 });

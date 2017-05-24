@@ -1,13 +1,13 @@
 {{#if notifications.length}}
-    <div class="notifications-container">
-        <div class="container">
-            {{#each notifications as |notification|}}
-                <div class="notification {{notification.class}}">
-                    <button class="delete" onclick={{action "removeNotification" notification.id}}></button>
-                    {{notification.message}}
-                </div>
-            {{/each}}
-        </div>
-    </div>
+	<div class="notifications-container">
+		<div class="container">
+			{{#each notifications as |notification|}}
+				<div class="notification {{notification.class}}">
+					<button class="delete" onclick={{action "removeNotification" notification.id}}></button>
+					{{notification.message}}
+				</div>
+			{{/each}}
+		</div>
+	</div>
 {{/if}}
 

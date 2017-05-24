@@ -40,10 +40,10 @@ export default Ember.Service.extend({
 		var notifications = this.get('notifications');
 		var notification = notifications.findBy('id', id);
 
-		if (notification && notification.get('hiding') === false){
+		if (notification && notification.get('hiding') === false) {
 			notification.set('hiding', true);
 			notification.set('class', notification.get('class') + " hiding");
-			setTimeout(function(){
+			setTimeout(function () {
 				notifications.removeObject(notification);
 			}, 1000);
 		}

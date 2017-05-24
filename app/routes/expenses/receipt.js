@@ -1,15 +1,15 @@
-import Ember from 'ember';
+import Ember from "ember";
 
 export default Ember.Route.extend({
-    categoryProvider: Ember.inject.service(),
+	categoryProvider: Ember.inject.service(),
 
-    model(){
-        return this.get('categoryProvider').getAllSortedByPath();
-    },
+	model(){
+		return this.get('categoryProvider').getAllSortedByPath();
+	},
 
-    setupController(controller, model){
-        this._super(controller, model);
+	setupController(controller, model){
+		this._super(controller, model);
 
-        controller.resetModel();
-    }
+		controller.resetModel();
+	}
 });

@@ -1,5 +1,38 @@
-<h1 class="container title">Expenses summary</h1>
+<h1 class="container title">
+	Expenses summary
+	<span class="date-switcher">
+		<a onclick={{action "switchMonth" -1}}>&lt;</a>
+		<span class="current-month">
+			{{currentMonth.year}}-{{pad-start currentMonth.displayMonth 2 '0'}}
+		</span>
+		<a onclick={{action "switchMonth" 1}}>&gt;</a>
+	</span>
+</h1>
 
-{{#each-in expensesSumByDate as |date sum|}}
-    <strong>{{date}}</strong>: {{sum}}<br>
-{{/each-in}}
+<table class="summary">
+	{{#each-in expensesPerCategory as |key data|}}
+		<tr class="{{if data.category.hasChildren "has-children" "no-children"}}">
+			<td class="category">
+				{{{data.category.namePathForHtml}}}
+			</td>
+			<td class="value">
+				{{t "common.currency_wrap" value=data.sumFormatted}}
+			</td>
+			<td class="percent">
+				{{data.percent}}%
+			</td>
+		</tr>
+	{{/each-in}}
+	{{#if uncategorizedSum}}
+		<tr class="no-category">
+			<th class="category">{{t 'section.summary.no_category'}}</th>
+			<td class="value">{{t "common.currency_wrap" value=uncategorizedSum}}</td>
+			<td></td>
+		</tr>
+	{{/if}}
+	<tr class="sum">
+		<th class="category">{{t 'section.summary.total'}}</th>
+		<td class="value">{{t "common.currency_wrap" value=totalSum}}</td>
+		<td></td>
+	</tr>
+</table>

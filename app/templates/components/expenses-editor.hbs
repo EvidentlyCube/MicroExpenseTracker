@@ -1,29 +1,29 @@
 <div class="expense-row control is-grouped">
-    <p class="control">
-        <input class="input expense-name {{nameErrorClass}}"
-               placeholder={{t "section.expenses.new_receipt.name_placeholder"}}
-               oninput={{action 'set' "model.name"}}>
-    </p>
-    <p class="control has-icon has-icon-right">
-        <input class="input expense-price {{priceErrorClass}}" placeholder={{t "section.expenses.new_receipt.price_placeholder"}}
-               oninput={{action 'set' "model.price"}}>
-    </p>
-    <p class="control" style="width: 400px">
-        {{#power-select triggerClass="input"
-            selected=model.category
-            options=options
-            searchField="namePathForHtml"
-            onchange=(action "changedCategory")
-            onfocus=(action "handleFocus")
-            onkeydown=(action "handleCategoryInput")
-            placeholder=(t "section.expenses.new_receipt.category_placeholder")
-        as |model|}}
-            {{{model.namePathForHtml}}}
-        {{/power-select}}
-    </p>
-    <p class="control has-icon has-icon-right">
-        <input class="input expense-discount {{discountErrorClass}}" placeholder={{t "section.expenses.new_receipt.discount_placeholder"}}
-               oninput={{action 'set' "model.discount"}}>
-        <i class="fa fa-percent"></i>
-    </p>
+	<p class="control">
+		<input class="input expense-name {{nameErrorClass}}"
+		       placeholder={{t "section.expenses.new_receipt.name_placeholder"}}
+			       oninput={{action 'set' "model.name"}}>
+	</p>
+	<p class="control has-icon has-icon-right">
+		<input class="input expense-price {{priceErrorClass}}" placeholder={{t "section.expenses.new_receipt.price_placeholder"}}
+			oninput={{action 'set' "model.price"}}>
+	</p>
+	<p class="control" style="width: 400px">
+		{{#power-select triggerClass="input"
+		                selected=model.category
+		                options=options
+		                searchField="namePathForHtml"
+		                onchange=(action "changedCategory")
+		                onfocus=(action "handleFocus")
+		                onkeydown=(action "handleCategoryInput")
+		                placeholder=(t "section.expenses.new_receipt.category_placeholder")
+		as |model|}}
+			{{{model.namePathForHtml}}}
+		{{/power-select}}
+	</p>
+	<p class="control has-icon has-icon-right">
+		<input class="input expense-discount {{discountErrorClass}}" placeholder={{t "section.expenses.new_receipt.discount_placeholder"}}
+			oninput={{action 'set' "model.discount"}}>
+		<i class="fa fa-percent"></i>
+	</p>
 </div>
