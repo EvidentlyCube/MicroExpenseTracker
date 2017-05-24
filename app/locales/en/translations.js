@@ -102,6 +102,16 @@ export default {
 		summary: {
 			no_category: 'Bez kategorii',
 			total: 'Total'
+		},
+
+		options: {
+			headers: {
+				language: "Language",
+				misc: "Misc"
+			},
+			language: {
+				lang: "Interface language"
+			}
 		}
 	}
 };
