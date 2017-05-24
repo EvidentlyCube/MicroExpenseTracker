@@ -3,14 +3,10 @@
   "version": "1.0.0",
   "description": "A minimalistic software for tracking your daily expenses",
   "private": true,
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
+  "directories": {},
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test",
     "dist": "ember build & node scripts/build-nw.js"
   },
   "repository": "",

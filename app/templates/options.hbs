@@ -1,0 +1,19 @@
+<div class="options-route">
+	<div class="tabs">
+		<ul>
+			{{#link-to "options.language" tagName="li" activeClass="is-active"}}
+				<a>
+					<span class="icon is-small"><i class="fa fa-language"></i></span>
+					<span>Language</span>
+				</a>
+			{{/link-to}}
+			{{#link-to "options.misc" tagName="li" activeClass="is-active"}}
+				<a>
+					<span class="icon is-small"><i class="fa fa-cog"></i></span>
+					<span>Misc</span>
+				</a>
+			{{/link-to}}
+		</ul>
+	</div>
+	{{outlet}}
+</div>

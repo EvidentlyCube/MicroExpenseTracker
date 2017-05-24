@@ -12,7 +12,8 @@ export default {
 		main_menu: 'Menu główne:',
 		categories: "Kategorie",
 		summary: "Statystyki",
-		expenses: "Wydatki"
+		expenses: "Wydatki",
+		options: "Opcje"
 	},
 	footer: {
 		made_by: 'Strona stworzona przez <a href="http://mauft.com">Maurycy Zarzycki Mauft.com</a>.',

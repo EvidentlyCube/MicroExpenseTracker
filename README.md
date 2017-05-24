@@ -11,7 +11,4 @@ Micro Expense Tracker (MET) is a minimalistic application designed to let you tr
 Head on to [Releases](https://github.com/RetrocadeNet/MicroExpenseTracker/releases) to grab the executable. MET is available in the following version:
 
  - **Linux 32-bit** - never tested, if you tested it please create an issue detailing your experience)
- - **Linux 64-bit** - never tested, if you tested it please create an issue detailing your experience)
- - **MacOS 64-bit** - never tested, if you tested it please create an issue detailing your experience)
  - **Windows 32-bit** - Should work with Windows 7, 8, 8.1 and 10 
- - **Windows 64-bit** - Should work with Windows 7, 8, 8.1 and 10 
