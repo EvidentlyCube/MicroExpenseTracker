@@ -13,9 +13,7 @@ export default Ember.Service.extend({
 			options = {};
 		}
 
-		console.log(options);
-
-		this.set('options', options);
+		this.set('options', options ? options : {});
 	},
 
 	getCurrentLanguage(){
