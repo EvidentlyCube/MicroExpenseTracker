@@ -5,7 +5,7 @@ var nw = new NwBuilder({
 	flavor: 'normal',
 	buildDir: __dirname + "/../nw-dist",
 	cacheDir: __dirname + "/../nw-cache",
-	// zip: false
+	zip: false
 });
 
 //Log stuff you want
