@@ -25,6 +25,10 @@ Router.map(function () {
 	});
 	this.route('summary', function () {
 	});
+	this.route('options', function () {
+		this.route('language');
+		this.route('misc');
+	});
 });
 
 export default Router;

@@ -12,7 +12,13 @@ export default {
 		main_menu: 'Main menu:',
 		categories: "Categories",
 		summary: "Summary",
-		expenses: "Expenses"
+		expenses: "Expenses",
+		options: "Options"
+	},
+	components: {
+		date_switcher: {
+			return: 'Return to current month'
+		}
 	},
 	footer: {
 		made_by: 'Website made by <a href="http://mauft.com">Maurycy Zarzycki Mauft.com</a>.',
@@ -48,7 +54,7 @@ export default {
 			form: {
 				name: "Name",
 				parent: "Parent category",
-				parent_none: "<top-level category>",
+				parent_none: "&lt;top-level category&gt;",
 				save: "Save",
 				cancel: "Cancel"
 			},
@@ -99,8 +105,19 @@ export default {
 		},
 
 		summary: {
-			no_category: 'Bez kategorii',
+			title: 'Expenses summary',
+			no_category: 'Without category',
 			total: 'Total'
+		},
+
+		options: {
+			headers: {
+				language: "Language",
+				misc: "Misc"
+			},
+			language: {
+				lang: "Interface language"
+			}
 		}
 	}
 };

@@ -2,18 +2,18 @@ import Ember from "ember";
 
 export default Ember.Controller.extend({
 	i18n: Ember.inject.service(),
+	optionsService: Ember.inject.service(),
+	monthsService: Ember.inject.service(),
+
+	currentMonth: Ember.computed.alias('monthsService.currentMonth'),
 
 	init(){
-		const locale = this.get('i18n.locale');
-		console.log(locale);
+		this.set('i18n.locale', this.get('optionsService').getCurrentLanguage());
 	},
 
 	actions: {
-		switchToPolish(){
-			this.set('i18n.locale', 'pl');
-		},
-		switchToEnglish(){
-			this.set('i18n.locale', 'en');
+		currentMonthChanged(newMonth){
+			this.set('currentMonth', newMonth);
 		}
 	}
 });

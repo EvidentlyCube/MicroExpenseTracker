@@ -2,18 +2,17 @@ import Ember from "ember";
 import RSVP from "rsvp";
 
 export default Ember.Route.extend({
-	store: Ember.inject.service(),
+	modelService: Ember.inject.service('model/model-service'),
+	monthsService: Ember.inject.service(),
+
+	currentMonthChanged: Ember.observer('monthsService.currentMonth', function(){
+		this.refresh();
+	}),
 
 	model(){
 		return RSVP.hash({
-			categories: this.get('store').findAll('category'),
-			expenses: this.get('store').findAll('expense')
+			categories: this.get('modelService.category').getAll(),
+			expenses: this.get('modelService.expense').getByMonth(this.get('monthsService.currentMonth')),
 		});
-	},
-
-	setupController(controller, post) {
-		this._super(controller, post);
-
-		controller.resetSummaryData();
-	},
+	}
 });

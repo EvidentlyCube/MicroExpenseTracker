@@ -12,7 +12,13 @@ export default {
 		main_menu: 'Menu główne:',
 		categories: "Kategorie",
 		summary: "Statystyki",
-		expenses: "Wydatki"
+		expenses: "Wydatki",
+		options: "Opcje"
+	},
+	components: {
+		date_switcher: {
+			return: 'Cofnij do aktualnego miesiąca'
+		}
 	},
 	footer: {
 		made_by: 'Strona stworzona przez <a href="http://mauft.com">Maurycy Zarzycki Mauft.com</a>.',
@@ -101,8 +107,19 @@ export default {
 		},
 
 		summary: {
-			no_category: 'Without category',
+			title: 'Podsumowanie wydatków',
+			no_category: 'Bez kategorii',
 			total: 'W sumie'
+		},
+
+		options: {
+			headers: {
+				language: "Język",
+				misc: "Różne"
+			},
+			language: {
+				lang: "Język interfejsu"
+			}
 		}
 	}
 };

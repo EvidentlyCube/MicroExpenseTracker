@@ -1,13 +1,26 @@
 import Ember from "ember";
 
 export default Ember.Service.extend({
-	store: Ember.inject.service(),
+	modelService: Ember.inject.service('model/model-service'),
+
 
 	getAll(){
-		return this.get('store').findAll('category');
+		return this.get('modelService.category').getAll();
 	},
 
 	getAllSortedByPath(){
-		return this.get('store').findAll('category').then(rows => rows.sortBy('rootName', 'namePath'));
+		const categories = this.getAll();
+
+		categories.sort((left, right) => {
+			const rootNameCompare = left.get('rootName').localeCompare(right.get('rootName'));
+
+			if (rootNameCompare === 0) {
+				return left.get('namePath').localeCompare(right.get('namePath'));
+			}else {
+				return rootNameCompare;
+			}
+		});
+
+		return categories;
 	}
 });

@@ -36,7 +36,7 @@ export default Ember.Service.extend({
 			let category = expense.get('category');
 			let isRootCategory = true;
 
-			if (category.get('id')){
+			if (category){
 				while (category) {
 					const data = expensesPerCategoryData_out[category.get('id')];
 					data.sum += expense.get('realPrice');

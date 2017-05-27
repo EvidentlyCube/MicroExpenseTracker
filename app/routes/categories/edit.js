@@ -2,13 +2,14 @@ import Ember from "ember";
 import RSVP from "rsvp";
 
 export default Ember.Route.extend({
-	store: Ember.inject.service(),
+	modelService: Ember.inject.service('model/model-service'),
 	categoryProvider: Ember.inject.service(),
 
 	model(params){
+		const currentCategory = this.get('modelService.category').getById(params.category_id);
 		return RSVP.hash({
-			model: this.get('store').findRecord('category', params.category_id),
-			categories: this.get('categoryProvider').getAllSortedByPath()
+			model: currentCategory,
+			categories: this.get('categoryProvider').getAllSortedByPath().filter(category => !category.isChildOf(currentCategory))
 		});
 	}
 });

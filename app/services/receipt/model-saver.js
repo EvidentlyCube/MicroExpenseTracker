@@ -2,11 +2,11 @@ import Ember from "ember";
 
 export default Ember.Service.extend({
 	sanitizer: Ember.inject.service(),
-	store: Ember.inject.service(),
+	modelService: Ember.inject.service('model/model-service'),
 
 	saveModels(models, expenseDate){
 		const sanitizer = this.get('sanitizer');
-		const store = this.get('store');
+		const expenseService = this.get('modelService.expense');
 		let promises = [];
 
 		models.forEach((model) => {
@@ -14,18 +14,17 @@ export default Ember.Service.extend({
 				return;
 			}
 
-
-			const expense = store.createRecord('expense', {
+			const expense = expenseService.create({
 				name: model.name,
 				price: sanitizer.parseNumber(model.price),
 				discount: sanitizer.parseNumber(model.discount / 100),
-				category: model.category,
+				categoryId: model.category.get('id'),
 				purchasedAt: expenseDate,
 				createdAt: new Date(),
 				updatedAt: new Date()
 			});
 
-			promises.push(expense.save());
+			expense.save();
 		});
 
 		return Ember.RSVP.Promise.all(promises);

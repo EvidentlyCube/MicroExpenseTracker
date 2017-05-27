@@ -1,11 +1,10 @@
 import Ember from "ember";
-import DS from "ember-data";
 
-export default DS.Model.extend({
-	startDate: DS.attr('date'),
-	endDate: DS.attr('date'),
-	year: DS.attr('number'),
-	month: DS.attr('number'),
+export default Ember.Object.extend({
+	startDate: null,
+	endDate: null,
+	year: null,
+	month: null,
 
 	displayMonth: Ember.computed('month', function () {
 		return this.get('month') + 1;

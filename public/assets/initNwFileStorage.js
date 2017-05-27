@@ -4,9 +4,11 @@
 	}
 	window.__nw_global = window.global;
 	window.__nw_require = window.require;
+	window.__nw_save_path = '_data';
 
-	var fs = require('fs');
-	var path = require('path');
+	var fs = window.__nw_require('fs');
+	var path = window.__nw_require('path');
+
 
 	delete window.global;
 	delete window.require;
@@ -16,9 +18,6 @@
 
 	createDirectory(savePath);
 	createDirectory(backupPath);
-
-	window.localStorage.setItem = setItemOverride;
-	window.localStorage.getItem = getItemOverride;
 
 	backupData();
 
@@ -42,31 +41,7 @@
 		}
 	}
 
-	function setItemOverride(key, data) {
-		var path = getStorageFilePath(key);
-		try {
-			fs.unlinkSync(path);
-		} catch (e) {
-		}
-		fs.writeFileSync(path, JSON.stringify(data));
-	}
-
-	function getItemOverride(key) {
-		var path = getStorageFilePath(key);
-		try {
-			var data = fs.readFileSync(path, {encoding: 'utf-8'});
-			return JSON.parse(data);
-
-		} catch (e) {
-			return null;
-		}
-	}
-
 	/* UTILS */
-
-	function getStorageFilePath(key) {
-		return savePath + "/" + slugify(key) + "-" + hashString(key) + ".json";
-	}
 
 	function directoryExists(path){
 		try {
@@ -91,20 +66,6 @@
 		} else {
 			return value;
 		}
-	}
-
-	function hashString(s) {
-		var h = 0, l = s.length, i = 0;
-		if (l > 0){
-			while (i < l){
-				h = (h << 5) - h + s.charCodeAt(i++) | 0;
-			}
-		}
-		return h;
-	}
-
-	function slugify(s) {
-		return s.replace(/[^a-z0-9_-]/ig, '-').replace(/-+/g, '-');
 	}
 
 	function copyFileSync(source, target) {
