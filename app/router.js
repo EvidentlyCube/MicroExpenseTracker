@@ -23,12 +23,12 @@ Router.map(function () {
 		});
 		this.route('receipt');
 	});
-	this.route('summary', function () {
-	});
+	this.route('summary');
 	this.route('options', function () {
 		this.route('language');
 		this.route('misc');
 	});
+	this.route('install');
 });
 
 export default Router;

@@ -1,4 +1,5 @@
 export default {
 	CurrentLanguage: 'current-language',
-	CurrencyDisplay: 'currency-display'
+	CurrencyDisplay: 'currency-display',
+	InstallationFinished: 'is-installed'
 };

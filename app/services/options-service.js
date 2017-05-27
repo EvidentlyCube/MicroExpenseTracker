@@ -12,6 +12,14 @@ export default Ember.Service.extend({
 
 		this.set('options', options);
 	},
+	
+	getInstallationFinished(){
+		return this._getOptionByName(OptionNames.InstallationFinished, false);
+	},
+
+	setInstallationFinished(value){
+		this._setOptionByName(OptionNames.InstallationFinished, value);
+	},
 
 	getCurrencyDisplay(){
 		return this._getOptionByName(OptionNames.CurrencyDisplay, '$~~PRICE~~');

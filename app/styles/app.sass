@@ -1,28 +1,19 @@
 @import "vars"
 @import "bulma-extension"
-@import "header"
-@import "notifications"
+
+@import "common/header"
+@import "common/notifications"
+@import "common/route"
+@import "common/footer"
+
+@import "routes/common"
+@import "routes/install"
+@import "routes/options"
+@import "routes/options/language"
+@import "routes/receipt"
+@import "routes/summary"
+
 @import "components/date-switcher"
-@import "receipt"
-@import "summary"
-@import "footer"
-@import "options"
-@import "options/language"
+
 @import "ember-power-select"
 
-
-.route-content
-	max-width: $site-max-width
-	margin: auto
-
-
-.action-row
-	margin-bottom: 10px
-
-	span
-		padding-right: 20px
-		font-weight: bold
-		line-height: 32px
-
-.expense-row
-	margin-bottom: 10px

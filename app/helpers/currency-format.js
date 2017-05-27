@@ -5,7 +5,6 @@ export default Ember.Helper.extend({
 
 	compute([value]) {
         let display = this.get('optionsService').getCurrencyDisplay();
-        console.log(display);
         return display.replace(/~~PRICE~~/g, value.toFixed(2));
 	}
 });

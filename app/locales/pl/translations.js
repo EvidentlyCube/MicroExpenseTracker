@@ -1,6 +1,6 @@
 export default {
 	app: {
-		title: "Mikrowydatnik MET",
+		title: "MET - Mikrowydatnik",
 		subtitle: "Super szybkie śledzenie budżetu domowego!",
 		page_title: "[MET] Mikrowydatnik"
 	},
@@ -32,6 +32,11 @@ export default {
 		body_3: "Jeżeli podoba ci się ten projekt i chcesz go wesprzeć lub masz pytania użyj proszę <a href='https://github.com/RetrocadeNet/MicroExpenseTracker/issues'>zgłaszania błędów</a> na GitHubie (wbrew nazwie można tam też zgłaszać pytania i nie tylko). Jeżeli potrzebujesz skontaktować się z autorem napisz na <a href='mailto:maurycy.zarzycki@mauft.com'>maurycy.zarzycki@mauft.com</a>"
 	},
 	section: {
+		install: {
+			currency_hint: "Walutę można dostosować w opcjach.",
+			start: "Rozpocznij pracę"
+		},
+
 		categories: {
 			title: "Kategorie wydatków",
 

@@ -1,0 +1,27 @@
+<div class="install-route">
+	<div class="contents">
+		<img class="logo" src="/assets/logo_white.svg"/>
+		<h1>{{t "app.title"}}</h1>
+
+		<div class="spacer"></div>
+
+		<label class="label">{{t "section.options.language.lang"}}</label>
+		<p class="control">
+			{{common/button-bar options=optionsLanguage value=i18n.locale action="handleLanguageChanged"}}
+		</p>
+
+		<div class="spacer"></div>
+
+		<label class="label">{{t "section.options.language.currency"}}</label>
+		<p class="control">
+			{{common/button-bar options=optionsCurrencies value=selectedCurrency action="handleCurrencyChanged"}}
+		</p>
+		<p class="hint">{{t "section.install.currency_hint"}}</p>
+
+		<div class="spacer"></div>
+
+		<a class="button" {{action  "start"}}>
+			{{t "section.install.start"}}
+		</a>
+	</div>
+</div>

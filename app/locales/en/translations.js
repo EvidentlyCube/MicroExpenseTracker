@@ -1,6 +1,6 @@
 export default {
 	app: {
-		title: "Micro Expense Tracker",
+		title: "MET - Micro Expense Tracker",
 		subtitle: "Track your daily expenses faster than you can type!",
 		page_title: "[MET] Micro Expense Tracker"
 	},
@@ -31,6 +31,11 @@ export default {
 		body_3: "If you like this project, want to help it grow or have questions please use the <a href='https://github.com/RetrocadeNet/MicroExpenseTracker/issues'>issues board</a> on GitHub. If you need to contact the author please use <a href='mailto:maurycy.zarzycki@mauft.com'>maurycy.zarzycki@mauft.com</a>"
 	},
 	section: {
+		install: {
+			currency_hint: "You can customize the currency later in the options.",
+			start: "Start"
+		},
+
 		categories: {
 			title: "Expense categories",
 

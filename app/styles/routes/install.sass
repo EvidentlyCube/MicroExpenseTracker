@@ -1,0 +1,54 @@
+@import "../vars"
+
+.install-route
+	width: 100%
+	height: 100%
+	position: fixed
+	left: 0
+	top: 0
+	background: $color-bg-header
+	z-index: 1000
+	display: flex
+	align-items: center
+	justify-content: center
+
+	.spacer
+		height: 30px
+
+	.contents
+		display: flex
+		flex-direction: column
+		align-items: center
+
+	img.logo
+		width: $logo-edge * 6
+		height: $logo-edge * 6
+
+	h1
+		color: white
+		font-size: 24px
+
+	label
+		color: white
+
+	.tabs a
+		color: white
+		background: $color-bg-header-dark
+		border-color: $color-bg-header-dark
+
+	.tabs.is-toggle li a:hover
+		background: $color-bg-header-hover
+		border-color: $color-bg-header-hover
+
+	.tabs.is-toggle li.is-active a
+		background: $color-bg-header-bright
+		border-color: $color-bg-header-bright
+
+	.hint
+		font-size: 11px
+		color: white
+
+	.button
+		border-color: $color-bg-header-bright
+		background: $color-bg-header-bright
+		color: white
