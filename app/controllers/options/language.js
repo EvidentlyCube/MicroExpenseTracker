@@ -15,6 +15,7 @@ export default Ember.Controller.extend({
 		handleLanguageChanged(language){
 			this.set('i18n.locale', language);
 			this.get('optionsService').setCurrentLanguage(language);
+			document.title = this.get('i18n').t('app.page_title');
 		}
 	}
 });

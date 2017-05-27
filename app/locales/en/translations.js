@@ -1,7 +1,8 @@
 export default {
 	app: {
 		title: "Micro Expense Tracker",
-		subtitle: "Track your daily expenses faster than you can type!"
+		subtitle: "Track your daily expenses faster than you can type!",
+		page_title: "[MET] Micro Expense Tracker"
 	},
 	common: {
 		currency_wrap: '${{value}}',

@@ -1,7 +1,8 @@
 export default {
 	app: {
 		title: "Mikrowydatnik MET",
-		subtitle: "Super szybkie śledzenie budżetu domowego!"
+		subtitle: "Super szybkie śledzenie budżetu domowego!",
+		page_title: "[MET] Mikrowydatnik"
 	},
 	common: {
 		currency_wrap: '{{value}} zł',
