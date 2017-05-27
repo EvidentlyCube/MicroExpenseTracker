@@ -1,19 +1,15 @@
 import Ember from "ember";
 import OptionNames from "../constants/options/option-names";
+import StorageKeyNames from "../constants/storage/key-names";
 
-const LocalStorageItemName = '__app_options';
 export default Ember.Service.extend({
+	storage: Ember.inject.service("storage/permanent-storage-service"),
 	options: null,
 
 	init(){
-		let options = localStorage.getItem(LocalStorageItemName);
-		try {
-			options = JSON.parse(options);
-		} catch (e) {
-			options = {};
-		}
+		const options = this.get('storage').getItem(StorageKeyNames.options) || {};
 
-		this.set('options', options ? options : {});
+		this.set('options', options);
 	},
 
 	getCurrentLanguage(){
@@ -22,6 +18,10 @@ export default Ember.Service.extend({
 
 	setCurrentLanguage(value){
 		this._setOptionByName(OptionNames.CurrentLanguage, value);
+	},
+
+	flushToStorage(){
+		this.get('storage').setItem(StorageKeyNames.options, this.get('options'));
 	},
 
 	_getOptionByName(name, defaultValue){
@@ -34,6 +34,6 @@ export default Ember.Service.extend({
 		const options = this.get('options');
 
 		options[name] = value;
-		localStorage.setItem(LocalStorageItemName, JSON.stringify(options));
+		this.flushToStorage();
 	}
 });
