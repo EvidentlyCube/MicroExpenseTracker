@@ -1,15 +1,17 @@
 <article>
 	<h1 class="title">{{t "section.expenses.index.add_new_receipt"}}</h1>
 	<form onsubmit={{action 'saveHandler'}}>
-		<div class="control">
-			<label class="label">{{t "section.expenses.new_receipt.receipt_date"}}</label>
-			{{pikaday-input onSelection=(action 'dateChanged') format="DD-MM-YYYY" value=receiptDate class="input receipt-date"}}
+		<div class="field">
+			<p class="control">
+				<label class="label">{{t "section.expenses.new_receipt.receipt_date"}}</label>
+				{{pikaday-input onSelection=(action 'dateChanged') format="DD-MM-YYYY" value=receiptDate class="input receipt-date"}}
+			</p>
 		</div>
 
 		<label class="label">{{t "section.expenses.new_receipt.expenses"}}</label>
 
 		{{#each-in expenses as |index model|}}
-			{{expenses-editor index=index model=model options=expenseCategories onChange=(action 'expenseChanged')}}
+			{{expenses-editor index=index model=model options=categories onChange=(action 'expenseChanged')}}
 		{{/each-in}}
 		<p class="control">
 			<button class="category-save button is-success">{{t "section.expenses.new_receipt.save"}}</button>

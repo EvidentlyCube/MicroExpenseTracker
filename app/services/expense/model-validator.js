@@ -1,12 +1,13 @@
 import Ember from "ember";
 
 export default Ember.Service.extend({
+	utils: Ember.inject.service('expense/model-utils'),
 	sanitizer: Ember.inject.service(),
 
 	validateModel(model){
 		let errors = [];
 
-		if (!model.isEmpty()) {
+		if (!this.get('utils').isEmpty(model)) {
 			const sanitizer = this.get('sanitizer');
 			const name = model.get('name');
 			const price = model.get('price');
@@ -32,7 +33,7 @@ export default Ember.Service.extend({
 	validateModels(models){
 		let hasError = false;
 		models.forEach((model) => {
-			if (!model.isEmpty()) {
+			if (!this.get('utils').isEmpty(model)) {
 				hasError = this.validateModel(model) || hasError;
 			}
 		});

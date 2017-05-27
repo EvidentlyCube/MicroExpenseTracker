@@ -1,17 +1,20 @@
 import Ember from "ember";
+import BaseModel from "./base-model";
 
-export default Ember.Object.extend({
+export default BaseModel.extend({
 	modelService: Ember.inject.service('model/model-service'),
 	i18n: Ember.inject.service(),
 
 	id: null,
-	name: null,
+	name: "",
 	price: null,
 	discount: 0,
 	purchasedAt: null,
 	createdAt: null,
 	updatedAt: null,
 	categoryId: null,
+
+	errors: [],
 
 	category: Ember.computed('categoryId', function(){
 		return this.get('modelService.category').getById(this.get('categoryId'));
@@ -23,6 +26,10 @@ export default Ember.Object.extend({
 
 	realPrice: Ember.computed('price', 'discount', function () {
 		return this.get('price') * (1 - this.get('discount'));
+	}),
+
+	discountPercent: Ember.computed('discount', function(){
+		return Math.round(this.get('discount') * 100);
 	}),
 
 	save(){

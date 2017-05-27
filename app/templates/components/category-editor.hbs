@@ -2,22 +2,29 @@
 	<div class="column is-12 is-6-tablet is-4-desktop">
 		<form onsubmit={{action "saveHandler"}}>
 			<input class="category-id" type="hidden" value={{model.id}}>
-			<p class="control">
-				<label for="category-name-input" class="label">{{t "section.categories.form.name"}}*</label>
-				<input id="category-name-input" class="category-name input" required value={{model.name}}>
-			</p>
-			<p class="control">
-				<label class="label">{{t "section.categories.form.parent"}}</label>
+			<div class="field">
 
-				{{select-input class="category-parent-id select is-fullwidth"
-				               options=categoriesData
-				               selectedValue=model.parentId
-				               firstOption=(t "section.categories.form.parent_none")}}
-			</p>
-			<p class="control">
-				<button class="category-save button is-success">{{t "section.categories.form.save"}}</button>
-				<button class="category-save button is-outlined" onclick={{action "cancelHandler"}}>{{t "section.categories.form.cancel"}}</button>
-			</p>
+				<p class="control">
+					<label for="category-name-input" class="label">{{t "section.categories.form.name"}}*</label>
+					<input id="category-name-input" class="category-name input" required value={{model.name}}>
+				</p>
+			</div>
+			<div class="field">
+				<p class="control">
+					<label class="label">{{t "section.categories.form.parent"}}</label>
+
+					{{select-input class="category-parent-id select is-fullwidth"
+					               options=categoriesData
+					               selectedValue=model.parentId
+					               firstOption=(t "section.categories.form.parent_none")}}
+				</p>
+			</div>
+			<div class="field">
+				<p class="control">
+					<button class="category-save button is-success">{{t "section.categories.form.save"}}</button>
+					<button class="category-save button is-outlined" onclick={{action "cancelHandler"}}>{{t "section.categories.form.cancel"}}</button>
+				</p>
+			</div>
 		</form>
 	</div>
 </div>

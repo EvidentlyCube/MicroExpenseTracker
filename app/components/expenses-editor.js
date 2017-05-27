@@ -24,13 +24,8 @@ export default Ember.Component.extend({
 	},
 
 	actions: {
-		set(property){
-			this.set(property, event.target.value);
-			this.handleChange();
-		},
-
 		changedCategory(category) {
-			this.set('model.category', category);
+			this.set('model.categoryId', Ember.get(category, 'id'));
 		},
 
 		handleFocus(select, e){
@@ -48,6 +43,28 @@ export default Ember.Component.extend({
 			if (e.keyCode === 9) {
 				select.actions.select(select.highlighted);
 			}
+		},
+
+		onChangeName(event){
+			this.set('model.name', event.target.value);
+			this.handleChange();
+		},
+
+		onChangePrice(event){
+			let price = parseInt(event.target.value) / 100;
+			price = !isNaN(price) && isFinite(price) ? price : 0;
+
+			this.set('model.price', price);
+			this.handleChange();
+		},
+
+		onChangeDiscount(event){
+			let discount = parseInt(event.target.value) / 100;
+			discount = !isNaN(discount) && isFinite(discount) ? discount : 0;
+			discount = Math.max(0, Math.min(100, discount));
+
+			this.set('model.discount', discount);
+			this.handleChange();
 		}
 	}
 

@@ -7,6 +7,8 @@ export default Ember.Object.extend({
 	name: null,
 	parentId: null,
 
+	errors: [],
+
 	parent: Ember.computed('parentId', function(){
 		return this.get('modelService.category').getById(this.get('parentId'));
 	}),

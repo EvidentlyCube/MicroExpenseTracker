@@ -1,15 +1,30 @@
 import Ember from "ember";
+import ExpenseEditorData from "../../frontend-data/expense-editor-data";
 
 export default Ember.Controller.extend({
 	i18n: Ember.inject.service(),
-	modelService: Ember.inject.service('model/model-service'),
 	modelSaver: Ember.inject.service('expense/model-saver'),
 	modelValidator: Ember.inject.service('expense/model-validator'),
 	globalNotificationStorage: Ember.inject.service(),
 
-	expenses: Ember.computed.alias('model.expenses'),
-	receiptDate: Ember.computed.alias('model.receiptDate'),
-	categories: Ember.computed.alias('model.categories'),
+	expenses: null,
+	internalModel: null,
+	receiptDate: new Date(),
+
+	expenseCategories: Ember.computed.alias('model.categories', function () {
+		let newList = this.get('model');
+		newList.unshift({});
+
+		return newList;
+	}),
+
+	resetModel(){
+		this.set('receiptDate', new Date());
+		this.set('expenses', Ember.A([
+			ExpenseEditorData.create(),
+			ExpenseEditorData.create()
+		]));
+	},
 
 	actions: {
 		dateChanged(newDate){
@@ -17,15 +32,7 @@ export default Ember.Controller.extend({
 		},
 
 		expenseChanged(index, model){
-			let expenses = this.get('expenses');
-
 			this.get('modelValidator').validateModel(model);
-
-			expenses[index] = model;
-			if (index === expenses.length - 1) {
-				expenses.pushObject(this.get('modelService.expense').create());
-				this.notifyPropertyChange('expenses');
-			}
 		},
 
 		saveHandler(){
