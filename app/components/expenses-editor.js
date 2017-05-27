@@ -5,8 +5,7 @@ export default Ember.Component.extend({
 	model: null,
 
 	options: [],
-	onChange: () => {
-	},
+	onChange: () => {},
 
 	nameErrorClass: Ember.computed('model.name', 'model.errors', function () {
 		return this.get('model.errors').indexOf('name') !== -1 ? "is-danger" : "";

@@ -1,35 +1,59 @@
-header
+@import "vars"
+
+$color-header-text: white
+
+.section-header
 	width: 100%
-	background: indianred
 	padding: 20px 0 10px 0
-	color: white
 	margin-bottom: 30px
+	background: $color-bg-header
+	color: $color-header-text
 
-header .headers
-	margin-bottom: 20px
+	.title-boxes
+		margin-bottom: 20px
 
-header h1.title,
-header h4.subtitle
-	color: white
+		h1.title,
+		h4.subtitle
+			color: white
 
-header nav > *
-	color: white
-	display: inline-block
-	padding: 6px 30px
-	text-transform: uppercase
+		h1.title
+			font-weight: bold
+			display: flex
+			align-items: center
 
-header nav > a
-	color: white
-	border-right: 1px solid white
+			.logo
+				float: left
+				width: $logo-edge * 3
+				height: $logo-edge * 3
+				margin-right: 20px
 
-header nav > a:hover
-	color: white
-	background: #d66060
 
-header nav > a.active
-	background: #e16565
-	cursor: default
+	nav
+		background: transparent
+		color: $color-header-text
 
-header nav > *:last-child
-	border-right: none
+		.app-title
+			color: white
+
+			.logo
+				width: $logo-edge * 2
+				height: $logo-edge * 2
+				max-height: 26px
+				margin: 0 20px
+				box-sizing: border-box
+
+		.nav-item
+			padding: 0
+
+		.nav-item a
+			line-height: $header-item-height
+			padding: 0 20px
+			color: $color-header-text
+			&:hover
+				background: $color-bg-header-hover
+			&.active
+				background: $color-bg-header-selected
+
+		.nav-item:not(:last-child) a
+			border-right: 1px solid white
 

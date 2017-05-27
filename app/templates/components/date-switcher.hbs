@@ -1,0 +1,7 @@
+<div class="date-switcher">
+	<a {{action "switchMonth" -1}}>&lt;</a>
+	<a class="current-month" {{action "resetMonth"}} title={{t "components.date_switcher.return"}}>
+		{{currentMonth.year}}-{{pad-start currentMonth.displayMonth 2 '0'}}
+	</a>
+	<a {{action "switchMonth" 1}}>&gt;</a>
+</div>

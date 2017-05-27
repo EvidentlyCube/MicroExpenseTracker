@@ -1,11 +1,17 @@
 import Ember from "ember";
-import DS from "ember-data";
 
-export default DS.Model.extend({
-	name: DS.attr('string'),
-	parent: DS.belongsTo('category', {inverse: null, async: false}),
+export default Ember.Object.extend({
+	modelService: Ember.inject.service('model/model-service'),
 
-	indentedName: Ember.computed('name', 'parent', 'parent.name', 'parent.parent', function () {
+	id: null,
+	name: null,
+	parentId: null,
+
+	parent: Ember.computed('parentId', function(){
+		return this.get('modelService.category').getById(this.get('parentId'));
+	}),
+
+	indentedName: Ember.computed('name', 'parentId', 'parent.indentedName', function () {
 		let parent = this.get('parent');
 		let indent = "";
 
@@ -20,7 +26,7 @@ export default DS.Model.extend({
 	namePath: Ember.computed('name', 'parent', 'parent.parent', 'parent.namePath', function () {
 		const parent = this.get('parent');
 
-		if (parent) {
+		if (parent && parent.get('id')) {
 			return parent.get('namePath') + " -> " + this.get('name');
 		} else {
 			return this.get('name');
@@ -30,7 +36,7 @@ export default DS.Model.extend({
 	namePathForHtml: Ember.computed('name', 'parent', 'parent.parent', 'parent.namePath', function () {
 		const parent = this.get('parent');
 
-		if (parent) {
+		if (parent && parent.get('id')) {
 			return `${parent.get('namePath')} -> <strong>${this.get('name')}</strong>`;
 		} else {
 			return `<strong>${this.get('name')}</strong>`;
@@ -41,7 +47,7 @@ export default DS.Model.extend({
 		let name = this.get('name');
 		let parent = this.get('parent');
 
-		while (parent) {
+		while (parent && parent.get('id')) {
 			name = parent.get('name');
 			parent = parent.get('parent');
 		}
@@ -50,11 +56,41 @@ export default DS.Model.extend({
 	}),
 
 	hasChildren: Ember.computed(function () {
-		return this.get('store').peekAll('category').filter(cat => cat.get('parent') === this).length > 0;
+		return this.getChildren() > 0;
 	}),
 
-	isCategory(category){
-		return this === category || (this.get('parent') && this.get('parent').isCategory(category));
-	}
+	getChildren(){
+		return this.get('modelService.category').getAll().filter(category => category.get('parentId') === this.get('id'));
+	},
 
+	isCategory(category){
+		return this === category || (this.get('parent.id') && this.get('parent').isCategory(category));
+	},
+
+	isChildOf(category){
+		const parent = this.get('parent');
+
+		return parent && (parent === category || parent.isChildOf(category));
+	},
+
+	save(){
+		this.get('modelService.category').modelSaved(this);
+	},
+
+	delete(){
+		this.getChildren().forEach(category => {
+			category.set('parentId', this.get('parentId'));
+			category.save();
+		});
+
+		this.get('modelService.category').modelDeleted(this);
+	},
+
+	_toJson(){
+		return {
+			id: this.get('id'),
+			name: this.get('name'),
+			parentId: this.get('parentId')
+		};
+	}
 });

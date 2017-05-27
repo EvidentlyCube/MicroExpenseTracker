@@ -1,15 +1,44 @@
-<header>
+<header class="section-header">
 	<div class="container">
-		<div class="headers">
-			<h1 class="title">{{t "app.title"}}</h1>
+		<div class="title-boxes">
+			<h1 class="title">
+				<img class="logo" src="/assets/logo_white.svg"/>
+				{{t "app.title"}}
+			</h1>
 			<h4 class="subtitle">{{t "app.subtitle"}}</h4>
 		</div>
-		<nav>
-			<strong>{{t "navigation.main_menu"}}</strong>
-			{{#link-to "categories.index"}}{{t "navigation.categories"}}{{/link-to}}
-			{{#link-to "expenses.index"}}{{t "navigation.expenses"}}{{/link-to}}
-			{{#link-to "summary"}}{{t "navigation.summary"}}{{/link-to}}
-			{{#link-to "options"}}{{t "navigation.options"}}{{/link-to}}
+		<nav class="nav">
+			<nav class="nav-left">
+				<strong class="nav-item app-title">
+					<img class="logo" src="/assets/logo_white.svg"/>
+				</strong>
+				<span class="nav-item">
+					{{#link-to "categories.index"}}
+						{{t "navigation.categories"}}
+					{{/link-to}}
+				</span>
+				<span class="nav-item">
+					{{#link-to "expenses.index"}}
+						{{t "navigation.expenses"}}
+					{{/link-to}}
+				</span>
+				<span class="nav-item">
+					{{#link-to "summary"}}
+						{{t "navigation.summary"}}
+					{{/link-to}}
+				</span>
+				<span class="nav-item">
+					{{#link-to "options"}}
+						{{t "navigation.options"}}
+					{{/link-to}}
+				</span>
+			</nav>
+
+			<nav class="nav-right">
+				<div class="nav-item">
+					{{date-switcher action=(action "currentMonthChanged") currentMonth=currentMonth}}
+				</div>
+			</nav>
 		</nav>
 	</div>
 </header>

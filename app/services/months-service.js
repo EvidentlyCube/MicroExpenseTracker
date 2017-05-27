@@ -1,8 +1,14 @@
 import Ember from "ember";
+import Month from "../models/month";
 
 export default Ember.Service.extend({
-	store: Ember.inject.service(),
+	currentMonth: null,
+
 	_cache: {},
+
+	init(){
+		this.set('currentMonth', this.getCurrentMonthObject());
+	},
 
 	getCurrentMonthObject(){
 		const now = new Date();
@@ -10,6 +16,9 @@ export default Ember.Service.extend({
 	},
 
 	getMonthObject(year, month){
+		year = Math.max(1970, Math.min(2030, parseInt(year)));
+		month = Math.max(0, Math.min(11, parseInt(month)));
+
 		const id = `${year}-${month}`;
 		const cache = this.get('_cache');
 
@@ -36,7 +45,7 @@ export default Ember.Service.extend({
 	},
 
 	constructMonthObject(year, month){
-		return this.get('store').createRecord('month', {
+		return Month.create({
 			startDate: new Date(year, month, 1, 0, 0, 0, 0),
 			endDate: new Date(year, month + 1, 0, 23, 59, 59, 999),
 			year: year,

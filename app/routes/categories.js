@@ -1,9 +1,9 @@
 import Ember from "ember";
 
 export default Ember.Route.extend({
-	store: Ember.inject.service(),
+	modelService: Ember.inject.service('model/model-service'),
 
 	model(){
-		return this.get('store').findAll('category');
+		return this.get('modelService.category').getAll();
 	}
 });

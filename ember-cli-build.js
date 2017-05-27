@@ -4,7 +4,8 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function (defaults) {
     var app = new EmberApp(defaults, {
-        // 'hinting': false,
+	    LOG_BINDINGS: true,
+	    // 'hinting': false,
         // "ember-cli-qunit": {
         //     useLintTree: false
         // }

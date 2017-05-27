@@ -1,7 +1,7 @@
 var NwBuilder = require('nw-builder');
 var nw = new NwBuilder({
 	files: __dirname + '/../dist/**/**', // use the glob format
-	platforms: ['win32', 'win64', 'osx64', 'linux32', 'linux64'],
+	platforms: ['win32', 'linux32'],
 	flavor: 'normal',
 	buildDir: __dirname + "/../nw-dist",
 	cacheDir: __dirname + "/../nw-cache",

@@ -1,9 +1,13 @@
 import Ember from "ember";
 
 export default Ember.Route.extend({
-	store: Ember.inject.service(),
+	modelService: Ember.inject.service('model/model-service'),
+
+	categoryChanged: Ember.observer('modelService.category.changeTimestamp', function(){
+		this.refresh();
+	}),
 
 	model(){
-		return this.get('store').findAll('category');
+		return this.get('modelService.category').getAll();
 	}
 });

@@ -15,6 +15,11 @@ export default {
 		expenses: "Wydatki",
 		options: "Opcje"
 	},
+	components: {
+		date_switcher: {
+			return: 'Cofnij do aktualnego miesiąca'
+		}
+	},
 	footer: {
 		made_by: 'Strona stworzona przez <a href="http://mauft.com">Maurycy Zarzycki Mauft.com</a>.',
 		thanks: 'MET powstał w oparciu o <a href="http://emberjs.com/">Ember.js</a>, najlepszy silnik do jednostronowych aplikacji.',
@@ -102,7 +107,8 @@ export default {
 		},
 
 		summary: {
-			no_category: 'Without category',
+			title: 'Podsumowanie wydatków',
+			no_category: 'Bez kategorii',
 			total: 'W sumie'
 		},
 

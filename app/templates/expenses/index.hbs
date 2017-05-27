@@ -1,13 +1,4 @@
-<h1 class="container title">
-	{{t "section.expenses.title"}}
-	<span class="date-switcher">
-		<a onclick={{action "switchMonth" -1}}>&lt;</a>
-		<span class="current-month">
-			{{currentMonth.year}}-{{pad-start currentMonth.displayMonth 2 '0'}}
-		</span>
-		<a onclick={{action "switchMonth" 1}}>&gt;</a>
-	</span>
-</h1>
+<h1 class="container title">{{t "section.expenses.title"}}</h1>
 <div class="action-row">
 	<div class="container">
 		{{#link-to "expenses.receipt" class="button is-primary"}}{{t "section.expenses.index.add_new_receipt"}}{{/link-to}}
@@ -26,7 +17,7 @@
 		</tr>
 		</thead>
 		<tbody>
-		{{#each filteredExpenses as |row|}}
+		{{#each model.expenses as |row|}}
 			<tr>
 				<td>{{{row.name}}}</td>
 				<td>
@@ -47,11 +38,13 @@
 					{{/if}}
 				</td>
 				<td>
+					{{!-- --} }
                     <span class="icon">
 	                    {{#link-to "expenses.edit" row.id title=(t "section.expenses.index.action.edit" expense=row.name)}}
 		                    <i class="fa fa-edit"></i>
 	                    {{/link-to}}
                     </span>
+                    {{!----}}
 					<span class="icon">
                         <a href="#" {{action "deleteExpense" row.id}} title={{t "section.expenses.index.action.delete" expense=row.name}}>
                             <i class="fa fa-remove"></i>
