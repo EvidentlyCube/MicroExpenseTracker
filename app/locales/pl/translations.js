@@ -5,9 +5,7 @@ export default {
 		page_title: "[MET] Mikrowydatnik"
 	},
 	common: {
-		currency_wrap: '{{value}} zł',
-		currency_prefix: '',
-		currency_suffix: ' zł'
+		currency_wrap: '~~PRICE~~ zł',
 	},
 	navigation: {
 		main_menu: 'Menu główne:',

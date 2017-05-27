@@ -10,23 +10,23 @@
 					{{{data.category.namePathForHtml}}}
 				</td>
 				<td class="value">
-					{{t "common.currency_wrap" value=data.sumFormatted}}
+					{{currency-format data.sum}}
 				</td>
 				<td class="percent">
-					{{data.percent}}%
+					{{percent-format data.percentFraction isFraction=true}}
 				</td>
 			</tr>
 		{{/each-in}}
 		{{#if uncategorizedSum}}
 			<tr class="no-category">
 				<th class="category">{{t 'section.summary.no_category'}}</th>
-				<td class="value">{{t "common.currency_wrap" value=uncategorizedSum}}</td>
+				<td class="value">{{currency-format uncategorizedSum}}</td>
 				<td></td>
 			</tr>
 		{{/if}}
 		<tr class="sum">
 			<th class="category">{{t 'section.summary.total'}}</th>
-			<td class="value">{{t "common.currency_wrap" value=totalSum}}</td>
+			<td class="value">{{currency-format totalSum}}</td>
 			<td></td>
 		</tr>
 	</table>

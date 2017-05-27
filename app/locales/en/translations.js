@@ -5,9 +5,7 @@ export default {
 		page_title: "[MET] Micro Expense Tracker"
 	},
 	common: {
-		currency_wrap: '${{value}}',
-		currency_prefix: '$',
-		currency_suffix: '',
+		currency_wrap: '$~~PRICE~~',
 	},
 	navigation: {
 		main_menu: 'Main menu:',

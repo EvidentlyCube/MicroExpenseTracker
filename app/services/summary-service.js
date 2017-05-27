@@ -20,7 +20,7 @@ export default Ember.Service.extend({
 		categories.forEach(function (category) {
 			expensesPerCategory[category.get('id')] = {
 				category: category,
-				percent: 0,
+				percentFraction: 0,
 				sum: 0
 			};
 		});
@@ -60,10 +60,10 @@ export default Ember.Service.extend({
 		if (totalSum === 0){
 			totalSum = 0.1;
 		}
+
 		categories.forEach(function (category) {
 			const data = expensesPerCategory_out[category.get('id')];
-			data.percent = (100 * data.sum / totalSum).toFixed(2);
-			data.sumFormatted = data.sum.toFixed(2);
+			data.percentFraction = data.sum / totalSum;
 
 			expensesPerCategory_out[category.get('id')] = Ember.Object.create(data);
 		});

@@ -1,3 +1,4 @@
 export default {
-	CurrentLanguage: 'current-language'
+	CurrentLanguage: 'current-language',
+	CurrencyDisplay: 'currency-display'
 };

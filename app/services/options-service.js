@@ -3,6 +3,7 @@ import OptionNames from "../constants/options/option-names";
 import StorageKeyNames from "../constants/storage/key-names";
 
 export default Ember.Service.extend({
+	i18n: Ember.inject.service(''),
 	storage: Ember.inject.service("storage/permanent-storage-service"),
 	options: null,
 
@@ -10,6 +11,16 @@ export default Ember.Service.extend({
 		const options = this.get('storage').getItem(StorageKeyNames.options) || {};
 
 		this.set('options', options);
+	},
+
+	getCurrencyDisplay(){
+		return this.get('i18n').t('common.currency_wrap').toString();
+		// Temporarily commented out, waiting for Task #4
+		//return this._getOptionByName(OptionNames.CurrencyDisplay, '$~~PRICE~~');
+	},
+
+	setCurrencyDisplay(value){
+		this._setOptionByName(OptionNames.CurrencyDisplay, value);
 	},
 
 	getCurrentLanguage(){

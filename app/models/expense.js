@@ -25,17 +25,6 @@ export default Ember.Object.extend({
 		return this.get('price') * (1 - this.get('discount'));
 	}),
 
-	priceDisplay: Ember.computed('realPrice', 'i18n.locale', function () {
-		const i18n = this.get('i18n');
-
-		return i18n.t('common.currency_wrap', {
-			value: this.get('realPrice').toFixed(2)
-		});
-	}),
-	discountDisplay: Ember.computed('discount', function () {
-		return Math.round(this.get('discount') * 100) + "%";
-	}),
-
 	save(){
 		this.get('modelService.expense').modelSaved(this);
 	},
