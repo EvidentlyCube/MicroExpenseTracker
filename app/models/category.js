@@ -56,7 +56,7 @@ export default Ember.Object.extend({
 	}),
 
 	hasChildren: Ember.computed(function () {
-		return this.getChildren() > 0;
+		return this.getChildren().length > 0;
 	}),
 
 	getChildren(){
