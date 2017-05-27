@@ -14,9 +14,7 @@ export default Ember.Service.extend({
 	},
 
 	getCurrencyDisplay(){
-		return this.get('i18n').t('common.currency_wrap').toString();
-		// Temporarily commented out, waiting for Task #4
-		//return this._getOptionByName(OptionNames.CurrencyDisplay, '$~~PRICE~~');
+		return this._getOptionByName(OptionNames.CurrencyDisplay, '$~~PRICE~~');
 	},
 
 	setCurrencyDisplay(value){

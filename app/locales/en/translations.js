@@ -115,7 +115,9 @@ export default {
 				misc: "Misc"
 			},
 			language: {
-				lang: "Interface language"
+				lang: "Interface language",
+				currency: "Currency",
+				currency_preview: "Preview",
 			}
 		}
 	}

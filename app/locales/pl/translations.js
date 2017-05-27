@@ -117,7 +117,9 @@ export default {
 				misc: "Różne"
 			},
 			language: {
-				lang: "Język interfejsu"
+				lang: "Język interfejsu",
+				currency: "Waluta",
+				currency_preview: "Podgląd",
 			}
 		}
 	}
