@@ -38,13 +38,11 @@
 					{{/if}}
 				</td>
 				<td>
-					{{!-- --} }
                     <span class="icon">
 	                    {{#link-to "expenses.edit" row.id title=(t "section.expenses.index.action.edit" expense=row.name)}}
 		                    <i class="fa fa-edit"></i>
 	                    {{/link-to}}
                     </span>
-                    {{!----}}
 					<span class="icon">
                         <a href="#" {{action "deleteExpense" row.id}} title={{t "section.expenses.index.action.delete" expense=row.name}}>
                             <i class="fa fa-remove"></i>

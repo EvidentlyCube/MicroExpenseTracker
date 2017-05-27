@@ -89,6 +89,24 @@ export default {
 				}
 			},
 
+			edit: {
+				title: "Edit expense {{name}} from {{date}}",
+				save: "Save",
+				cancel: "Cancel",
+				receipt_date: "Purchase date",
+			},
+
+			edit_expense_component: {
+				name: "Expense name",
+				price: "Price",
+				category: "Category",
+				discount: "Discount",
+				name_placeholder: "Expense name",
+				price_placeholder: "Price",
+				category_placeholder: "Category",
+				discount_placeholder: "Discount"
+			},
+
 			new_receipt: {
 				title: "Add a new receipt",
 				save: "Save",
@@ -102,6 +120,7 @@ export default {
 			},
 
 			notifications: {
+				modified_expense: 'Expense was updated.',
 				created_receipt: 'Receipt was added successfully.',
 				fix_form: 'Errors have been found in the form. Please fix the highlighted fields.',
 				deleted: 'Expense "{{{name}}}" was permanently removed.'

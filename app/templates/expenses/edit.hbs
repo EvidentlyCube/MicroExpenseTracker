@@ -1,18 +1,22 @@
-<article>
-	<h1 class="title">{{t "section.expenses.index.add_new_receipt"}}</h1>
-	<form onsubmit={{action 'saveHandler'}}>
-		<div class="control">
-			<label class="label">{{t "section.expenses.new_receipt.receipt_date"}}</label>
-			{{pikaday-input onSelection=(action 'dateChanged') format="DD-MM-YYYY" value=receiptDate class="input receipt-date"}}
+<article class="expense-edit-route">
+	<h1 class="title">{{t "section.expenses.edit.title" name=expenseOriginal.name date=(date-format expenseOriginal.purchasedAt)}}</h1>
+	<div class="columns">
+		<div class="column is-12 is-6-tablet is-4-desktop">
+			<form onsubmit={{action 'saveHandler'}}>
+				{{expenses-editor index=index model=expense options=categories onChange=(action 'expenseChanged') vertical=true}}
+
+				<div class="field">
+					<p class="control">
+						<label class="label">{{t "section.expenses.new_receipt.receipt_date"}}</label>
+						{{pikaday-input onSelection=(action 'dateChanged') format="DD-MM-YYYY" value=expense.purchasedAt class="input receipt-date"}}
+					</p>
+				</div>
+
+				<p class="control">
+					<button class="category-save button is-success">{{t "section.expenses.new_receipt.save"}}</button>
+					<button class="category-save button is-outlined" onclick={{action "cancelHandler"}}>{{t "section.expenses.new_receipt.cancel"}}</button>
+				</p>
+			</form>
 		</div>
-
-		<label class="label">{{t "section.expenses.new_receipt.expenses"}}</label>
-
-		{{expenses-editor index=index model=model options=internalModel onChange=(action 'expenseChanged')}}
-
-		<p class="control">
-			<button class="category-save button is-success">{{t "section.expenses.new_receipt.save"}}</button>
-			<button class="category-save button is-outlined" onclick={{action "cancelHandler"}}>{{t "section.expenses.new_receipt.cancel"}}</button>
-		</p>
-	</form>
+	</div>
 </article>

@@ -6,9 +6,14 @@ export default Ember.Route.extend({
 	categoryProvider: Ember.inject.service(),
 
 	model(params){
+		const expense = this.get('modelService.expense').getById(params.expense_id);
+		const categories = this.get('categoryProvider').getAllSortedByPath();
+		categories.unshift({});
+
 		return RSVP.hash({
-			model: this.get('modelService.expense').getById(params.expense_id),
-			categories: this.get('categoryProvider').getAllSortedByPath()
+			categories: categories,
+			expenseOriginal: expense,
+			expenseClone: expense.clone()
 		});
 	}
 });

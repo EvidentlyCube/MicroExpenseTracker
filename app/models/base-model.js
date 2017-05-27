@@ -5,5 +5,17 @@ export default Ember.Object.extend({
 	i18n: Ember.inject.service(),
 
 	id: null,
-	errors: []
+	errors: [],
+
+	clone(){
+		const clone = this._getSpecificService().create(this._toJson());
+		clone.set('id', null);
+		clone.afterLoad();
+
+		return clone;
+	},
+
+	setFieldsFrom(source, fieldNames){
+		fieldNames.forEach(name => this.set(name, source.get(name)));
+	}
 });

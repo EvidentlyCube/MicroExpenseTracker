@@ -1,42 +1,62 @@
-<div class="expense-row field is-grouped">
-	<p class="control">
-		<input class="input expense-name {{nameErrorClass}}"
-		       placeholder={{t "section.expenses.new_receipt.name_placeholder"}}
-		       value={{model.name}}
-		       oninput={{action 'onChangeName'}}>
-	</p>
-	<p class="control has-icon has-icon-right">
-		<input class="input expense-price {{priceErrorClass}}"
-		       placeholder={{t "section.expenses.new_receipt.price_placeholder"}}
-			   value={{model.price}}
-			   oninput={{action 'onChangePrice'}}>
-	</p>
-	<p class="control" style="width: 400px">
-		{{#power-select triggerClass="input"
-		                selected=model.category
-		                options=options
-		                searchField="namePathForHtml"
-		                onchange=(action "changedCategory")
-		                onfocus=(action "handleFocus")
-		                onkeydown=(action "handleCategoryInput")
-		                placeholder=(t "section.expenses.new_receipt.category_placeholder")
-		as |model|}}
-			{{{model.namePathForHtml}}}
-		{{/power-select}}
-	</p>
-	<p class="control has-icons-right">
-		<input class="input expense-discount {{discountErrorClass}}"
-		       type="number"
-		       max="100"
-		       min="0"
-		       placeholder={{t "section.expenses.new_receipt.discount_placeholder"}}
-			   value={{model.discountPercent}}
-	           onchange={{action 'onChangeDiscount'}}
-	           oninput={{action 'onChangeDiscount'}}
-	           onblur={{action 'onChangeDiscount'}}>
+<div class="expense-row field {{if horizontal 'is-grouped'}}">
+	<div class="field">
+		{{#if vertical}}
+			<label class="label">{{t "section.expenses.edit_expense_component.name"}}</label>
+		{{/if}}
+		<p class="control">
+			<input class="input expense-name {{nameErrorClass}}"
+			       placeholder={{t "section.expenses.edit_expense_component.name_placeholder"}}
+				       value={{model.name}}
+			       oninput={{action 'onChangeName'}}>
+		</p>
+	</div>
+	<div class="field">
+		{{#if vertical}}
+			<label class="label">{{t "section.expenses.edit_expense_component.price"}}</label>
+		{{/if}}
+		<p class="control has-icon has-icon-right">
+			<input class="input expense-price {{priceErrorClass}}"
+			       placeholder={{t "section.expenses.edit_expense_component.price_placeholder"}}
+				       value={{model.price}}
+			       oninput={{action 'onChangePrice'}}>
+		</p>
+	</div>
+	<div class="field">
+		{{#if vertical}}
+			<label class="label">{{t "section.expenses.edit_expense_component.category"}}</label>
+		{{/if}}
+		<p class="control" style={{if horizontal 'width: 400px'}}>
+			{{#power-select triggerClass="input"
+			                selected=model.category
+			                options=options
+			                searchField="namePathForHtml"
+			                onchange=(action "changedCategory")
+			                onfocus=(action "handleFocus")
+			                onkeydown=(action "handleCategoryInput")
+			                placeholder=(t "section.expenses.edit_expense_component.category_placeholder")
+			as |model|}}
+				{{{model.namePathForHtml}}}
+			{{/power-select}}
+		</p>
+	</div>
+	<div class="field">
+		{{#if vertical}}
+			<label class="label">{{t "section.expenses.edit_expense_component.discount"}}</label>
+		{{/if}}
+		<p class="control has-icons-right">
+			<input class="input expense-discount {{discountErrorClass}}"
+			       type="number"
+			       max="100"
+			       min="0"
+			       placeholder={{t "section.expenses.edit_expense_component.discount_placeholder"}}
+				       value={{model.discountPercent}}
+			       onchange={{action 'onChangeDiscount'}}
+				       oninput={{action 'onChangeDiscount'}}
+			       onblur={{action 'onChangeDiscount'}}>
 
-		<span class="icon is-small is-right">
+			<span class="icon is-small is-right">
       		<i class="fa fa-percent"></i>
         </span>
-	</p>
+		</p>
+	</div>
 </div>

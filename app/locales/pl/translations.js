@@ -91,19 +91,34 @@ export default {
 				}
 			},
 
-			new_receipt: {
-				title: "Dodaj paragon",
+			edit: {
+				title: "Edytuj wydatek {{name}} z {{date}}",
 				save: "Zapisz",
 				cancel: "Anuluj",
-				receipt_date: "Data paragonu",
-				expenses: "Wydatki",
+				receipt_date: "Data zakupu",
+			},
+
+			edit_expense_component: {
+				name: "Nazwa produktu",
+				price: "Cena",
+				category: "Kategoria",
+				discount: "Rabat",
 				name_placeholder: "Nazwa wydatku",
 				price_placeholder: "Cena",
 				category_placeholder: "Kategoria",
 				discount_placeholder: "Rabat"
 			},
 
+			new_receipt: {
+				title: "Dodaj paragon",
+				save: "Zapisz",
+				cancel: "Anuluj",
+				receipt_date: "Data paragonu",
+				expenses: "Wydatki"
+			},
+
 			notifications: {
+				modified_expense: 'Zaktualizowano wydatek.',
 				created_receipt: 'Dodano paragon.',
 				fix_form: 'Proimy poprawić błedy w formularzu.',
 				deleted: 'Wydatek "{{{name}}}" został usunięty.'

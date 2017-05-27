@@ -1,8 +1,14 @@
 import Ember from "ember";
 
 export default Ember.Component.extend({
+	tagName: '',
 	index: null,
 	model: null,
+
+	vertical: false,
+	horizontal: Ember.computed('vertical', function(){
+		return !this.get('vertical');
+	}),
 
 	options: [],
 	onChange: () => {},
@@ -51,7 +57,7 @@ export default Ember.Component.extend({
 		},
 
 		onChangePrice(event){
-			let price = parseInt(event.target.value) / 100;
+			let price = parseInt(event.target.value);
 			price = !isNaN(price) && isFinite(price) ? price : 0;
 
 			this.set('model.price', price);

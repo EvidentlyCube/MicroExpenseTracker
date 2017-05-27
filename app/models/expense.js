@@ -2,17 +2,16 @@ import Ember from "ember";
 import BaseModel from "./base-model";
 
 export default BaseModel.extend({
-	modelService: Ember.inject.service('model/model-service'),
 	i18n: Ember.inject.service(),
 
 	id: null,
 	name: "",
 	price: null,
 	discount: 0,
+	categoryId: null,
 	purchasedAt: null,
 	createdAt: null,
 	updatedAt: null,
-	categoryId: null,
 
 	errors: [],
 
@@ -41,7 +40,7 @@ export default BaseModel.extend({
 	},
 
 	afterLoad(){
-		this.set('purhasedAt', new Date(this.get('purchasedAt')));
+		this.set('purchasedAt', new Date(this.get('purchasedAt')));
 		this.set('createdAt', new Date(this.get('createdAt')));
 		this.set('updatedAt', new Date(this.get('updatedAt')));
 	},
@@ -57,5 +56,9 @@ export default BaseModel.extend({
 			updatedAt: this.get('updatedAt').valueOf(),
 			categoryId: this.get('categoryId')
 		};
+	},
+
+	_getSpecificService(){
+		return this.get('modelService.expense');
 	}
 });

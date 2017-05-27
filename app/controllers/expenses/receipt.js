@@ -49,6 +49,8 @@ export default Ember.Controller.extend({
 
 		cancelHandler(){
 			this.transitionToRoute('expenses.index');
+
+			return false;
 		}
 	}
 });
