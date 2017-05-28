@@ -1,0 +1,17 @@
+<tr class="category-row category-row-{{row.id}}" data-id={{row.id}}>
+	<td class="category-name">
+		{{{row.namePathForHtml}}}
+	</td>
+	<td>
+		<span class="icon">
+			{{#link-to "categories.edit" row.id class="action-edit" title=(t "section.categories.index.action.edit" category=row.namePath)}}
+				<i class="fa fa-edit"></i>
+			{{/link-to}}
+		</span>
+		<span class="icon">
+			<a href="#" {{action "deleteCategory" row.id}} class="action-remove" title={{t "section.categories.index.action.delete" category=row.namePath}}>
+				<i class="fa fa-remove"></i>
+			</a>
+		</span>
+	</td>
+</tr>

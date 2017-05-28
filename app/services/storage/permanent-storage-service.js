@@ -5,15 +5,13 @@ export default Ember.Service.extend({
 	nwStorage: Ember.inject.service('storage/permanent-storage-nw-file'),
 	lsStorage: Ember.inject.service('storage/permanent-storage-local-storage'),
 
-	storage: null,
-
-	init(){
+	storage: Ember.computed(function(){
 		if (this.get('nwStorage.isEnabled')){
-			this.set('storage', this.get('nwStorage'));
+			return this.get('nwStorage');
 		} else {
-			this.set('storage', this.get('lsStorage'));
+			return this.get('lsStorage');
 		}
-	},
+	}),
 
 	setItem(key, value){
 		this.get('storage').setItem(key, value);

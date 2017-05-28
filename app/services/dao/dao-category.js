@@ -2,8 +2,6 @@ import Ember from "ember";
 import DataStorageKeys from "../../constants/storage/key-names";
 
 export default Ember.Service.extend({
-	needs: ['model:category'],
-
 	storage: Ember.inject.service('storage/permanent-storage-service'),
 
 	changeTimestamp: null,
@@ -15,7 +13,6 @@ export default Ember.Service.extend({
 		data.length = 1;
 
 		this.set('data', data);
-		this._loadDataIfNeeded();
 	},
 
 	create(properties){
@@ -25,13 +22,19 @@ export default Ember.Service.extend({
 		return category;
 	},
 
+
+
 	getById(id){
+		this._loadDataIfNeeded();
 		return this.get('data')[id] || null;
 	},
 
 	getAll(){
+		this._loadDataIfNeeded();
 		return this.get('data').concat().filter(c => c);
 	},
+
+
 
 	modelSaved(category){
 		const data = this.get('data');
@@ -61,7 +64,7 @@ export default Ember.Service.extend({
 
 	_toJson(data){
 		const jsonData = [];
-		data.forEach(category => jsonData.push(category._toJson()));
+		data.forEach(category => jsonData.push(category.toJson()));
 		return jsonData;
 	},
 

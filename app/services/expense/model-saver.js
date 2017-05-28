@@ -3,7 +3,7 @@ import Ember from "ember";
 export default Ember.Service.extend({
 	utils: Ember.inject.service('expense/model-utils'),
 	sanitizer: Ember.inject.service(),
-	modelService: Ember.inject.service('model/model-service'),
+	modelService: Ember.inject.service('dao/dao-all'),
 
 	saveModels(models, expenseDate){
 		let promises = [];

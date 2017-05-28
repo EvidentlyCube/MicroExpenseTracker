@@ -1,7 +1,7 @@
 <div class="tabs is-toggle">
 	<ul>
 		{{#each options as |option|}}
-			<li class="{{if (eq option.value value) "is-active" ""}}" {{action "handleClicked" option.value}}>
+			<li class="item-{{slugify option.value}} {{if (eq option.value value) "is-active" ""}}" {{action "handleClicked" option.value}}>
 				<a>
 					{{#if option.icon}}
 						<span class="icon is-small"><i class="fa fa-image"></i></span>

@@ -55,7 +55,7 @@ export default Ember.Service.extend({
 
 	_toJson(partition){
 		const newData = [];
-		partition.forEach(expense => newData.push(expense._toJson()));
+		partition.forEach(expense => newData.push(expense.toJson()));
 		return newData;
 	},
 

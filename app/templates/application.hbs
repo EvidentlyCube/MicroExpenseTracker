@@ -1,72 +1,74 @@
-<header class="section-header">
-	<div class="container">
-		<div class="title-boxes">
-			<h1 class="title">
-				<img class="logo" src="/assets/logo_white.svg"/>
-				{{t "app.title"}}
-			</h1>
-			<h4 class="subtitle">{{t "app.subtitle"}}</h4>
-		</div>
-		<nav class="nav">
-			<nav class="nav-left">
-				<strong class="nav-item app-title">
+<div id="met-application">
+	<header class="section-header">
+		<div class="container">
+			<div class="title-boxes">
+				<h1 class="title">
 					<img class="logo" src="/assets/logo_white.svg"/>
-				</strong>
-				<span class="nav-item">
-					{{#link-to "categories.index"}}
-						{{t "navigation.categories"}}
-					{{/link-to}}
-				</span>
-				<span class="nav-item">
-					{{#link-to "expenses.index"}}
-						{{t "navigation.expenses"}}
-					{{/link-to}}
-				</span>
-				<span class="nav-item">
-					{{#link-to "summary"}}
-						{{t "navigation.summary"}}
-					{{/link-to}}
-				</span>
-				<span class="nav-item">
-					{{#link-to "options"}}
-						{{t "navigation.options"}}
-					{{/link-to}}
-				</span>
+					{{t "app.title"}}
+				</h1>
+				<h4 class="subtitle">{{t "app.subtitle"}}</h4>
+			</div>
+			<nav class="nav">
+				<nav class="nav-left">
+					<strong class="nav-item app-title">
+						<img class="logo" src="/assets/logo_white.svg"/>
+					</strong>
+					<span class="nav-item">
+						{{#link-to "categories"}}
+							{{t "navigation.categories"}}
+						{{/link-to}}
+					</span>
+					<span class="nav-item">
+						{{#link-to "expenses"}}
+							{{t "navigation.expenses"}}
+						{{/link-to}}
+					</span>
+					<span class="nav-item">
+						{{#link-to "summary"}}
+							{{t "navigation.summary"}}
+						{{/link-to}}
+					</span>
+					<span class="nav-item">
+						{{#link-to "options"}}
+							{{t "navigation.options"}}
+						{{/link-to}}
+					</span>
+				</nav>
+
+				<nav class="nav-right">
+					<div class="nav-item">
+						{{date-switcher action=(action "currentMonthChanged") currentMonth=currentMonth}}
+					</div>
+				</nav>
 			</nav>
-
-			<nav class="nav-right">
-				<div class="nav-item">
-					{{date-switcher action=(action "currentMonthChanged") currentMonth=currentMonth}}
-				</div>
-			</nav>
-		</nav>
-	</div>
-</header>
-
-{{global-notifications}}
-<div class="route-content">
-	{{outlet}}
-</div>
-
-<footer class="section-footer">
-	<div class="container">
-		<div class="columns">
-			<div class="column">
-				<h4>{{{t "footer.header_1"}}}</h4>
-				<p>{{{t "footer.body_1"}}}</p>
-			</div>
-			<div class="column">
-				<h4>{{{t "footer.header_2"}}}</h4>
-				<p>{{{t "footer.body_2"}}}</p>
-			</div>
-			<div class="column">
-				<h4>{{{t "footer.header_3"}}}</h4>
-				<p>{{{t "footer.body_3"}}}</p>
-			</div>
 		</div>
-		<ul class="credits">
-			<li>{{{t "footer.made_by"}}}</li>
-			<li>{{{t "footer.thanks"}}}</li>
-		</ul>
+	</header>
+
+	{{global-notifications}}
+	<div class="route-content">
+		{{outlet}}
 	</div>
-</footer>
+
+	<footer class="section-footer">
+		<div class="container">
+			<div class="columns">
+				<div class="column">
+					<h4>{{{t "footer.header_1"}}}</h4>
+					<p>{{{t "footer.body_1"}}}</p>
+				</div>
+				<div class="column">
+					<h4>{{{t "footer.header_2"}}}</h4>
+					<p>{{{t "footer.body_2"}}}</p>
+				</div>
+				<div class="column">
+					<h4>{{{t "footer.header_3"}}}</h4>
+					<p>{{{t "footer.body_3"}}}</p>
+				</div>
+			</div>
+			<ul class="credits">
+				<li>{{{t "footer.made_by"}}}</li>
+				<li>{{{t "footer.thanks"}}}</li>
+			</ul>
+		</div>
+	</footer>
+</div>

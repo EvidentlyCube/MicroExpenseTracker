@@ -3,12 +3,12 @@ import Ember from "ember";
 export default Ember.Helper.extend({
 	compute([value]) {
 		if (!value){
-			console.warn("Called date-format with null");
+			Ember.warn("Called date-format with null", false, { id: 'met.helper.date-format.null'});
 			return "1970-01-01";
 		}
 
 		if (typeof value === 'number'){
-			console.warn("Called date-format with number");
+			Ember.warn("Called date-format with number", false, { id: 'met.helper.date-format.number'});
 			value = new Date(value);
 		}
 

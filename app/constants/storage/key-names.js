@@ -3,4 +3,4 @@ export default {
 	expenses: 'expenses-data-',
 	dataVersion: 'data-version',
 	options: 'options'
-}
+};

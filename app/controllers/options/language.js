@@ -40,7 +40,7 @@ export default Ember.Controller.extend({
 			this.saveCurrencyDisplay();
 		},
 
-		handleSuffixChanged(suffix){
+		handleSuffixChanged(event){
 			this.set('currencySuffix', event.target.value);
 			this.saveCurrencyDisplay();
 		}

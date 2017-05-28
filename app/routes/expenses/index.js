@@ -2,7 +2,7 @@ import Ember from "ember";
 import RSVP from "rsvp";
 
 export default Ember.Route.extend({
-	modelService: Ember.inject.service('model/model-service'),
+	modelService: Ember.inject.service('dao/dao-all'),
 	monthsService: Ember.inject.service(),
 
 	currentMonthChanged: Ember.observer('monthsService.currentMonth', function(){

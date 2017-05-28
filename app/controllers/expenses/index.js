@@ -1,9 +1,11 @@
 import Ember from "ember";
 
 export default Ember.Controller.extend({
+	// queryParams: ['category'],
+
 	i18n: Ember.inject.service(),
 	globalNotificationStorage: Ember.inject.service(),
-	modelService: Ember.inject.service('model/model-service'),
+	modelService: Ember.inject.service('dao/dao-all'),
 	store: Ember.inject.service(),
 	monthsService: Ember.inject.service(),
 

@@ -1,13 +1,9 @@
 import Ember from "ember";
+import BaseModel from "./base-model";
 
-export default Ember.Object.extend({
-	modelService: Ember.inject.service('model/model-service'),
-
-	id: null,
+export default BaseModel.extend({
 	name: null,
 	parentId: null,
-
-	errors: [],
 
 	parent: Ember.computed('parentId', function(){
 		return this.get('modelService.category').getById(this.get('parentId'));
@@ -75,24 +71,24 @@ export default Ember.Object.extend({
 		return parent && (parent === category || parent.isChildOf(category));
 	},
 
-	save(){
-		this.get('modelService.category').modelSaved(this);
-	},
-
 	delete(){
 		this.getChildren().forEach(category => {
 			category.set('parentId', this.get('parentId'));
 			category.save();
 		});
 
-		this.get('modelService.category').modelDeleted(this);
+		this._super();
 	},
 
-	_toJson(){
+	toJson(){
 		return {
 			id: this.get('id'),
 			name: this.get('name'),
 			parentId: this.get('parentId')
 		};
+	},
+
+	_getSpecificService(){
+		return this.get('modelService.category');
 	}
 });

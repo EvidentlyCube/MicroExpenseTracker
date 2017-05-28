@@ -2,7 +2,7 @@ import Ember from "ember";
 
 export default Ember.Controller.extend({
 	i18n: Ember.inject.service(),
-	modelService: Ember.inject.service('model/model-service'),
+	modelService: Ember.inject.service('dao/dao-all'),
 	modelSaver: Ember.inject.service('expense/model-saver'),
 	modelValidator: Ember.inject.service('expense/model-validator'),
 	globalNotificationStorage: Ember.inject.service(),

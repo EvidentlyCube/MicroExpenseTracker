@@ -19,7 +19,9 @@ export default Ember.Service.extend({
 
 		try {
 			fs.unlinkSync(path);
-		} catch (e) {}
+		} catch (e) {
+			// ignore, file did not exist
+		}
 
 		fs.writeFileSync(path, JSON.stringify(value));
 	},

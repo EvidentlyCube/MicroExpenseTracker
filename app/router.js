@@ -11,7 +11,7 @@ Router.map(function () {
 		this.route('new');
 
 		this.route('edit', {
-			path: 'categories/edit/:category_id'
+			path: 'edit/:category_id'
 		});
 	});
 	this.route('expenses', function () {
@@ -19,7 +19,7 @@ Router.map(function () {
 		this.route('new');
 
 		this.route('edit', {
-			path: 'expenses/edit/:expense_id'
+			path: 'edit/:expense_id'
 		});
 		this.route('receipt');
 	});
