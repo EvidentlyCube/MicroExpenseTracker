@@ -11,7 +11,7 @@ export default BaseModel.extend({
 	updatedAt: null,
 
 	category: Ember.computed('categoryId', function(){
-		return this.get('modelService.category').getById(this.get('categoryId'));
+		return this.get('modelDaos.category').getById(this.get('categoryId'));
 	}),
 
 	idIndex: Ember.computed('id', function(){
@@ -46,6 +46,6 @@ export default BaseModel.extend({
 	},
 
 	_getSpecificService(){
-		return this.get('modelService.expense');
+		return this.get('modelDaos.expense');
 	}
 });

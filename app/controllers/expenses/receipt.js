@@ -2,7 +2,7 @@ import Ember from "ember";
 
 export default Ember.Controller.extend({
 	i18n: Ember.inject.service(),
-	modelService: Ember.inject.service('dao/dao-all'),
+	modelDaos: Ember.inject.service('dao/model-daos'),
 	modelSaver: Ember.inject.service('expense/model-saver'),
 	modelValidator: Ember.inject.service('expense/model-validator'),
 	globalNotificationStorage: Ember.inject.service(),
@@ -23,7 +23,7 @@ export default Ember.Controller.extend({
 
 			expenses[index] = model;
 			if (index === expenses.length - 1) {
-				expenses.pushObject(this.get('modelService.expense').create());
+				expenses.pushObject(this.get('modelDaos.expense').create());
 				this.notifyPropertyChange('expenses');
 			}
 		},

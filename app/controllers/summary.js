@@ -1,7 +1,7 @@
 import Ember from "ember";
 
 export default Ember.Controller.extend({
-	modelService: Ember.inject.service('dao/dao-all'),
+	modelDaos: Ember.inject.service('dao/model-daos'),
 	monthsService: Ember.inject.service(),
 	summaryService: Ember.inject.service(),
 

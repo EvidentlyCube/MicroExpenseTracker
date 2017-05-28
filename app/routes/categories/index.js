@@ -1,13 +1,13 @@
 import Ember from "ember";
 
 export default Ember.Route.extend({
-	modelService: Ember.inject.service('dao/dao-all'),
+	modelDaos: Ember.inject.service('dao/model-daos'),
 
-	categoryChanged: Ember.observer('modelService.category.changeTimestamp', function(){
+	categoryChanged: Ember.observer('modelDaos.category.changeTimestamp', function(){
 		this.refresh();
 	}),
 
 	model(){
-		return this.get('modelService.category').getAll();
+		return this.get('modelDaos.category').getAll();
 	}
 });

@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
 
 	i18n: Ember.inject.service(),
 	globalNotificationStorage: Ember.inject.service(),
-	modelService: Ember.inject.service('dao/dao-all'),
+	modelDaos: Ember.inject.service('dao/model-daos'),
 	store: Ember.inject.service(),
 	monthsService: Ember.inject.service(),
 
@@ -17,7 +17,7 @@ export default Ember.Controller.extend({
 
 	actions: {
 		deleteExpense(id){
-			const model = this.get('modelService.expense').getById(id);
+			const model = this.get('modelDaos.expense').getById(id);
 			model.delete();
 
 			const i18n = this.get('i18n');

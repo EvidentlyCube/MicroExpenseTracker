@@ -6,7 +6,7 @@ export default BaseModel.extend({
 	parentId: null,
 
 	parent: Ember.computed('parentId', function(){
-		return this.get('modelService.category').getById(this.get('parentId'));
+		return this.get('modelDaos.category').getById(this.get('parentId'));
 	}),
 
 	indentedName: Ember.computed('name', 'parentId', 'parent.indentedName', function () {
@@ -58,7 +58,7 @@ export default BaseModel.extend({
 	}),
 
 	getChildren(){
-		return this.get('modelService.category').getAll().filter(category => category.get('parentId') === this.get('id'));
+		return this.get('modelDaos.category').getAll().filter(category => category.get('parentId') === this.get('id'));
 	},
 
 	isCategory(category){
@@ -89,6 +89,6 @@ export default BaseModel.extend({
 	},
 
 	_getSpecificService(){
-		return this.get('modelService.category');
+		return this.get('modelDaos.category');
 	}
 });

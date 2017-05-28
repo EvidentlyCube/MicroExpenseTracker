@@ -2,11 +2,11 @@ import Ember from "ember";
 import RSVP from "rsvp";
 
 export default Ember.Route.extend({
-	modelService: Ember.inject.service('dao/dao-all'),
+	modelDaos: Ember.inject.service('dao/model-daos'),
 	categoryProvider: Ember.inject.service(),
 
 	model(){
-		const expenseService = this.get('modelService.expense');
+		const expenseService = this.get('modelDaos.expense');
 		const categories = this.get('categoryProvider').getAllSortedByPath();
 		categories.unshift({});
 

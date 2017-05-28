@@ -2,7 +2,7 @@ import Ember from "ember";
 
 export default Ember.Controller.extend({
 	i18n: Ember.inject.service(),
-	modelService: Ember.inject.service('dao/dao-all'),
+	modelDaos: Ember.inject.service('dao/model-daos'),
 	modelSaver: Ember.inject.service('expense/model-saver'),
 	modelValidator: Ember.inject.service('expense/model-validator'),
 	globalNotificationStorage: Ember.inject.service(),
@@ -31,7 +31,7 @@ export default Ember.Controller.extend({
 				globalNotificationStorage.addError(i18n.t('section.expenses.notifications.fix_form'), 2000);
 			} else {
 				expense.setFieldsFrom(clone, ['name', 'price', 'discount', 'purchasedAt', 'categoryId']);
-				expense.set('dateUpdated', new Date());
+				expense.set('updatedAt', new Date());
 				expense.save();
 
 				globalNotificationStorage.addSuccess(i18n.t('section.expenses.notifications.modified_expense'), 2000);

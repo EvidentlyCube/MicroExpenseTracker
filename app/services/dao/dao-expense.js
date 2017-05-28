@@ -15,7 +15,7 @@ export default Ember.Service.extend({
 	},
 
 	getById(id){
-		const [year, month, index] = this._breakId(id);
+		const [year, month, index] = this._getPartitionIndexes(id);
 
 		return this._getDataPartition(year, month)[index] || null;
 	},
@@ -25,24 +25,29 @@ export default Ember.Service.extend({
 	},
 
 	modelSaved(expense){
-		const [year, month] = expense.get('id') ? this._breakId(expense.get('id')) : this._breakPurchasedAt(expense.get('purchasedAt'));
+		const [year, month] = this._getPartitionIndexes(expense);
 		const storageKey = this._createStorageKeyName(year, month);
 		const partition = this._getDataPartition(year, month);
 
 		if (expense.get('id') === null){
 			expense.set('id', `${year}-${month}-${partition.length}`);
 			partition[partition.length] = expense;
+		} else if (this._hasPartitionChanged(expense)){
+			const clone = expense.clone();
+			clone.save();
+			expense.delete();
+			return;
 		}
 
 		this.flushToStorage(storageKey, partition);
 	},
 
 	modelDeleted(expense){
-		const [year, month] = this._breakId(expense.get('id'));
+		const [year, month, index] = this._getPartitionIndexes(expense);
 		const storageKey = this._createStorageKeyName(year, month);
 		const partition = this._getDataPartition(year, month);
 
-		delete partition[expense.get('idIndex')];
+		delete partition[index];
 
 		this.flushToStorage(storageKey, partition);
 	},
@@ -65,7 +70,17 @@ export default Ember.Service.extend({
 		return this.get('data')[year][month];
 	},
 
-	_breakId(id){
+	_getPartitionIndexes(modelOrId){
+		if (typeof modelOrId === "string" || modelOrId instanceof String){
+			return this._getPartitionIndexesFromId(modelOrId);
+		} else if (modelOrId.get('id')){
+			return this._getPartitionIndexesFromId(modelOrId.get('id'));
+		} else {
+			return this._getPartitionIndexesFromDate(modelOrId.get('purchasedAt'));
+		}
+	},
+
+	_getPartitionIndexesFromId(id){
 		const idParts = id.split("-");
 		return [
 			parseInt(idParts[0]),
@@ -74,11 +89,18 @@ export default Ember.Service.extend({
 		];
 	},
 
-	_breakPurchasedAt(purchasedAt){
+	_getPartitionIndexesFromDate(purchasedAt){
 		return [
 			purchasedAt.getFullYear(),
 			purchasedAt.getMonth()
 		];
+	},
+
+	_hasPartitionChanged(model){
+		const [yearDate, monthDate] = this._getPartitionIndexesFromDate(model.get('purchasedAt'));
+		const [yearId, monthId] = this._getPartitionIndexesFromId(model.get('id'));
+
+		return yearDate !== yearId || monthDate !== monthId;
 	},
 
 	_loadDataIfNeeded(year, month){
