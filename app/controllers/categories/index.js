@@ -10,6 +10,7 @@ export default Ember.Controller.extend({
 
 	actions: {
 		deleteCategory(id){
+			console.log(id);
 			const category = this.get('modelDaos.category').getById(id);
 			category.delete();
 

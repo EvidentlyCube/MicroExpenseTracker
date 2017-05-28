@@ -68,7 +68,7 @@ export default BaseModel.extend({
 	isChildOf(category){
 		const parent = this.get('parent');
 
-		return parent && (parent === category || parent.isChildOf(category));
+		return category && parent && (parent === category || parent.isChildOf(category));
 	},
 
 	delete(){

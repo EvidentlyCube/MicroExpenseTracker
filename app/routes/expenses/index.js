@@ -16,7 +16,13 @@ export default Ember.Route.extend({
 	model(){
 		return RSVP.hash({
 			categories: this.get('modelDaos.category').getAll(),
-			expenses: this.get('modelDaos.expense').getByMonth(this.get('monthsService.currentMonth')),
+			expenses: this.get('modelDaos.expense').getByMonth(this.get('monthsService.currentMonth'))
 		});
+	},
+
+	resetController(controller, isExiting) {
+		if (isExiting) {
+			controller.set('filterCategoryId', null);
+		}
 	}
 });

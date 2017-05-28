@@ -1,56 +1,109 @@
-<h1 class="container title">{{t "section.expenses.title"}}</h1>
-<div class="route-index-actions">
-	<div class="container">
-		{{#link-to "expenses.receipt" class="button is-primary"}}{{t "section.expenses.index.add_new_receipt"}}{{/link-to}}
-	</div>
-</div>
+<div class="expenses-index-route">
+	<header>
+		<h1 class="container title">{{t "section.expenses.title"}}</h1>
+		<div class="route-index-actions">
+		</div>
+	</header>
 
-<article>
-	<table class="table">
-		<thead>
-		<tr>
-			<th>{{t "section.expenses.index.product"}}</th>
-			<th>{{t "section.expenses.index.final_price"}}</th>
-			<th>{{t "section.expenses.index.category"}}</th>
-			<th>{{t "section.expenses.index.expense_date"}}</th>
-			<th>{{t "section.expenses.index.actions"}}</th>
-		</tr>
-		</thead>
-		<tbody>
-		{{#each model.expenses as |row|}}
+	<nav class="level">
+		<div class="level-left">
+			<div class="level-item">
+				<p class="subtitle is-5">
+					Akcje:
+				</p>
+			</div>
+			<div class="level-item">
+				{{#link-to "expenses.receipt" class="button is-primary"}}{{t "section.expenses.index.add_new_receipt"}}{{/link-to}}
+			</div>
+		</div>
+
+		<div class="level-right">
+			<div class="level-item">
+				<p class="subtitle is-5">
+					Wydatki:
+
+					<strong>
+						{{#if isFiltered}}{{filteredExpenses.length}} / {{/if}}{{model.expenses.length}}
+					</strong>
+				</p>
+			</div>
+		</div>
+	</nav>
+
+	<nav class="level">
+		<div class="level-left level-wrap">
+			<div class="level-item">
+				<p class="subtitle is-5">
+					Filtrowanie:
+					{{if (not isFiltered) "Brak"}}
+				</p>
+			</div>
+			<div class="level-item">
+				{{#if filterCategory}}
+					<a class="button is-info is-small" {{action "removeFilter" "filterCategoryId"}}>
+						<span><strong>Po kategorii</strong> {{filterCategory.namePath}}</span>
+					    <span class="icon">
+					      <i class="fa fa-close"></i>
+					    </span>
+					</a>
+				{{/if}}
+			</div>
+		</div>
+	</nav>
+
+	<article>
+		<table class="table">
+			<thead>
 			<tr>
-				<td>{{{row.name}}}</td>
-				<td>
-					{{currency-format row.realPrice}}
-				</td>
-				<td>
-					{{#if row.category}}
-						{{{row.category.namePathForHtml}}}
-					{{else}}
-						{{t "section.expenses.index.missing_category"}}
-					{{/if}}
-				</td>
-				<td>
-					{{#if row.purchasedAt}}
-						{{moment-format row.purchasedAt "DD-MM-YYYY"}}
-					{{else}}
-						{{t "section.expenses.index.missing_expense_date"}}
-					{{/if}}
-				</td>
-				<td>
+				<th>{{t "section.expenses.index.product"}}</th>
+				<th>{{t "section.expenses.index.final_price"}}</th>
+				<th>{{t "section.expenses.index.category"}}</th>
+				<th>{{t "section.expenses.index.expense_date"}}</th>
+				<th>{{t "section.expenses.index.actions"}}</th>
+			</tr>
+			</thead>
+			<tbody>
+			{{#each sortedExpenses as |row|}}
+				<tr>
+					<td>{{{row.name}}}</td>
+					<td>
+						{{currency-format row.realPrice}}
+					</td>
+					<td>
+						{{#if row.category}}
+							{{{row.category.namePathForHtml}}}
+
+							{{#link-to "expenses.index"
+							           (query-params filter-category-id=row.category.id)
+							           title=(t "section.expenses.index.filter_by_category")}}
+								<i class="fa fa-filter fa-lg" aria-hidden="true"></i>
+							{{/link-to}}
+						{{else}}
+							{{t "section.expenses.index.missing_category"}}
+						{{/if}}
+					</td>
+					<td>
+						{{#if row.purchasedAt}}
+							{{moment-format row.purchasedAt "DD-MM-YYYY"}}
+						{{else}}
+							{{t "section.expenses.index.missing_expense_date"}}
+						{{/if}}
+					</td>
+					<td>
                     <span class="icon">
 	                    {{#link-to "expenses.edit" row.id title=(t "section.expenses.index.action.edit" expense=row.name)}}
 		                    <i class="fa fa-edit"></i>
 	                    {{/link-to}}
                     </span>
-					<span class="icon">
+						<span class="icon">
                         <a href="#" {{action "deleteExpense" row.id}} title={{t "section.expenses.index.action.delete" expense=row.name}}>
                             <i class="fa fa-remove"></i>
                         </a>
                     </span>
-				</td>
-			</tr>
-		{{/each}}
-		</tbody>
-	</table>
-</article>
+					</td>
+				</tr>
+			{{/each}}
+			</tbody>
+		</table>
+	</article>
+</div>

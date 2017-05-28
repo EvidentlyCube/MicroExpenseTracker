@@ -8,6 +8,12 @@
 			<tr class="{{if data.category.hasChildren "has-children" "no-children"}}">
 				<td class="category">
 					{{{data.category.namePathForHtml}}}
+
+					{{#link-to "expenses.index"
+				           (query-params filter-category-id=data.category.id)
+				           title=(t "section.summary.filter_by_category")}}
+						<i class="fa fa-filter fa-lg" aria-hidden="true"></i>
+					{{/link-to}}
 				</td>
 				<td class="value">
 					{{currency-format data.sum}}

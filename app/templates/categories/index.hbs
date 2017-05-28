@@ -16,7 +16,7 @@
 			</thead>
 			<tbody>
 			{{#each sortedCategories as |row|}}
-				{{categories/category-index-row row=row}}
+				{{categories/category-index-row row=row onDeleteCategory=(action 'deleteCategory')}}
 			{{/each}}
 			</tbody>
 		</table>

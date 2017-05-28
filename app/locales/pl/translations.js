@@ -88,7 +88,8 @@ export default {
 				action: {
 					edit: 'Edytuj wydatek "{{expense}}"',
 					delete: 'Usuń wydatek "{{expense}}"'
-				}
+				},
+				filter_by_category: 'Filtruj po tej kategorii'
 			},
 
 			edit: {
@@ -128,7 +129,8 @@ export default {
 		summary: {
 			title: 'Podsumowanie wydatków',
 			no_category: 'Bez kategorii',
-			total: 'W sumie'
+			total: 'W sumie',
+			filter_by_category: 'Wyświetl wydatki w tej kategorii'
 		},
 
 		options: {

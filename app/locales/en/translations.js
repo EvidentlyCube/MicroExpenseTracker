@@ -86,7 +86,8 @@ export default {
 				action: {
 					edit: 'Edit expense "{{expense}}"',
 					delete: 'Delete expense "{{expense}}"'
-				}
+				},
+				filter_by_category: 'Filter by this category'
 			},
 
 			edit: {
@@ -130,7 +131,8 @@ export default {
 		summary: {
 			title: 'Expenses summary',
 			no_category: 'Without category',
-			total: 'Total'
+			total: 'Total',
+			filter_by_category: 'Show expenses from this category'
 		},
 
 		options: {
