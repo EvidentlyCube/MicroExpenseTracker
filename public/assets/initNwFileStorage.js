@@ -5,6 +5,7 @@
 	window.__nw_global = window.global;
 	window.__nw_require = window.require;
 	window.__nw_save_path = '_data';
+	window.__nw_backup = forceBackup;
 
 	var fs = window.__nw_require('fs');
 	var path = window.__nw_require('path');
@@ -22,6 +23,17 @@
 	backupData();
 
 	setInterval(backupData, 1000 * 60 * 60); // Try to backup every hour
+
+	function forceBackup() {
+		var backupTo = getForcedBackupPath();
+		if (directoryExists(backupTo)){
+			return;
+		}
+
+		fs.mkdirSync(backupTo);
+
+		copyFolderRecursiveSync(savePath, backupTo);
+	}
 
 	function backupData() {
 		var backupTo = getBackupPath();
@@ -51,6 +63,18 @@
 		} catch(e) {
 			return false;
 		}
+	}
+
+	function getForcedBackupPath(){
+		var date = new Date();
+		var path = date.getFullYear()
+			+ "-" + padDate(date.getMonth()+1)
+			+ "-" + padDate(date.getDate())
+			+ "_" + padDate(date.getHours())
+			+ "_" + padDate(date.getMinutes())
+			+ "_" + padDate(date.getSeconds());
+
+		return backupPath + "/" + path;
 	}
 
 	function getBackupPath(){

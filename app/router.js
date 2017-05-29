@@ -27,6 +27,7 @@ Router.map(function () {
 	this.route('options', function () {
 		this.route('language');
 		this.route('misc');
+		this.route('storage-items');
 	});
 	this.route('install');
 });

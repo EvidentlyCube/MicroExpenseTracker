@@ -144,12 +144,20 @@ export default {
 		options: {
 			headers: {
 				language: "Language",
-				misc: "Misc"
+				misc: "Misc",
+				storage_items: "Storage"
 			},
 			language: {
 				lang: "Interface language",
 				currency: "Currency",
 				currency_preview: "Preview",
+			},
+			storage_items: {
+				paragraph: "This page allows you to delete data in your database. The most obvious usecase is for debugging and development purposes but maybe you have another reason to do that. Please be warned that using this will delete your data without ability to undo, although backups should be made automatically.",
+				checkbox1: "I confirm that I know that using this feature I can lose all or some of my data forever and I won't complain if I deleted it despite all those warnings.",
+				checkbox2: "I promise I made a manual backup of my data.",
+				checkbox3: "I really know what I am doing.",
+				delete_index: "Delete {{index}}"
 			}
 		}
 	}

@@ -5,14 +5,11 @@ import StorageKeyNames from "../constants/storage/key-names";
 export default Ember.Service.extend({
 	i18n: Ember.inject.service(''),
 	storage: Ember.inject.service("storage/permanent-storage-service"),
+
+	changeTimestamp: null,
+	isLoaded: false,
 	options: null,
 
-	init(){
-		const options = this.get('storage').getItem(StorageKeyNames.options) || {};
-
-		this.set('options', options);
-	},
-	
 	getInstallationFinished(){
 		return this._getOptionByName(OptionNames.InstallationFinished, false);
 	},
@@ -39,15 +36,36 @@ export default Ember.Service.extend({
 
 	flushToStorage(){
 		this.get('storage').setItem(StorageKeyNames.options, this.get('options'));
+		this.set('changeTimestamp', Date.now());
+	},
+
+	clearMemory(){
+		this.set('isLoaded', false);
+		this.set('options', {});
+		this.set('changeTimestamp', Date.now());
+	},
+
+	_loadOptionsIfNeeded(){
+		if (this.get('isLoaded')){
+			return;
+		}
+
+		const options = this.get('storage').getItem(StorageKeyNames.options) || {};
+
+		this.set('options', options);
+		this.set('isLoaded', true);
+		this.set('changeTimestamp', Date.now());
 	},
 
 	_getOptionByName(name, defaultValue){
+		this._loadOptionsIfNeeded();
 		const options = this.get('options');
 
 		return options.hasOwnProperty(name) ? options[name] : defaultValue;
 	},
 
 	_setOptionByName(name, value){
+		this._loadOptionsIfNeeded();
 		const options = this.get('options');
 
 		options[name] = value;

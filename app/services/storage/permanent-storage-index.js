@@ -1,17 +1,19 @@
 import Ember from "ember";
 import DataStorageKeys from "../../constants/storage/key-names";
 import moment from "moment";
+import _ from "lodash";
 
 export default Ember.Service.extend({
 	storage: Ember.inject.service('storage/permanent-storage-service'),
 
-	data: [],
+	changeTimestamp: null,
 	isLoaded: false,
+	data: [],
 
 	storeIndex(key){
+		this._loadOptionsIfNeeded();
 		const data = this.get('data');
-		this._loadDataIfNeeded();
-		if (data.indexOf(key) === -1){
+		if (data.indexOf(key) !== -1){
 			return;
 		}
 
@@ -20,28 +22,41 @@ export default Ember.Service.extend({
 	},
 
 	getIndexes(){
-		this._loadDataIfNeeded();
+		this._loadOptionsIfNeeded();
 
 		return this.get('data').concat();
+	},
+
+	removeIndex(key){
+		const data = this.get('data');
+		const index = data.indexOf(key);
+
+		if (index === -1){
+			return;
+		}
+
+		data.splice(index, 1);
+		this.flushToStorage();
 	},
 
 	flushToStorage(){
 		const storage = this.get('storage');
 		storage.setItem(this._getStorageKey(), this.get('data'));
+		this.set('changeTimestamp', Date.now());
 	},
 
-	_loadDataIfNeeded(){
+	_loadOptionsIfNeeded(){
 		if (this.get('isLoaded')){
 			return;
 		}
 
 		let data = this.get('storage').getItem(this._getStorageKey()) || [];
 
-		console.log("Loaded data", data);
 		if (!data || data.length === 0){
 			data = this._rebuildIndexes();
-			console.log("Rebuilt data", data);
 		}
+
+		data = _.uniq(data);
 
 		this.set('data', data);
 		this.set('isLoaded', true);

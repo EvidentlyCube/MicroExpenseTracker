@@ -22,5 +22,11 @@ export default Ember.Service.extend({
 
 	getItem(key){
 		return this.get('storage').getItem(key);
+	},
+
+	removeItem(key){
+		this.get('storage').forceBackup();
+		this.get('storage').removeItem(key);
+		this.get('storageIndex').removeIndex(key);
 	}
 })

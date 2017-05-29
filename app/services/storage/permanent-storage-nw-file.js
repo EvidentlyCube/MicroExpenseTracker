@@ -37,6 +37,21 @@ export default Ember.Service.extend({
 		}
 	},
 
+	removeItem(key){
+		const fs = this.get('fs');
+		const path = this.getStorageFilePath(key);
+
+		try {
+			fs.unlinkSync(path);
+		} catch (e) {
+			// Silently ignore
+		}
+	},
+
+	forceBackup(){
+		window.__nw_backup();
+	},
+
 	getStorageFilePath(key) {
 		return this.get('savePath') + "/" + this._slugify(key) + "-" + this._hashString(key) + ".json";
 	},

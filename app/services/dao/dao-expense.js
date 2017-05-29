@@ -58,6 +58,11 @@ export default Ember.Service.extend({
 		this.set('changeTimestamp', Date.now());
 	},
 
+	clearMemory(){
+		this.set('data', {});
+		this.set('changeTimestamp', Date.now());
+	},
+
 	_toJson(partition){
 		const newData = [];
 		partition.forEach(expense => newData.push(expense.toJson()));
@@ -65,7 +70,7 @@ export default Ember.Service.extend({
 	},
 
 	_getDataPartition(year, month){
-		this._loadDataIfNeeded(year, month);
+		this._loadOptionsIfNeeded(year, month);
 
 		return this.get('data')[year][month];
 	},
@@ -103,7 +108,7 @@ export default Ember.Service.extend({
 		return yearDate !== yearId || monthDate !== monthId;
 	},
 
-	_loadDataIfNeeded(year, month){
+	_loadOptionsIfNeeded(year, month){
 		const storedData = this.get('data');
 
 		if (storedData.hasOwnProperty(year) && storedData[year].hasOwnProperty(month)){
@@ -136,6 +141,7 @@ export default Ember.Service.extend({
 
 		this.set('data', storedData);
 		this.set('autoIncrement', monthData.length);
+		this.set('changeTimestamp', Date.now());
 	},
 
 	_createStorageKeyName(year, month){

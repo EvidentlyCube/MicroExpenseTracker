@@ -142,12 +142,20 @@ export default {
 		options: {
 			headers: {
 				language: "Język",
-				misc: "Różne"
+				misc: "Różne",
+				storage_items: "Dane"
 			},
 			language: {
 				lang: "Język interfejsu",
 				currency: "Waluta",
 				currency_preview: "Podgląd",
+			},
+			storage_items: {
+				paragraph: "Na tej stronie możesz usunąć dane z bazy danych aplikacji. Najbardziej oczywistym zastosowaniem jest testowanie aplikacji, ale być może masz inny powód by to robić. Proszę, miej na uwadze to, że możesz utracić dane bez możliwości cofnięciu operacji, aczkolwiek aplikacja powinna wykonać automatycznie kopie zapasowe przed usunięciem czegokolwiek.",
+				checkbox1: "Potwierdzam, że wiem, iż używanie tych opcji może skończyć się częściową lub całkowitą utratą danych bez możliwości ich odzyskania i nie będe narzekać jeżeli coś utracę pomimo tych ostrzeżeń..",
+				checkbox2: "Obiecuję, że mam ręcznie wykonaną kopię zapasową danych.",
+				checkbox3: "Naprawdę, wiem co robię.",
+				delete_index: "Usuń {{index}}"
 			}
 		}
 	}

@@ -22,19 +22,15 @@ export default Ember.Service.extend({
 		return category;
 	},
 
-
-
 	getById(id){
-		this._loadDataIfNeeded();
+		this._loadOptionsIfNeeded();
 		return this.get('data')[id] || null;
 	},
 
 	getAll(){
-		this._loadDataIfNeeded();
+		this._loadOptionsIfNeeded();
 		return this.get('data').concat().filter(c => c);
 	},
-
-
 
 	modelSaved(category){
 		const data = this.get('data');
@@ -62,13 +58,19 @@ export default Ember.Service.extend({
 		this.set('changeTimestamp', Date.now());
 	},
 
+	clearMemory(){
+		this.set('isLoaded', false);
+		this.set('data', []);
+		this.set('changeTimestamp', Date.now());
+	},
+
 	_toJson(data){
 		const jsonData = [];
 		data.forEach(category => jsonData.push(category.toJson()));
 		return jsonData;
 	},
 
-	_loadDataIfNeeded(){
+	_loadOptionsIfNeeded(){
 		if (this.get('isLoaded')){
 			return;
 		}
@@ -86,6 +88,7 @@ export default Ember.Service.extend({
 
 		this.set('data', data);
 		this.set('isLoaded', true);
+		this.set('changeTimestamp', Date.now());
 	},
 
 	_getStorageKey(){

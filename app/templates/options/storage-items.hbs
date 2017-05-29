@@ -1,0 +1,40 @@
+<div class="options-storage-items-route">
+	<p>
+		{{t "section.options.storage_items.paragraph"}}
+	</p>
+
+	<div class="field">
+		<p class="control">
+			<label class="checkbox">
+				{{input type="checkbox" checked=confirm1}}
+				{{t "section.options.storage_items.checkbox1"}}
+			</label>
+		</p>
+	</div>
+	<div class="field">
+		<p class="control">
+			<label class="checkbox">
+				{{input type="checkbox" checked=confirm2}}
+				{{t "section.options.storage_items.checkbox2"}}
+			</label>
+		</p>
+	</div>
+	<div class="field">
+		<p class="control">
+			<label class="checkbox">
+				{{input type="checkbox" checked=confirm3}}
+				{{t "section.options.storage_items.checkbox3"}}
+			</label>
+		</p>
+	</div>
+
+	<ul class="indexes {{if isAllConfirmed "show"}}">
+		{{#each model as |index|}}
+			<li>
+				{{#common/danger-button onConfirm=(action "deleteIndex" index)}}
+					{{t "section.options.storage_items.delete_index" index=index}}
+				{{/common/danger-button}}
+			</li>
+		{{/each}}
+	</ul>
+</div>
