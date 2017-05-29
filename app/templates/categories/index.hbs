@@ -1,13 +1,33 @@
 <article class="categories-index-route">
 	<h1 class="container title">{{t "section.categories.title"}}</h1>
-	<div class="route-index-actions">
-		<div class="container">
-			{{#link-to "categories.new" class="button is-primary action-new-category"}}{{t "section.categories.index.add_new_category"}}{{/link-to}}
+
+	<nav class="level">
+		<div class="level-left">
+			<div class="level-item">
+				<p class="subtitle is-5">
+					{{t "section.categories.index.actions"}}:
+				</p>
+			</div>
+			<div class="level-item">
+				{{#link-to "categories.new" class="button is-primary action-new-category"}}{{t "section.categories.index.add_new_category"}}{{/link-to}}
+			</div>
 		</div>
-	</div>
+
+		<div class="level-right">
+			<div class="level-item">
+				<p class="subtitle is-5">
+					{{t "section.categories.index.categories"}}:
+
+					<strong>
+						{{sortedCategories.length}}
+					</strong>
+				</p>
+			</div>
+		</div>
+	</nav>
 
 	<article>
-		<table class="table">
+		<table class="table data-table">
 			<thead>
 			<tr>
 				<th>{{t "section.categories.index.name_path"}}</th>
@@ -17,6 +37,12 @@
 			<tbody>
 			{{#each sortedCategories as |row|}}
 				{{categories/category-index-row row=row onDeleteCategory=(action 'deleteCategory')}}
+			{{else}}
+				<tr class="no-data">
+					<td colspan="2">
+						{{{t "section.categories.index.empty_row" button=(t "section.categories.index.add_new_category")}}}
+					</td>
+				</tr>
 			{{/each}}
 			</tbody>
 		</table>

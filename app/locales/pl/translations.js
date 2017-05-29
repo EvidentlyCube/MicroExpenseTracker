@@ -45,6 +45,8 @@ export default {
 				add_new_category: "Dodaj nową kategorię",
 				name_path: "Nazwa",
 				actions: "Akcje",
+				categories: "Kategorie",
+				empty_row: "Użyj przycisku <i>{{button}}</i> aby dodać pierwszą kategorię.",
 				action: {
 					edit: 'Edytuj kategorię "{{category}}"',
 					delete: 'Usuń kategorię "{{category}}"'
@@ -86,6 +88,7 @@ export default {
 				missing_expense_date: "&lt;brak daty&gt;",
 				actions: "Akcje",
 				expenses: "Wydatki",
+				empty_row: "Brak wydaktów w tym miesiącu.",
 				action: {
 					edit: 'Edytuj wydatek "{{expense}}"',
 					delete: 'Usuń wydatek "{{expense}}"'

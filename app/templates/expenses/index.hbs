@@ -1,9 +1,5 @@
 <div class="expenses-index-route">
-	<header>
-		<h1 class="container title">{{t "section.expenses.title"}}</h1>
-		<div class="route-index-actions">
-		</div>
-	</header>
+	<h1 class="container title">{{t "section.expenses.title"}}</h1>
 
 	<nav class="level">
 		<div class="level-left">
@@ -52,7 +48,7 @@
 	</nav>
 
 	<article>
-		<table class="table">
+		<table class="table data-table">
 			<thead>
 			<tr>
 				<th>{{t "section.expenses.index.product"}}</th>
@@ -100,6 +96,12 @@
                             <i class="fa fa-remove"></i>
                         </a>
                     </span>
+					</td>
+				</tr>
+			{{else}}
+				<tr class="no-data">
+					<td colspan="5">
+						{{{t "section.categories.index.empty_row" button=(t "section.categories.index.add_new_category")}}}
 					</td>
 				</tr>
 			{{/each}}

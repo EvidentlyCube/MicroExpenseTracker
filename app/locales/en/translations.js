@@ -44,6 +44,8 @@ export default {
 				add_new_category: "Add new category",
 				name_path: "Name",
 				actions: "Actions",
+				categories: "Categories",
+				empty_row: "There are no categories here. To add one, press the button <i>{{button}}</i>.",
 				action: {
 					edit: 'Edit category "{{category}}"',
 					delete: 'Delete category "{{category}}"'
@@ -84,6 +86,7 @@ export default {
 				missing_expense_date: "&lt;no date&gt;",
 				actions: "Actions",
 				expenses: "Expenses",
+				empty_row: "No expenses this month.",
 				action: {
 					edit: 'Edit expense "{{expense}}"',
 					delete: 'Delete expense "{{expense}}"'
