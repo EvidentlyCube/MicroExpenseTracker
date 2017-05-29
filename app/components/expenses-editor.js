@@ -57,7 +57,8 @@ export default Ember.Component.extend({
 		},
 
 		onChangePrice(event){
-			let price = parseInt(event.target.value);
+			let value = event.target.value.replace(/,/g, '.').replace(/\s/g, '');
+			let price = parseFloat(value);
 			price = !isNaN(price) && isFinite(price) ? price : 0;
 
 			this.set('model.price', price);

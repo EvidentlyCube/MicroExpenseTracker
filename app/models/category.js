@@ -71,6 +71,11 @@ export default BaseModel.extend({
 		return category && parent && (parent === category || parent.isChildOf(category));
 	},
 
+	afterLoad(){
+		this.set('id', parseInt(this.get('id')) || null);
+		this.set('parentId', parseInt(this.get('parentId')) || null);
+	},
+
 	delete(){
 		this.getChildren().forEach(category => {
 			category.set('parentId', this.get('parentId'));

@@ -27,9 +27,14 @@ export default BaseModel.extend({
 	}),
 
 	afterLoad(){
+		this.set('categoryId', parseInt(this.get('categoryId')) || null);
 		this.set('purchasedAt', new Date(this.get('purchasedAt')));
 		this.set('createdAt', new Date(this.get('createdAt')));
 		this.set('updatedAt', new Date(this.get('updatedAt')));
+
+		if (!this.get('category')){
+			this.set('categoryId', null);
+		}
 	},
 
 	toJson(){

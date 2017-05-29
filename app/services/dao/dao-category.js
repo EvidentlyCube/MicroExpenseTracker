@@ -80,6 +80,7 @@ export default Ember.Service.extend({
 
 		loadedData.forEach(row => {
 			const category = Category.create(row);
+			category.afterLoad();
 			data[category.get('id')] = category;
 		});
 

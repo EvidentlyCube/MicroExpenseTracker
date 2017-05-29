@@ -1,6 +1,7 @@
 import {test} from "qunit";
 import {settings, find, findAll} from 'ember-native-dom-helpers';
 import moduleForAcceptance from "micro-expense-tracker/tests/helpers/module-for-acceptance";
+import actions from "../helpers/acceptance-helpers/collection";
 
 settings.rootElement = '#met-application';
 
@@ -14,36 +15,25 @@ const CategoryNameFirst = "Test category";
 const CategoryNameSecond = "Renamed category";
 
 test('Asserting category workflow: create -> edit -> delete', function (assert) {
-	let categoryId;
+	actions.install.skipInstall(this);
 
-	visit('/install');
-	click('.install-route .start-button');
 	andThen(function () {
 		assert.equal(currentURL(), '/categories', 'We are in categories.index after going through install screen');
 		assert.equal(findAll('.category-row').length, 0, 'There are no categories yet');
 	});
 
-
-
-	click('.action-new-category');
-	andThen(function(){
-		assert.equal(currentURL(), '/categories/new', 'We are in categories.new');
-		fillIn('.name-input', CategoryNameFirst);
-		click('.action-save');
-	});
+	const category = actions.category.addCategory(CategoryNameFirst, null, assert, this);
 
 	andThen(function(){
 		assert.equal(currentURL(), '/categories', 'We are in categories.index after creating category');
 		assert.equal(findAll('.category-row').length, 1, 'There is one category in the list');
 
-		categoryId = find('.category-row').getAttribute('data-id');
-
-		click('.action-edit');
+		click(`.action-edit`);
 	});
 
 	andThen(function(){
-		assert.equal(currentURL(), `/categories/edit/${categoryId}`, 'We are editing the created category');
-		assert.equal(find('.category-id').getAttribute('value'), categoryId, "The hidden ID field is set to the category's id");
+		assert.equal(currentURL(), `/categories/edit/${category.v.id}`, 'We are editing the created category');
+		assert.equal(find('.category-id').getAttribute('value'), category.v.id, "The hidden ID field is set to the category's id");
 
 		fillIn('.name-input', CategoryNameSecond);
 		click('.action-save');
@@ -53,7 +43,7 @@ test('Asserting category workflow: create -> edit -> delete', function (assert) 
 		assert.equal(currentURL(), '/categories', "We are in categories.index after saving edit");
 		assert.equal(findAll('.category-row').length, 1, 'There is still one category');
 
-		const categoryRow = find(`.category-row-${categoryId}`);
+		const categoryRow = find(`.category-row-${category.v.id}`);
 		assert.ok(!!categoryRow, "We have found the category we've previously edited");
 
 		const name = find('.category-name', categoryRow).innerHTML;

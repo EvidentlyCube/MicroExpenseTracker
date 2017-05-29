@@ -15,7 +15,6 @@ export default Ember.Controller.extend({
 	}),
 
 	expenses: Ember.computed.alias('model'),
-	currentMonth: Ember.computed.alias('monthsService.currentMonth'),
 
 	sortCriteria: ['purchasedAt:desc', 'createdAt:desc'],
 	isFiltered: Ember.computed('filterCategoryId', function(){
@@ -29,7 +28,7 @@ export default Ember.Controller.extend({
 		}
 
 		return true;
-	}).property('modelDaos.expense.changeTimestamp', 'filterCategoryId'),
+	}).property('model.expenses', 'modelDaos.expense.changeTimestamp', 'filterCategoryId'),
 
 	sortedExpenses: Ember.computed.sort('filteredExpenses', 'sortCriteria'),
 
@@ -46,18 +45,6 @@ export default Ember.Controller.extend({
 
 			globalNotificationStorage.addWarning(message, 4000);
 			return false;
-		},
-
-		resetMonth(){
-			const currentMonth = this.get('monthsService').getCurrentMonthObject();
-			this.transitionToRoute(`/expenses/index/${currentMonth.get('year')}/${currentMonth.get('month')+1}`);
-		},
-
-		switchMonth(delta){
-			const currentMonth = this.get('currentMonth');
-			const newMonth = this.get('monthsService').getMonthObjectByDelta(currentMonth, delta);
-
-			this.transitionToRoute(`/expenses/index/${newMonth.get('year')}/${newMonth.get('month')+1}`);
 		},
 
 		removeFilter(name){
