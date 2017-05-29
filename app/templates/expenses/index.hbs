@@ -9,7 +9,7 @@
 		<div class="level-left">
 			<div class="level-item">
 				<p class="subtitle is-5">
-					Akcje:
+					{{t "section.expenses.index.actions"}}:
 				</p>
 			</div>
 			<div class="level-item">
@@ -20,7 +20,7 @@
 		<div class="level-right">
 			<div class="level-item">
 				<p class="subtitle is-5">
-					Wydatki:
+					{{t "section.expenses.index.expenses"}}:
 
 					<strong>
 						{{#if isFiltered}}{{filteredExpenses.length}} / {{/if}}{{model.expenses.length}}
@@ -34,14 +34,14 @@
 		<div class="level-left level-wrap">
 			<div class="level-item">
 				<p class="subtitle is-5">
-					Filtrowanie:
-					{{if (not isFiltered) "Brak"}}
+					{{t "section.expenses.index.filtering"}}:
+					{{if (not isFiltered) (t "section.expenses.index.filters_none")}}
 				</p>
 			</div>
 			<div class="level-item">
 				{{#if filterCategory}}
 					<a class="button is-info is-small" {{action "removeFilter" "filterCategoryId"}}>
-						<span><strong>Po kategorii</strong> {{filterCategory.namePath}}</span>
+						<span><strong>{{t "section.expenses.index.filters.by_category"}}</strong> {{filterCategory.namePath}}</span>
 					    <span class="icon">
 					      <i class="fa fa-close"></i>
 					    </span>

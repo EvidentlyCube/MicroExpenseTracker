@@ -85,11 +85,17 @@ export default {
 				expense_date: "Data wydatku",
 				missing_expense_date: "&lt;brak daty&gt;",
 				actions: "Akcje",
+				expenses: "Wydatki",
 				action: {
 					edit: 'Edytuj wydatek "{{expense}}"',
 					delete: 'Usuń wydatek "{{expense}}"'
 				},
-				filter_by_category: 'Filtruj po tej kategorii'
+				filtering: 'Filtrowanie',
+				filters_none: "Brak",
+				filter_by_category: 'Filtruj po tej kategorii',
+				filters: {
+					by_category: "Po kategorii"
+				}
 			},
 
 			edit: {

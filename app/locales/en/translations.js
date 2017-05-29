@@ -83,11 +83,17 @@ export default {
 				expense_date: "Expense date",
 				missing_expense_date: "&lt;no date&gt;",
 				actions: "Actions",
+				expenses: "Expenses",
 				action: {
 					edit: 'Edit expense "{{expense}}"',
 					delete: 'Delete expense "{{expense}}"'
 				},
-				filter_by_category: 'Filter by this category'
+				filtering: 'Filtering',
+				filters_none: "None",
+				filter_by_category: 'Filter by this category',
+				filters: {
+					by_category: "By category"
+				}
 			},
 
 			edit: {
