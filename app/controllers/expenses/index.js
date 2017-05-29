@@ -23,7 +23,7 @@ export default Ember.Controller.extend({
 	filteredExpenses: Ember.computed.filter('model.expenses', function(expense){
 		const filterCategory = this.get('filterCategory');
 
-		if (filterCategory && filterCategory.isChildOf(expense.get('category'))){
+		if (filterCategory && filterCategory !== expense.get('category') && !filterCategory.isParentOf(expense.get('category'))){
 			return false;
 		}
 

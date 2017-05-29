@@ -1,5 +1,6 @@
 import Ember from "ember";
 import BaseModel from "./base-model";
+import _ from "lodash";
 
 export default BaseModel.extend({
 	name: null,
@@ -69,6 +70,12 @@ export default BaseModel.extend({
 		const parent = this.get('parent');
 
 		return category && parent && (parent === category || parent.isChildOf(category));
+	},
+
+	isParentOf(category){
+		const children = this.getChildren();
+
+		return _.some(children, child => child === category || child.isParentOf(category));
 	},
 
 	afterLoad(){
