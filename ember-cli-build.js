@@ -17,8 +17,8 @@ module.exports = function (defaults) {
 		}
 	});
 
-
 	app.import('bower_components/bulma/css/bulma.css');
+	app.import('bower_components/downloadjs/download.js');
 	app.import('bower_components/font-awesome/css/font-awesome.min.css');
 	app.import('bower_components/font-awesome/fonts/fontawesome-webfont.woff', {
 		destDir: 'fonts'

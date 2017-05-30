@@ -1,0 +1,35 @@
+<div class="modal {{if isVisible "is-active"}} import-data-component">
+	<div class="modal-background"></div>
+	<div class="modal-card">
+		<header class="modal-card-head">
+			<p class="modal-card-title">{{t "components.options.import_data.header"}}</p>
+			<button class="delete" {{action "cancel"}}></button>
+		</header>
+		<section class="modal-card-body">
+			<p class="help">
+				{{t "components.options.import_data.warning"}}
+			</p>
+			<h3><strong>{{t "components.options.import_data.step_1_header"}}:</strong> {{t "components.options.import_data.step_1_body"}}</h3>
+			<div class="step">
+				<input type="file" onchange={{action "fileSelected"}}/>
+				{{#if isInvalidFile}}
+					<p class="help is-danger">
+						{{t "components.options.import_data.step_1_invalid_file"}}
+					</p>
+				{{/if}}
+			</div>
+			{{#if importedJson}}
+				<h3><strong>{{t "components.options.import_data.step_2_header"}}:</strong> {{t "components.options.import_data.step_2_body"}}</h3>
+				<ul class="step">
+					<li><strong>{{t "components.options.import_data.step_2_categories"}}:</strong> {{categoriesCount}}</li>
+					<li><strong>{{t "components.options.import_data.step_2_expenses"}}:</strong> {{expensesCount}}</li>
+					<li><strong>{{t "components.options.import_data.step_2_expense_months"}}:</strong> {{expenseMonthsCount}}</li>
+				</ul>
+			{{/if}}
+		</section>
+		<footer class="modal-card-foot">
+			<a class="button is-success" disabled={{isSaveDisabled}} onclick={{action "save"}}>{{t "components.options.import_data.button_import"}}</a>
+			<a class="button" {{action "cancel"}}>{{t "components.options.import_data.button_cancel"}}</a>
+		</footer>
+	</div>
+</div>

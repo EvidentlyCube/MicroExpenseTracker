@@ -17,6 +17,22 @@ export default {
 	components: {
 		date_switcher: {
 			return: 'Cofnij do aktualnego miesiąca'
+		},
+		options: {
+			import_data: {
+				header: "Importuj dane",
+				warning: "Zaimportowanie danych spowoduje usunięcie danych obecnie zapisanych w systemie! Proszę, zrób kopię zapasową.",
+				step_1_header: "Krok 1",
+				step_1_body: "Wybierz plik",
+				step_1_invalid_file: "Niepoprawny format pliku.",
+				step_2_header: "Krok 2",
+				step_2_body: "Podsumowanie danych",
+				step_2_categories: "Kategorie",
+				step_2_expenses: "Wydatki",
+				step_2_expense_months: "Miesiące z wydatkami",
+				button_import: "Importuj",
+				button_cancel: "Anuluj"
+			}
 		}
 	},
 	footer: {
@@ -146,19 +162,31 @@ export default {
 			headers: {
 				language: "Język",
 				misc: "Różne",
-				storage_items: "Dane"
+				storage: "Dane"
 			},
 			language: {
 				lang: "Język interfejsu",
 				currency: "Waluta",
 				currency_preview: "Podgląd",
 			},
-			storage_items: {
-				paragraph: "Na tej stronie możesz usunąć dane z bazy danych aplikacji. Najbardziej oczywistym zastosowaniem jest testowanie aplikacji, ale być może masz inny powód by to robić. Proszę, miej na uwadze to, że możesz utracić dane bez możliwości cofnięciu operacji, aczkolwiek aplikacja powinna wykonać automatycznie kopie zapasowe przed usunięciem czegokolwiek.",
-				checkbox1: "Potwierdzam, że wiem, iż używanie tych opcji może skończyć się częściową lub całkowitą utratą danych bez możliwości ich odzyskania i nie będe narzekać jeżeli coś utracę pomimo tych ostrzeżeń..",
-				checkbox2: "Obiecuję, że mam ręcznie wykonaną kopię zapasową danych.",
-				checkbox3: "Naprawdę, wiem co robię.",
-				delete_index: "Usuń {{index}}"
+			storage: {
+				import_export: {
+					header: "Importuj/Exportuj",
+					hint: "Zaimportowanie danych spowoduje usunięcie danych obecnie zapisanych w systemie! Proszę, zrób kopię zapasową.",
+					import: "Importuj",
+					export: "Exportuj",
+				},
+				delete: {
+					header: "Usuwanie danych",
+					paragraph: "Na tej stronie możesz usunąć dane z bazy danych aplikacji. Najbardziej oczywistym zastosowaniem jest testowanie aplikacji, ale być może masz inny powód by to robić. Proszę, miej na uwadze to, że możesz utracić dane bez możliwości cofnięciu operacji, aczkolwiek aplikacja powinna wykonać automatycznie kopie zapasowe przed usunięciem czegokolwiek.",
+					checkbox1: "Potwierdzam, że wiem, iż używanie tych opcji może skończyć się częściową lub całkowitą utratą danych bez możliwości ich odzyskania i nie będe narzekać jeżeli coś utracę pomimo tych ostrzeżeń..",
+					checkbox2: "Obiecuję, że mam ręcznie wykonaną kopię zapasową danych.",
+					checkbox3: "Naprawdę, wiem co robię.",
+					delete_index: "Usuń {{index}}"
+				}
+			},
+			notifications: {
+				import_success: "Import danych się powiódł!"
 			}
 		}
 	}

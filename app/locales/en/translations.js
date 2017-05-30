@@ -17,6 +17,22 @@ export default {
 	components: {
 		date_switcher: {
 			return: 'Return to current month'
+		},
+		options: {
+			import_data: {
+				header: "Import data",
+				warning: "Please remember that importing data will remove all the existing data. Please ensure you have a backup.",
+				step_1_header: "Step 1",
+				step_1_body: "Select the file",
+				step_1_invalid_file: "This is not a valid import file.",
+				step_2_header: "Step 2",
+				step_2_body: "Data summary",
+				step_2_categories: "Categories",
+				step_2_expenses: "Expenses",
+				step_2_expense_months: "Expense months",
+				button_import: "Import",
+				button_cancel: "Cancel"
+			}
 		}
 	},
 	footer: {
@@ -148,19 +164,31 @@ export default {
 			headers: {
 				language: "Language",
 				misc: "Misc",
-				storage_items: "Storage"
+				storage: "Storage"
 			},
 			language: {
 				lang: "Interface language",
 				currency: "Currency",
 				currency_preview: "Preview",
 			},
-			storage_items: {
-				paragraph: "This page allows you to delete data in your database. The most obvious usecase is for debugging and development purposes but maybe you have another reason to do that. Please be warned that using this will delete your data without ability to undo, although backups should be made automatically.",
-				checkbox1: "I confirm that I know that using this feature I can lose all or some of my data forever and I won't complain if I deleted it despite all those warnings.",
-				checkbox2: "I promise I made a manual backup of my data.",
-				checkbox3: "I really know what I am doing.",
-				delete_index: "Delete {{index}}"
+			storage: {
+				import_export: {
+					header: "Import/Export",
+					hint: "Importing data will delete all the data you currently have in storage! It's advisable to first export a backup copy.",
+					import: "Import",
+					export: "Export",
+				},
+				delete: {
+					header: "Delete data",
+					paragraph: "This page allows you to delete data in your database. The most obvious usecase is for debugging and development purposes but maybe you have another reason to do that. Please be warned that using this will delete your data without ability to undo, although backups should be made automatically.",
+					checkbox1: "I confirm that I know that using this feature I can lose all or some of my data forever and I won't complain if I deleted it despite all those warnings.",
+					checkbox2: "I promise I made a manual backup of my data.",
+					checkbox3: "I really know what I am doing.",
+					delete_index: "Delete {{index}}"
+				}
+			},
+			notifications: {
+				import_success: "Data has been imported successfully!"
 			}
 		}
 	}

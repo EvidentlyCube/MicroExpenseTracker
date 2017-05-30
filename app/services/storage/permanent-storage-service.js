@@ -24,8 +24,10 @@ export default Ember.Service.extend({
 		return this.get('storage').getItem(key);
 	},
 
-	removeItem(key){
-		this.get('storage').forceBackup();
+	removeItem(key, doBackup){
+		if (doBackup){
+			this.get('storage').forceBackup();
+		}
 		this.get('storage').removeItem(key);
 		this.get('storageIndex').removeIndex(key);
 	}
