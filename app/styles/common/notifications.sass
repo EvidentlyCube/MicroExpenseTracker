@@ -1,0 +1,22 @@
+$notifications-width: 600px
+
+.notifications-container
+	width: $notifications-width
+	left: 50%
+	margin-left: -$notifications-width/2
+	bottom: 10px
+	position: fixed
+	z-index: 10
+
+	.container
+		width: $notifications-width
+
+.notification
+	strong
+		color: white
+	&.is-success strong
+		color: white
+	&.is-warning strong
+		color: rgba(0, 0, 0, 0.7)
+	&.is-danger strong
+		color: white

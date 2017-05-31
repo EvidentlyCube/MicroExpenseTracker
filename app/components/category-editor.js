@@ -27,8 +27,8 @@ export default Ember.Component.extend({
 	getProperties() {
 		return {
 			id: parseInt(this.$('.category-id').val()),
-			name: this.$('.category-name').val(),
-			parentId: parseInt(this.$('.category-parent-id').val()) || null
+			name: this.$('.name-input').val(),
+			parentId: parseInt(this.$('.parent-id-input').val()) || null
 		};
 	},
 

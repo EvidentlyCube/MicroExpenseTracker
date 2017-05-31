@@ -5,21 +5,30 @@ export default Ember.Service.extend({
 	nwStorage: Ember.inject.service('storage/permanent-storage-nw-file'),
 	lsStorage: Ember.inject.service('storage/permanent-storage-local-storage'),
 
-	storage: null,
+	storageIndex: Ember.inject.service('storage/permanent-storage-index'),
 
-	init(){
+	storage: Ember.computed(function(){
 		if (this.get('nwStorage.isEnabled')){
-			this.set('storage', this.get('nwStorage'));
+			return this.get('nwStorage');
 		} else {
-			this.set('storage', this.get('lsStorage'));
+			return this.get('lsStorage');
 		}
-	},
+	}),
 
 	setItem(key, value){
 		this.get('storage').setItem(key, value);
+		this.get('storageIndex').storeIndex(key);
 	},
 
 	getItem(key){
 		return this.get('storage').getItem(key);
+	},
+
+	removeItem(key, doBackup){
+		if (doBackup){
+			this.get('storage').forceBackup();
+		}
+		this.get('storage').removeItem(key);
+		this.get('storageIndex').removeIndex(key);
 	}
-});
+})

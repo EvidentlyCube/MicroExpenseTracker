@@ -1,6 +1,31 @@
-<div class="field">
-	<label class="label">{{t "section.options.language.lang"}}</label>
-	<p class="control">
-		{{common/button-bar options=options value=i18n.locale action="handleLanguageChanged"}}
-	</p>
+<div class="options-language-route">
+	<div class="field option-language">
+		<label class="label">{{t "section.options.language.lang"}}</label>
+		<p class="control">
+			{{common/button-bar options=optionsLanguage value=i18n.locale action="handleLanguageChanged"}}
+		</p>
+	</div>
+
+	<div class="field option-currency">
+		<label class="label">{{t "section.options.language.currency"}}</label>
+		<div class="field is-grouped center-vertical">
+			<div class="field has-addons control">
+				<p class="control">
+					<input class="input input-prefix" type="text" value={{currencyPrefix}} oninput={{action "handlePrefixChanged"}}>
+				</p>
+				<p class="control ">
+					<a class="button input-example-value" disabled="disabled">53.20</a>
+				</p>
+				<p class="control">
+					<input class="input input-suffix" type="text" value={{currencySuffix}} oninput={{action "handleSuffixChanged"}}>
+				</p>
+			</div>
+			<div class="field control preview-label">
+				<label class="label">{{t "section.options.language.currency_preview"}}:</label>
+			</div>
+			<div class="control preview">
+				{{currencyPrefix}}53.20{{currencySuffix}}
+			</div>
+		</div>
+	</div>
 </div>

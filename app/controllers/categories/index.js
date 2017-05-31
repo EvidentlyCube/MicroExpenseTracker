@@ -2,7 +2,7 @@ import Ember from "ember";
 
 export default Ember.Controller.extend({
 	i18n: Ember.inject.service(),
-	modelService: Ember.inject.service('model/model-service'),
+	modelDaos: Ember.inject.service('dao/model-daos'),
 	globalNotificationStorage: Ember.inject.service(),
 
 	sortCriteria: ['rootName', 'namePath'],
@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
 
 	actions: {
 		deleteCategory(id){
-			const category = this.get('modelService.category').getById(id);
+			const category = this.get('modelDaos.category').getById(id);
 			category.delete();
 
 			const i18n = this.get('i18n');

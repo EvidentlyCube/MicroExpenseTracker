@@ -9,6 +9,7 @@ export default Ember.Controller.extend({
 
 	init(){
 		this.set('i18n.locale', this.get('optionsService').getCurrentLanguage());
+		document.title = this.get('i18n').t('app.page_title');
 	},
 
 	actions: {

@@ -8,25 +8,31 @@
 			<tr class="{{if data.category.hasChildren "has-children" "no-children"}}">
 				<td class="category">
 					{{{data.category.namePathForHtml}}}
+
+					{{#link-to "expenses.index"
+				           (query-params filter-category-id=data.category.id)
+				           title=(t "section.summary.filter_by_category")}}
+						<i class="fa fa-filter fa-lg" aria-hidden="true"></i>
+					{{/link-to}}
 				</td>
 				<td class="value">
-					{{t "common.currency_wrap" value=data.sumFormatted}}
+					{{currency-format data.sum}}
 				</td>
 				<td class="percent">
-					{{data.percent}}%
+					{{percent-format data.percentFraction isFraction=true}}
 				</td>
 			</tr>
 		{{/each-in}}
 		{{#if uncategorizedSum}}
 			<tr class="no-category">
 				<th class="category">{{t 'section.summary.no_category'}}</th>
-				<td class="value">{{t "common.currency_wrap" value=uncategorizedSum}}</td>
+				<td class="value">{{currency-format uncategorizedSum}}</td>
 				<td></td>
 			</tr>
 		{{/if}}
 		<tr class="sum">
 			<th class="category">{{t 'section.summary.total'}}</th>
-			<td class="value">{{t "common.currency_wrap" value=totalSum}}</td>
+			<td class="value">{{currency-format totalSum}}</td>
 			<td></td>
 		</tr>
 	</table>

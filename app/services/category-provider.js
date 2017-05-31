@@ -1,11 +1,11 @@
 import Ember from "ember";
 
 export default Ember.Service.extend({
-	modelService: Ember.inject.service('model/model-service'),
+	modelDaos: Ember.inject.service('dao/model-daos'),
 
 
 	getAll(){
-		return this.get('modelService.category').getAll();
+		return this.get('modelDaos.category').getAll();
 	},
 
 	getAllSortedByPath(){

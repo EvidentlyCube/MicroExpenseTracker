@@ -1,0 +1,58 @@
+<div class="options-storage-route">
+	<div class="field option-import-export">
+		<label class="label">{{t "section.options.storage.import_export.header"}}</label>
+		<p class="help">{{t "section.options.storage.import_export.hint"}}</p>
+		<div class="field is-grouped">
+			<p class="control">
+				<a class="button is-info" onclick={{action "exportData"}}>{{t "section.options.storage.import_export.export"}}</a>
+			</p>
+			<p class="control">
+				<a class="button is-warning" onclick={{action "importDataPressed"}}>{{t "section.options.storage.import_export.import"}}</a>
+			</p>
+		</div>
+	</div>
+
+	<div class="field option-delete-index">
+		<label class="label">{{t "section.options.storage.delete.header"}}</label>
+		<p class="help">
+			{{t "section.options.storage.delete.paragraph"}}
+		</p>
+
+		<div class="field">
+			<p class="control">
+				<label class="checkbox">
+					{{input type="checkbox" checked=confirm1}}
+					{{t "section.options.storage.delete.checkbox1"}}
+				</label>
+			</p>
+		</div>
+		<div class="field">
+			<p class="control">
+				<label class="checkbox">
+					{{input type="checkbox" checked=confirm2}}
+					{{t "section.options.storage.delete.checkbox2"}}
+				</label>
+			</p>
+		</div>
+		<div class="field">
+			<p class="control">
+				<label class="checkbox">
+					{{input type="checkbox" checked=confirm3}}
+					{{t "section.options.storage.delete.checkbox3"}}
+				</label>
+			</p>
+		</div>
+
+		<ul class="indexes {{if isAllConfirmed "show"}}">
+			{{#each model as |index|}}
+				<li>
+					{{#common/danger-button onConfirm=(action "deleteIndex" index)}}
+						{{t "section.options.storage.delete.delete_index" index=index}}
+					{{/common/danger-button}}
+				</li>
+			{{/each}}
+		</ul>
+	</div>
+
+	{{options/import-data isVisible=showImportModal onImport=(action "importData") onCancel=(action "importCancelled")}}
+</div>

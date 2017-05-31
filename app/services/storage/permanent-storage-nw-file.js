@@ -19,7 +19,9 @@ export default Ember.Service.extend({
 
 		try {
 			fs.unlinkSync(path);
-		} catch (e) {}
+		} catch (e) {
+			// ignore, file did not exist
+		}
 
 		fs.writeFileSync(path, JSON.stringify(value));
 	},
@@ -33,6 +35,21 @@ export default Ember.Service.extend({
 		} catch (e) {
 			return null;
 		}
+	},
+
+	removeItem(key){
+		const fs = this.get('fs');
+		const path = this.getStorageFilePath(key);
+
+		try {
+			fs.unlinkSync(path);
+		} catch (e) {
+			// Silently ignore
+		}
+	},
+
+	forceBackup(){
+		window.__nw_backup();
 	},
 
 	getStorageFilePath(key) {

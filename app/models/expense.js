@@ -1,20 +1,17 @@
 import Ember from "ember";
+import BaseModel from "./base-model";
 
-export default Ember.Object.extend({
-	modelService: Ember.inject.service('model/model-service'),
-	i18n: Ember.inject.service(),
-
-	id: null,
-	name: null,
+export default BaseModel.extend({
+	name: "",
 	price: null,
 	discount: 0,
+	categoryId: null,
 	purchasedAt: null,
 	createdAt: null,
 	updatedAt: null,
-	categoryId: null,
 
 	category: Ember.computed('categoryId', function(){
-		return this.get('modelService.category').getById(this.get('categoryId'));
+		return this.get('modelDaos.category').getById(this.get('categoryId'));
 	}),
 
 	idIndex: Ember.computed('id', function(){
@@ -25,41 +22,35 @@ export default Ember.Object.extend({
 		return this.get('price') * (1 - this.get('discount'));
 	}),
 
-	priceDisplay: Ember.computed('realPrice', 'i18n.locale', function () {
-		const i18n = this.get('i18n');
-
-		return i18n.t('common.currency_wrap', {
-			value: this.get('realPrice').toFixed(2)
-		});
+	discountPercent: Ember.computed('discount', function(){
+		return Math.round(this.get('discount') * 100);
 	}),
-	discountDisplay: Ember.computed('discount', function () {
-		return Math.round(this.get('discount') * 100) + "%";
-	}),
-
-	save(){
-		this.get('modelService.expense').modelSaved(this);
-	},
-
-	delete(){
-		this.get('modelService.expense').modelDeleted(this);
-	},
 
 	afterLoad(){
-		this.set('purhasedAt', new Date(this.get('purchasedAt')));
+		this.set('categoryId', parseInt(this.get('categoryId')) || null);
+		this.set('purchasedAt', new Date(this.get('purchasedAt')));
 		this.set('createdAt', new Date(this.get('createdAt')));
 		this.set('updatedAt', new Date(this.get('updatedAt')));
+
+		if (!this.get('category')){
+			this.set('categoryId', null);
+		}
 	},
 
-	_toJson(){
+	toJson(){
 		return {
 			id: this.get('id'),
 			name: this.get('name'),
 			price: this.get('price'),
 			discount: this.get('discount'),
-			purchasedAt: this.get('purchasedAt').valueOf(),
-			createdAt: this.get('createdAt').valueOf(),
-			updatedAt: this.get('updatedAt').valueOf(),
+			purchasedAt: this.get('purchasedAt') ? this.get('purchasedAt').valueOf() : null,
+			createdAt: this.get('createdAt') ? this.get('createdAt').valueOf() : null,
+			updatedAt: this.get('updatedAt') ? this.get('updatedAt').valueOf() : null,
 			categoryId: this.get('categoryId')
 		};
+	},
+
+	_getSpecificService(){
+		return this.get('modelDaos.expense');
 	}
 });

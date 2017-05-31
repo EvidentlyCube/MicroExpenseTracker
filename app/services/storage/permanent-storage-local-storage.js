@@ -7,10 +7,18 @@ export default Ember.Service.extend({
 
 	getItem(key){
 		try {
-			var result = window.localStorage.getItem(key);
-			return  JSON.parse(result);
+			const result = window.localStorage.getItem(key);
+			return JSON.parse(result);
 		} catch (e) {
 			return null;
 		}
+	},
+
+	removeItem(key){
+		window.localStorage.removeItem(key);
+	},
+
+	forceBackup(){
+		// Silently ignore, local storage storage does not support backup
 	}
 });

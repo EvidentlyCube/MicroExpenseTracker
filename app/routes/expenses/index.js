@@ -2,21 +2,27 @@ import Ember from "ember";
 import RSVP from "rsvp";
 
 export default Ember.Route.extend({
-	modelService: Ember.inject.service('model/model-service'),
+	modelDaos: Ember.inject.service('dao/model-daos'),
 	monthsService: Ember.inject.service(),
 
 	currentMonthChanged: Ember.observer('monthsService.currentMonth', function(){
 		this.refresh();
 	}),
 
-	expensesChanged: Ember.observer('modelService.expense.changeTimestamp', function(){
+	expensesChanged: Ember.observer('modelDaos.expense.changeTimestamp', function(){
 		this.refresh();
 	}),
 
 	model(){
 		return RSVP.hash({
-			categories: this.get('modelService.category').getAll(),
-			expenses: this.get('modelService.expense').getByMonth(this.get('monthsService.currentMonth')),
+			categories: this.get('modelDaos.category').getAll(),
+			expenses: this.get('modelDaos.expense').getByMonth(this.get('monthsService.currentMonth'))
 		});
+	},
+
+	resetController(controller, isExiting) {
+		if (isExiting) {
+			controller.set('filterCategoryId', null);
+		}
 	}
 });

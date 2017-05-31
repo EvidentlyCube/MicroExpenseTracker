@@ -1,29 +1,15 @@
 import Ember from "ember";
-import ExpenseEditorData from "../../frontend-data/expense-editor-data";
 
 export default Ember.Controller.extend({
 	i18n: Ember.inject.service(),
-	modelSaver: Ember.inject.service('receipt/model-saver'),
-	modelValidator: Ember.inject.service('receipt/model-validator'),
+	modelDaos: Ember.inject.service('dao/model-daos'),
+	modelSaver: Ember.inject.service('expense/model-saver'),
+	modelValidator: Ember.inject.service('expense/model-validator'),
 	globalNotificationStorage: Ember.inject.service(),
 
-	expenses: null,
-	receiptDate: new Date(),
-
-	expenseCategories: Ember.computed.alias('model', function () {
-		let newList = this.get('model');
-		newList.unshift({});
-
-		return newList;
-	}),
-
-	resetModel(){
-		this.set('receiptDate', new Date());
-		this.set('expenses', Ember.A([
-			ExpenseEditorData.create(),
-			ExpenseEditorData.create()
-		]));
-	},
+	expenses: Ember.computed.alias('model.expenses'),
+	receiptDate: Ember.computed.alias('model.receiptDate'),
+	categories: Ember.computed.alias('model.categories'),
 
 	actions: {
 		dateChanged(newDate){
@@ -37,7 +23,7 @@ export default Ember.Controller.extend({
 
 			expenses[index] = model;
 			if (index === expenses.length - 1) {
-				expenses.pushObject(new ExpenseEditorData());
+				expenses.pushObject(this.get('modelDaos.expense').create());
 				this.notifyPropertyChange('expenses');
 			}
 		},
@@ -63,6 +49,8 @@ export default Ember.Controller.extend({
 
 		cancelHandler(){
 			this.transitionToRoute('expenses.index');
+
+			return false;
 		}
 	}
 });

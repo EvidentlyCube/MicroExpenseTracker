@@ -2,7 +2,7 @@ import Ember from "ember";
 
 export default Ember.Controller.extend({
 	i18n: Ember.inject.service(),
-	modelService: Ember.inject.service('model/model-service'),
+	modelDaos: Ember.inject.service('dao/model-daos'),
 	globalNotificationStorage: Ember.inject.service(),
 
 	formModel: Ember.computed('model', function () {
@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
 		onSave(properties){
 			const i18n = this.get('i18n');
 			const globalNotificationStorage = this.get('globalNotificationStorage');
-			const category = this.get('modelService.category').getById(properties.id);
+			const category = this.get('modelDaos.category').getById(properties.id);
 
 			if (category) {
 				category.set('name', properties.name);

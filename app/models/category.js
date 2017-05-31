@@ -1,14 +1,13 @@
 import Ember from "ember";
+import BaseModel from "./base-model";
+import _ from "lodash";
 
-export default Ember.Object.extend({
-	modelService: Ember.inject.service('model/model-service'),
-
-	id: null,
+export default BaseModel.extend({
 	name: null,
 	parentId: null,
 
 	parent: Ember.computed('parentId', function(){
-		return this.get('modelService.category').getById(this.get('parentId'));
+		return this.get('modelDaos.category').getById(this.get('parentId'));
 	}),
 
 	indentedName: Ember.computed('name', 'parentId', 'parent.indentedName', function () {
@@ -56,11 +55,11 @@ export default Ember.Object.extend({
 	}),
 
 	hasChildren: Ember.computed(function () {
-		return this.getChildren() > 0;
+		return this.getChildren().length > 0;
 	}),
 
 	getChildren(){
-		return this.get('modelService.category').getAll().filter(category => category.get('parentId') === this.get('id'));
+		return this.get('modelDaos.category').getAll().filter(category => category.get('parentId') === this.get('id'));
 	},
 
 	isCategory(category){
@@ -70,11 +69,18 @@ export default Ember.Object.extend({
 	isChildOf(category){
 		const parent = this.get('parent');
 
-		return parent && (parent === category || parent.isChildOf(category));
+		return category && parent && (parent === category || parent.isChildOf(category));
 	},
 
-	save(){
-		this.get('modelService.category').modelSaved(this);
+	isParentOf(category){
+		const children = this.getChildren();
+
+		return _.some(children, child => child === category || child.isParentOf(category));
+	},
+
+	afterLoad(){
+		this.set('id', parseInt(this.get('id')) || null);
+		this.set('parentId', parseInt(this.get('parentId')) || null);
 	},
 
 	delete(){
@@ -83,14 +89,18 @@ export default Ember.Object.extend({
 			category.save();
 		});
 
-		this.get('modelService.category').modelDeleted(this);
+		this._super();
 	},
 
-	_toJson(){
+	toJson(){
 		return {
 			id: this.get('id'),
 			name: this.get('name'),
 			parentId: this.get('parentId')
 		};
+	},
+
+	_getSpecificService(){
+		return this.get('modelDaos.category');
 	}
 });

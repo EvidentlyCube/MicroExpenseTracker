@@ -1,5 +1,7 @@
 import Ember from "ember";
 
+const MaxNotifications = 3;
+
 const GlobalNotification = Ember.Object.extend({
 	id: null,
 	message: "",
@@ -12,8 +14,9 @@ export default Ember.Service.extend({
 	notifications: Ember.A([]),
 
 	addMessage(message, className, timeout){
+		const notifications = this.get('notifications');
 		const id = this.get('idCounter');
-		this.get('notifications').pushObject(GlobalNotification.create({
+		notifications.pushObject(GlobalNotification.create({
 			id: id,
 			message: message,
 			"class": className
@@ -21,7 +24,11 @@ export default Ember.Service.extend({
 
 		this.set('idCounter', id + 1);
 
-		setTimeout(this.removeNotification.bind(this, id), timeout);
+		if (notifications.length > MaxNotifications){
+			notifications.shiftObject();
+		}
+
+		Ember.run.later(this, this.removeNotification.bind(this, id), timeout);
 	},
 
 	addSuccess(message, timeout){
@@ -40,12 +47,8 @@ export default Ember.Service.extend({
 		const notifications = this.get('notifications');
 		const notification = notifications.findBy('id', id);
 
-		if (notification && notification.get('hiding') === false) {
-			notification.set('hiding', true);
-			notification.set('class', notification.get('class') + " hiding");
-			setTimeout(function () {
-				notifications.removeObject(notification);
-			}, 1000);
+		if (notification) {
+			notifications.removeObject(notification);
 		}
 	}
 });

@@ -18,3 +18,5 @@
 npm-debug.log*
 testem.log
 /.idea/workspace.xml
+/bin/
+/tmp-nw/
