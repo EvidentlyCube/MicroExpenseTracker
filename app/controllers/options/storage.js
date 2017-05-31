@@ -45,7 +45,7 @@ export default Ember.Controller.extend({
 
 			this.get('model').forEach(index => data[index] = storage.getItem(index));
 
-			downloadjs.download(JSON.stringify(data), `MET-Export-${fileDatePortion}.json`, "application/json");
+			downloadjs.download(encodeURIComponent(JSON.stringify(data)), `MET-Export-${fileDatePortion}.json`, "text/plain");
 		},
 
 		importDataPressed(){

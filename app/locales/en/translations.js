@@ -39,12 +39,12 @@ export default {
 		made_by: 'Website made by <a href="http://mauft.com">Maurycy Zarzycki Mauft.com</a>.',
 		thanks: 'MET is powered by <a href="http://emberjs.com/">Ember.js</a>, the best framework for single-page browser apps.',
 
-		header_1: "Security & Privacy",
+		header_1: "How to use",
 		header_2: "Data storage",
-		header_3: "Help",
-		body_1: "Micro Expense Tracker is designed to not send any information you enter over the internet, thus making it as secure as your browser and computer. I do my best to ensure no unauthorized people can access the hosted files and modify them. Nevertheless I take no responsibility or liability, so far as legally possible, for any damages or stolen information.",
-		body_2: "Micro Expense Tracker uses local storage for storing everything you enter and as such it is suspectible for being lost in certain cases. Because it was made primarily for personal use it is unsure whether a more elaborate mechanisms will be added in the future. Use with caution!",
-		body_3: "If you like this project, want to help it grow or have questions please use the <a href='https://github.com/RetrocadeNet/MicroExpenseTracker/issues'>issues board</a> on GitHub. If you need to contact the author please use <a href='mailto:maurycy.zarzycki@mauft.com'>maurycy.zarzycki@mauft.com</a>"
+		header_3: "Support",
+		body_1: "Set up categories and start adding expenses, it's that simple! Once you accumulate enough information head on to Summary tab to see the breakdown of your expenses for the given month.",
+		body_2: "<strong>Web version:</strong> data is stored in local storage, which is tightly tied to your browser. Clearing browser history or data may make you lose it, so use Options -> Storage -> Export option to make regular backups or switch to the desktop version.<br><strong>Desktop version:</strong> data is stored unde the application directory in _data, with daily backups in _backupData.<br>No data is ever sent to our or any other servers.",
+		body_3: "If you like this project, want to help it grow or have questions please use the <a href='https://github.com/RetrocadeNet/MicroExpenseTracker/issues'>issues board</a> on GitHub. If you need to contact the author please use <a href='mailto:maurycy.zarzycki@mauft.com'>maurycy.zarzycki@mauft.com</a>. If you want to help me financially head on to <a href='https://retrocade.net/game/'>Retrocade.net</a> and buy yourself or a friend one of my games."
 	},
 	section: {
 		install: {

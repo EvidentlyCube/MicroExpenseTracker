@@ -4,7 +4,7 @@ module.exports = function (environment) {
 	var ENV = {
 		modulePrefix: 'micro-expense-tracker',
 		environment: environment,
-		rootURL: '/',
+		rootURL: '/MicroExpenseTracker/',
 		// locationType: 'auto',
 		locationType: 'hash',
 		defaultLocale: 'en',

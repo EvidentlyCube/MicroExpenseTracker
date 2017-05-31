@@ -39,13 +39,13 @@ export default {
 		made_by: 'Strona stworzona przez <a href="http://mauft.com">Maurycy Zarzycki Mauft.com</a>.',
 		thanks: 'MET powstał w oparciu o <a href="http://emberjs.com/">Ember.js</a>, najlepszy silnik do jednostronowych aplikacji.',
 
-		header_1: "Bezpieczeństwo i prywatnośc",
+		header_1: "Jak używać",
 		header_2: "Przechowywanie danych",
-		header_3: "Pomoc",
+		header_3: "Wsparcie",
 
-		body_1: "Mikrowydatnik MET został zaprojektwany tak, by nie wysyłać żadnych informacji przez internet, dzięki czemu w założeniach jest tak bezpieczny jak twoja przeglądarka i komputer. Dokładamy wszelkich starań by nie dawać dostepu do zmiany plików projektu osobom trzecim. Niemniej jednak używając tego narzędzia robisz to na własną odpowiedzialność.",
-		body_2: "Mikrowydatnik MET używa lokalnej pamięci przeglądarki by przechowywać dane, co powoduje, że można je dość łatwo utracić w niektórych przypadkach. Ponieważ projekt powstał głównie z potrzeby osobistej nie ma gwarancji, że kiedykolwiek powstaną inne mechanizmy.",
-		body_3: "Jeżeli podoba ci się ten projekt i chcesz go wesprzeć lub masz pytania użyj proszę <a href='https://github.com/RetrocadeNet/MicroExpenseTracker/issues'>zgłaszania błędów</a> na GitHubie (wbrew nazwie można tam też zgłaszać pytania i nie tylko). Jeżeli potrzebujesz skontaktować się z autorem napisz na <a href='mailto:maurycy.zarzycki@mauft.com'>maurycy.zarzycki@mauft.com</a>"
+		body_1: "Dodaj kategorie odpowiadające strukturom twoich finansów a następnie dodawaj wydatki! Gdy zbierzesz dostatecznie dużo informacji o tym ile wydajesz sprawdź zakładkę Statystyki by zobaczyć podsumowania wydatków.",
+		body_2: "<strong>Wersja online:</strong> dane przechowywane są w pamięci podręcznej przeglądarki, a co za tym idzie zostaną utracone przy czyszczeniu historii lub danych. Żeby uniknąć utraty możes zrobić kopię zapasową w Opcje -> Dane -> Eksport lub przenieś się na wersję offline.<br><strong>Wersja offline:</strong> dane przechowywane sa w w podfolderze _data w folderze aplikacji, zaś codzienne kopie zapasowe w _backupData.<br>Żadne informacje o Twoich wydatkach nie są wysyłane na nasze ani inne serwery.",
+		body_3: "Jeżeli podoba ci się ten projekt i chcesz go wesprzeć lub masz pytania użyj <a href='https://github.com/RetrocadeNet/MicroExpenseTracker/issues'>zgłaszania błędów</a> na GitHubie. Jeżeli potrzebujesz skontaktować się z autorem napisz na <a href='mailto:maurycy.zarzycki@mauft.com'>maurycy.zarzycki@mauft.com</a>. Jeżeli chcesz wesprzeć autora finansowo, kup sobie lub znajomemu jedną z jego gier na <a href='https://retrocade.net/game/'>Retrocade.net</a>."
 	},
 	section: {
 		install: {
@@ -171,10 +171,10 @@ export default {
 			},
 			storage: {
 				import_export: {
-					header: "Importuj/Exportuj",
+					header: "Importuj/Eksportuj",
 					hint: "Zaimportowanie danych spowoduje usunięcie danych obecnie zapisanych w systemie! Proszę, zrób kopię zapasową.",
 					import: "Importuj",
-					export: "Exportuj",
+					export: "Eksportuj",
 				},
 				delete: {
 					header: "Usuwanie danych",

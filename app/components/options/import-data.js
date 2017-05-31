@@ -22,7 +22,7 @@ export default Ember.Component.extend({
 		this.set('isInvalidFile', false);
 
 		try {
-			const json = JSON.parse(contents);
+			const json = JSON.parse(decodeURIComponent(contents));
 			this.parseJson(json);
 
 		} catch (exception){
