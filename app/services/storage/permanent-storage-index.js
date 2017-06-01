@@ -83,7 +83,6 @@ export default Ember.Service.extend({
 		return data;
 
 		function checkAndAddIndex(key){
-			console.log("Checking key", key);
 			if (storage.getItem(key)){
 				data.push(key);
 			}

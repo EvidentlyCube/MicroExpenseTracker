@@ -1,4 +1,4 @@
 <article class="categories-new-route">
 	<h1 class="title">{{t "section.categories.new.title"}}</h1>
-	{{category-editor categories=model.categories onSave=(action 'onSave') onCancel=(action 'onCancel')}}
+	{{categories/category-form categories=model.categories onSave=(action 'onSave') onCancel=(action 'onCancel')}}
 </article>

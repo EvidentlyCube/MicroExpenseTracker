@@ -1,12 +1,12 @@
 <div class="columns">
 	<div class="column is-12 is-6-tablet is-4-desktop">
-		<form onsubmit={{action "saveHandler"}}>
-			<input class="category-id" type="hidden" value={{model.id}}>
+		<form data-test-id="category-form" onsubmit={{action "saveHandler"}}>
+			<input class="category-id" type="hidden" value={{model.id}} data-test-id="category-form-input-id">
 
 			<div class="field">
 				<p class="control">
 					<label for="category-name-input" class="label">{{t "section.categories.form.name"}}*</label>
-					<input id="category-name-input" class="name-input input" required value={{model.name}}>
+					<input id="category-name-input" class="name-input input" required value={{model.name}} data-test-id="category-form-input-name">
 				</p>
 			</div>
 			<div class="field">
@@ -14,6 +14,7 @@
 					<label class="label">{{t "section.categories.form.parent"}}</label>
 
 					{{select-input class="parent-id-input select is-fullwidth"
+					               data-test-id="category-form-input-parent-id"
 					               options=categoriesData
 					               selectedValue=model.parentId
 					               firstOption=(t "section.categories.form.parent_none")}}
@@ -21,8 +22,8 @@
 			</div>
 			<div class="field">
 				<p class="control">
-					<button class="action-save button is-success">{{t "section.categories.form.save"}}</button>
-					<button class="action-cancel button is-outlined" onclick={{action "cancelHandler"}}>{{t "section.categories.form.cancel"}}</button>
+					<button class="action-save button is-success" data-test-id="category-form-save">{{t "section.categories.form.save"}}</button>
+					<button class="action-cancel button is-outlined" data-test-id="category-form-cancel" onclick={{action "cancelHandler"}}>{{t "section.categories.form.cancel"}}</button>
 				</p>
 			</div>
 		</form>

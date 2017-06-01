@@ -32,6 +32,11 @@ export default Ember.Service.extend({
 		return this.get('data').concat().filter(c => c);
 	},
 
+	count(){
+		this._loadOptionsIfNeeded();
+		return this.getAll().length;
+	},
+
 	modelSaved(category){
 		const data = this.get('data');
 

@@ -1,10 +1,8 @@
 import Ember from "ember";
 
 export default Ember.Component.extend({
-	id: "",
-	class: "",
-	name: "",
 	tagName: "select",
+	attributeBindings: ['data-test-id'],
 
 	options: [],
 	selectedValue: "",
