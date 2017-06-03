@@ -38,9 +38,9 @@
 				{{#if filterCategory}}
 					<a class="button is-info is-small" {{action "removeFilter" "filterCategoryId"}}>
 						<span><strong>{{t "section.expenses.index.filters.by_category"}}</strong> {{filterCategory.namePath}}</span>
-					    <span class="icon">
-					      <i class="fa fa-close"></i>
-					    </span>
+						<span class="icon">
+							{{fa-icon "close"}}
+						</span>
 					</a>
 				{{/if}}
 			</div>
@@ -55,7 +55,7 @@
 				<th>{{t "section.expenses.index.final_price"}}</th>
 				<th>{{t "section.expenses.index.category"}}</th>
 				<th>{{t "section.expenses.index.expense_date"}}</th>
-				<th>{{t "section.expenses.index.actions"}}</th>
+				<th class="actions-cell">{{t "section.expenses.index.actions"}}</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -72,7 +72,7 @@
 							{{#link-to "expenses.index"
 							           (query-params filter-category-id=row.category.id)
 							           title=(t "section.expenses.index.filter_by_category")}}
-								<i class="fa fa-filter fa-lg" aria-hidden="true"></i>
+								{{fa-icon "filter" size="lg"}}
 							{{/link-to}}
 						{{else}}
 							{{t "section.expenses.index.missing_category"}}
@@ -85,17 +85,17 @@
 							{{t "section.expenses.index.missing_expense_date"}}
 						{{/if}}
 					</td>
-					<td>
-                    <span class="icon">
-	                    {{#link-to "expenses.edit" row.id title=(t "section.expenses.index.action.edit" expense=row.name)}}
-		                    <i class="fa fa-edit"></i>
-	                    {{/link-to}}
-                    </span>
+					<td class="actions-cell">
+	                    <span class="icon">
+		                    {{#link-to "expenses.edit" row.id title=(t "section.expenses.index.action.edit" expense=row.name)}}
+			                    {{fa-icon "edit"}}
+		                    {{/link-to}}
+	                    </span>
 						<span class="icon">
-                        <a href="#" {{action "deleteExpense" row.id}} title={{t "section.expenses.index.action.delete" expense=row.name}}>
-                            <i class="fa fa-remove"></i>
-                        </a>
-                    </span>
+	                        <a href="#" {{action "deleteExpense" row.id}} title={{t "section.expenses.index.action.delete" expense=row.name}}>
+		                        {{fa-icon "remove"}}
+	                        </a>
+	                    </span>
 					</td>
 				</tr>
 			{{else}}

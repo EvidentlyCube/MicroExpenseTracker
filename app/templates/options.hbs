@@ -3,24 +3,16 @@
 		<ul>
 			{{#link-to "options.language" tagName="li" activeClass="is-active"}}
 				<a>
-					<span class="icon is-small"><i class="fa fa-language"></i></span>
+					<span class="icon is-small">{{fa-icon "language"}}</span>
 					<span>{{t "section.options.headers.language"}}</span>
 				</a>
 			{{/link-to}}
 			{{#link-to "options.storage" tagName="li" activeClass="is-active"}}
 				<a>
-					<span class="icon is-small"><i class="fa fa-database"></i></span>
+					<span class="icon is-small">{{fa-icon "database"}}</span>
 					<span>{{t "section.options.headers.storage"}}</span>
 				</a>
 			{{/link-to}}
-			{{!--
-			{{#link-to "options.misc" tagName="li" activeClass="is-active"}}
-				<a>
-					<span class="icon is-small"><i class="fa fa-cog"></i></span>
-					<span>{{t "section.options.headers.misc"}}</span>
-				</a>
-			{{/link-to}}
-			--}}
 		</ul>
 	</div>
 	{{outlet}}

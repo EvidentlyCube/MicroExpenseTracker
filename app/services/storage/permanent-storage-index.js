@@ -13,7 +13,7 @@ export default Ember.Service.extend({
 	storeIndex(key){
 		this._loadOptionsIfNeeded();
 		const data = this.get('data');
-		if (data.indexOf(key) !== -1){
+		if (data.indexOf(key) !== -1) {
 			return;
 		}
 
@@ -31,7 +31,7 @@ export default Ember.Service.extend({
 		const data = this.get('data');
 		const index = data.indexOf(key);
 
-		if (index === -1){
+		if (index === -1) {
 			return;
 		}
 
@@ -46,13 +46,13 @@ export default Ember.Service.extend({
 	},
 
 	_loadOptionsIfNeeded(){
-		if (this.get('isLoaded')){
+		if (this.get('isLoaded')) {
 			return;
 		}
 
 		let data = this.get('storage').getItem(this._getStorageKey()) || [];
 
-		if (!data || data.length === 0){
+		if (!data || data.length === 0) {
 			data = this._rebuildIndexes();
 		}
 
@@ -75,15 +75,15 @@ export default Ember.Service.extend({
 
 		const monthsToCheck = 36 * 2;
 		const date = moment().subtract(monthsToCheck / 2, "M");
-		for (let i = 0; i < monthsToCheck; i++){
+		for (let i = 0; i < monthsToCheck; i++) {
 			checkAndAddIndex(`${DataStorageKeys.expenses}${date.year()}-${date.month()}`);
 			date.add(1, "M");
 		}
 
 		return data;
 
-		function checkAndAddIndex(key){
-			if (storage.getItem(key)){
+		function checkAndAddIndex(key) {
+			if (storage.getItem(key)) {
 				data.push(key);
 			}
 		}

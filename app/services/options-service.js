@@ -46,7 +46,7 @@ export default Ember.Service.extend({
 	},
 
 	_loadOptionsIfNeeded(){
-		if (this.get('isLoaded')){
+		if (this.get('isLoaded')) {
 			return;
 		}
 

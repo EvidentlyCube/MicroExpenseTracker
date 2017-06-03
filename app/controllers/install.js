@@ -1,5 +1,5 @@
 import Ember from "ember";
-import LanguageOptions from '../constants/options/language-options';
+import LanguageOptions from "../constants/options/language-options";
 
 const Currencies = Ember.A([
 	{

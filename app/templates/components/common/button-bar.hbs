@@ -4,7 +4,7 @@
 			<li class="item-{{slugify option.value}} {{if (eq option.value value) "is-active" ""}}" {{action "handleClicked" option.value}}>
 				<a>
 					{{#if option.icon}}
-						<span class="icon is-small"><i class="fa fa-image"></i></span>
+						<span class="icon is-small">{{fa-icon "image"}}</span>
 					{{/if}}
 					<span>{{option.display}}</span>
 				</a>

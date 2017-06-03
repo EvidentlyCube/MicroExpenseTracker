@@ -16,7 +16,7 @@ export default Ember.Service.extend({
 
 			if (rootNameCompare === 0) {
 				return left.get('namePath').localeCompare(right.get('namePath'));
-			}else {
+			} else {
 				return rootNameCompare;
 			}
 		});

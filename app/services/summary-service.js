@@ -36,7 +36,7 @@ export default Ember.Service.extend({
 			let category = expense.get('category');
 			let isRootCategory = true;
 
-			if (category){
+			if (category) {
 				while (category) {
 					const data = expensesPerCategoryData_out[category.get('id')];
 					data.sum += expense.get('realPrice');
@@ -57,7 +57,7 @@ export default Ember.Service.extend({
 	},
 
 	_calculateExpenseData_calculatePercentAndMapObjects(categories, totalSum, expensesPerCategory_out) {
-		if (totalSum === 0){
+		if (totalSum === 0) {
 			totalSum = 0.1;
 		}
 

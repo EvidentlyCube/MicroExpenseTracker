@@ -6,7 +6,7 @@ export default BaseModel.extend({
 	name: null,
 	parentId: null,
 
-	parent: Ember.computed('parentId', function(){
+	parent: Ember.computed('parentId', function () {
 		return this.get('modelDaos.category').getById(this.get('parentId'));
 	}),
 

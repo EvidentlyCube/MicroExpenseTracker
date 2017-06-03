@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import LanguageOptions from '../../constants/options/language-options';
+import Ember from "ember";
+import LanguageOptions from "../../constants/options/language-options";
 
 export default Ember.Controller.extend({
 	i18n: Ember.inject.service(),

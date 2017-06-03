@@ -24,7 +24,7 @@ export default Ember.Service.extend({
 
 		this.set('idCounter', id + 1);
 
-		if (notifications.length > MaxNotifications){
+		if (notifications.length > MaxNotifications) {
 			notifications.shiftObject();
 		}
 

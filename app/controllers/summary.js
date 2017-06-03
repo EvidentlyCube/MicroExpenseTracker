@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
 	uncategorizedSum: 0,
 	expensesPerCategory: null,
 
-	modelChanged: Ember.observer('model', function(){
+	modelChanged: Ember.observer('model', function () {
 		this.resetSummaryData();
 	}),
 

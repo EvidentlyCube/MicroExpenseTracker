@@ -5,11 +5,11 @@ export default Ember.Route.extend({
 	modelDaos: Ember.inject.service('dao/model-daos'),
 	monthsService: Ember.inject.service(),
 
-	currentMonthChanged: Ember.observer('monthsService.currentMonth', function(){
+	currentMonthChanged: Ember.observer('monthsService.currentMonth', function () {
 		this.refresh();
 	}),
 
-	expensesChanged: Ember.observer('modelDaos.expense.changeTimestamp', function(){
+	expensesChanged: Ember.observer('modelDaos.expense.changeTimestamp', function () {
 		this.refresh();
 	}),
 

@@ -7,8 +7,8 @@ export default Ember.Service.extend({
 
 	storageIndex: Ember.inject.service('storage/permanent-storage-index'),
 
-	storage: Ember.computed(function(){
-		if (this.get('nwStorage.isEnabled')){
+	storage: Ember.computed(function () {
+		if (this.get('nwStorage.isEnabled')) {
 			return this.get('nwStorage');
 		} else {
 			return this.get('lsStorage');
@@ -25,7 +25,7 @@ export default Ember.Service.extend({
 	},
 
 	removeItem(key, doBackup){
-		if (doBackup){
+		if (doBackup) {
 			this.get('storage').forceBackup();
 		}
 		this.get('storage').removeItem(key);

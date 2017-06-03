@@ -10,9 +10,9 @@
 					{{{data.category.namePathForHtml}}}
 
 					{{#link-to "expenses.index"
-				           (query-params filter-category-id=data.category.id)
-				           title=(t "section.summary.filter_by_category")}}
-						<i class="fa fa-filter fa-lg" aria-hidden="true"></i>
+					           (query-params filter-category-id=data.category.id)
+					           title=(t "section.summary.filter_by_category")}}
+						{{fa-icon "filter" size="lg"}}
 					{{/link-to}}
 				</td>
 				<td class="value">

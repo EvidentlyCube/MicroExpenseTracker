@@ -10,11 +10,11 @@ export default BaseModel.extend({
 	createdAt: null,
 	updatedAt: null,
 
-	category: Ember.computed('categoryId', function(){
+	category: Ember.computed('categoryId', function () {
 		return this.get('modelDaos.category').getById(this.get('categoryId'));
 	}),
 
-	idIndex: Ember.computed('id', function(){
+	idIndex: Ember.computed('id', function () {
 		return parseInt(this.get('id').split('-')[2]);
 	}),
 
@@ -22,7 +22,7 @@ export default BaseModel.extend({
 		return this.get('price') * (1 - this.get('discount'));
 	}),
 
-	discountPercent: Ember.computed('discount', function(){
+	discountPercent: Ember.computed('discount', function () {
 		return Math.round(this.get('discount') * 100);
 	}),
 
@@ -32,7 +32,7 @@ export default BaseModel.extend({
 		this.set('createdAt', new Date(this.get('createdAt')));
 		this.set('updatedAt', new Date(this.get('updatedAt')));
 
-		if (!this.get('category')){
+		if (!this.get('category')) {
 			this.set('categoryId', null);
 		}
 	},

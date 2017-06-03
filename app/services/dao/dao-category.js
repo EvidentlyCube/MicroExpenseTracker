@@ -40,7 +40,7 @@ export default Ember.Service.extend({
 	modelSaved(category){
 		const data = this.get('data');
 
-		if (category.get('id') === null){
+		if (category.get('id') === null) {
 			category.set('id', data.length);
 			data[data.length] = category;
 		}
@@ -76,7 +76,7 @@ export default Ember.Service.extend({
 	},
 
 	_loadOptionsIfNeeded(){
-		if (this.get('isLoaded')){
+		if (this.get('isLoaded')) {
 			return;
 		}
 

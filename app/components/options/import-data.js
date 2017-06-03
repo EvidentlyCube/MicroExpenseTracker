@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Ember from "ember";
 
 export default Ember.Component.extend({
 	importedJson: null,
@@ -12,7 +12,7 @@ export default Ember.Component.extend({
 	onImport: null,
 	onCancel: null,
 
-	isSaveDisabled: Ember.computed('importedJson', function(){
+	isSaveDisabled: Ember.computed('importedJson', function () {
 		return !this.get('importedJson') || this.get('isInvalidFile');
 	}),
 
@@ -25,7 +25,7 @@ export default Ember.Component.extend({
 			const json = JSON.parse(decodeURIComponent(contents));
 			this.parseJson(json);
 
-		} catch (exception){
+		} catch (exception) {
 			this.set('isInvalidFile', true);
 		}
 	},
@@ -38,16 +38,16 @@ export default Ember.Component.extend({
 		let expenseMonthsCount = 0;
 
 		Object.keys(json).forEach(key => {
-			if (key === "categories-data"){
+			if (key === "categories-data") {
 				categoriesCount += json[key].length;
 
-			} else if (key.indexOf('expenses-data') === 0){
+			} else if (key.indexOf('expenses-data') === 0) {
 				expensesCount += json[key].length;
 				expenseMonthsCount++;
 			}
 		});
 
-		if (categoriesCount + expensesCount + expenseMonthsCount === 0){
+		if (categoriesCount + expensesCount + expenseMonthsCount === 0) {
 			this.set('isInvalidFile', true);
 			this.set('importedJson', null);
 			return;
@@ -60,7 +60,7 @@ export default Ember.Component.extend({
 
 	actions: {
 		fileSelected(event){
-			if (event.target.files.length === 0){
+			if (event.target.files.length === 0) {
 				return;
 			}
 
@@ -72,7 +72,7 @@ export default Ember.Component.extend({
 		},
 
 		save(){
-			if (this.get('isSaveDisabled')){
+			if (this.get('isSaveDisabled')) {
 				return;
 			}
 			const json = this.get('importedJson');

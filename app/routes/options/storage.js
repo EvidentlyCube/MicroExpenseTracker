@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import Ember from "ember";
 
 export default Ember.Route.extend({
 	indexStore: Ember.inject.service('storage/permanent-storage-index'),
 
-	indexChanged: Ember.observer("indexStore.changeTimestamp", function(){
+	indexChanged: Ember.observer("indexStore.changeTimestamp", function () {
 		this.refresh();
 	}),
 

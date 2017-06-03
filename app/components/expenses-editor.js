@@ -6,7 +6,7 @@ export default Ember.Component.extend({
 	model: null,
 
 	vertical: false,
-	horizontal: Ember.computed('vertical', function(){
+	horizontal: Ember.computed('vertical', function () {
 		return !this.get('vertical');
 	}),
 

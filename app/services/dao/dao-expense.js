@@ -29,10 +29,10 @@ export default Ember.Service.extend({
 		const storageKey = this._createStorageKeyName(year, month);
 		const partition = this._getDataPartition(year, month);
 
-		if (expense.get('id') === null){
+		if (expense.get('id') === null) {
 			expense.set('id', `${year}-${month}-${partition.length}`);
 			partition[partition.length] = expense;
-		} else if (this._hasPartitionChanged(expense)){
+		} else if (this._hasPartitionChanged(expense)) {
 			const clone = expense.clone();
 			clone.save();
 			expense.delete();
@@ -76,9 +76,9 @@ export default Ember.Service.extend({
 	},
 
 	_getPartitionIndexes(modelOrId){
-		if (typeof modelOrId === "string" || modelOrId instanceof String){
+		if (typeof modelOrId === "string" || modelOrId instanceof String) {
 			return this._getPartitionIndexesFromId(modelOrId);
-		} else if (modelOrId.get('id')){
+		} else if (modelOrId.get('id')) {
 			return this._getPartitionIndexesFromId(modelOrId.get('id'));
 		} else {
 			return this._getPartitionIndexesFromDate(modelOrId.get('purchasedAt'));
@@ -111,14 +111,14 @@ export default Ember.Service.extend({
 	_loadOptionsIfNeeded(year, month){
 		const storedData = this.get('data');
 
-		if (storedData.hasOwnProperty(year) && storedData[year].hasOwnProperty(month)){
+		if (storedData.hasOwnProperty(year) && storedData[year].hasOwnProperty(month)) {
 			return;
 		}
 
-		if (!storedData.hasOwnProperty(year)){
+		if (!storedData.hasOwnProperty(year)) {
 			storedData[year] = {};
 		}
-		if (!storedData[year].hasOwnProperty(month)){
+		if (!storedData[year].hasOwnProperty(month)) {
 			storedData[year][month] = [];
 		}
 
@@ -128,7 +128,7 @@ export default Ember.Service.extend({
 		const monthData = [];
 
 		loadedData.forEach(row => {
-			if (!row.id || row.id.match(/-/g).length !== 2){
+			if (!row.id || row.id.match(/-/g).length !== 2) {
 				return;
 			}
 

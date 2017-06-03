@@ -2,15 +2,15 @@
 	<td class="category-name">
 		{{{row.namePathForHtml}}}
 	</td>
-	<td>
+	<td class="actions-cell">
 		<span class="icon">
 			{{#link-to "categories.edit" row.id class="action-edit" title=(t "section.categories.index.action.edit" category=row.namePath)}}
-				<i class="fa fa-edit"></i>
+				{{fa-icon "edit"}}
 			{{/link-to}}
 		</span>
 		<span class="icon">
 			<a href="#" {{action "deleteCategory" row.id}} class="action-remove" title={{t "section.categories.index.action.delete" category=row.namePath}}>
-				<i class="fa fa-remove"></i>
+				{{fa-icon "remove"}}
 			</a>
 		</span>
 	</td>

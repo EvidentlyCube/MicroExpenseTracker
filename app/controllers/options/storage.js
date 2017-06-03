@@ -1,5 +1,5 @@
-import Ember from 'ember';
-import moment from 'moment';
+import Ember from "ember";
+import moment from "moment";
 
 export default Ember.Controller.extend({
 	i18n: Ember.inject.service(),
@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
 	confirm2: false,
 	confirm3: false,
 
-	isAllConfirmed: Ember.computed('confirm1', 'confirm2', 'confirm3', function(){
+	isAllConfirmed: Ember.computed('confirm1', 'confirm2', 'confirm3', function () {
 		return this.get('confirm1') && this.get('confirm2') && this.get('confirm3');
 	}),
 
@@ -57,7 +57,7 @@ export default Ember.Controller.extend({
 			const storage = this.get('storage');
 			this.set('showImportModal', false);
 
-			this.get('storageIndex').getIndexes().forEach(function(index){
+			this.get('storageIndex').getIndexes().forEach(function (index) {
 				storage.removeItem(index, false);
 			});
 			Object.keys(json).forEach(index => storage.setItem(index, json[index]));
