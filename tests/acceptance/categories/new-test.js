@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import {test} from "qunit";
 import moduleForAcceptance from "micro-expense-tracker/tests/helpers/module-for-acceptance";
 import testSelector from 'ember-test-selectors';
@@ -20,7 +18,7 @@ test('New category is created', async function (assert) {
 	assert.equal(this.application.dao.get('category').count(), 1, "One category was created");
 });
 
-test('No options in parent select when there are no categories', async function (assert) {
+test('Show in parent input existing categories', async function (assert) {
 	assert.equal(this.application.dao.get('category').count(), 0, "Sanity check - there should be no categories yet");
 
 	await visit('/categories/new');

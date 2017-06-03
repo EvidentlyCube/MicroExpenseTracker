@@ -4,5 +4,8 @@ module.exports = {
 	},
 	rules: {
 		'no-console': 0
+	},
+	globals: {
+		lookup: false
 	}
 };

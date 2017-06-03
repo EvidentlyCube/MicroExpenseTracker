@@ -2,9 +2,14 @@
 	<h1 class="title">{{t "section.expenses.index.add_new_receipt"}}</h1>
 	<form onsubmit={{action 'saveHandler'}}>
 		<div class="field">
-			<p class="control">
+			<p class="control" data-test-id="receipt-form-receipt-date-wrap">
 				<label class="label">{{t "section.expenses.new_receipt.receipt_date"}}</label>
-				{{pikaday-input onSelection=(action 'dateChanged') format="DD-MM-YYYY" value=receiptDate class="input receipt-date"}}
+				{{pikaday-input
+					id="receipt-form-receipt-date-picker"
+					class="input receipt-date"
+					format="DD-MM-YYYY"
+					value=receiptDate
+					onSelection=(action 'dateChanged')}}
 			</p>
 		</div>
 
