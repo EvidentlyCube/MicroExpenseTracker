@@ -9,7 +9,7 @@ moduleForAcceptance('Acceptance | categories/new');
 	test(`Default receipt purchase date depends on current month (case:`, async function (assert) {
 		const monthsService = this.application.monthsService;
 		const newMonthObject = monthsService.getMonthObject(year, month);
-		monthsService.set('currentMonth', newMonthObject);
+		monthsService.set('selectedMonth', newMonthObject);
 
 		await visit('/expenses/receipt');
 

@@ -5,14 +5,14 @@ export default Ember.Route.extend({
 	modelDaos: Ember.inject.service('dao/model-daos'),
 	monthsService: Ember.inject.service(),
 
-	currentMonthChanged: Ember.observer('monthsService.currentMonth', function () {
+	selectedMonthChanged: Ember.observer('monthsService.selectedMonth', function () {
 		this.refresh();
 	}),
 
 	model(){
 		return RSVP.hash({
 			categories: this.get('modelDaos.category').getAll(),
-			expenses: this.get('modelDaos.expense').getByMonth(this.get('monthsService.currentMonth')),
+			expenses: this.get('modelDaos.expense').getByMonth(this.get('monthsService.selectedMonth')),
 		});
 	}
 });

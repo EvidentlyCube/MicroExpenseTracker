@@ -16,7 +16,8 @@ export default {
 	},
 	components: {
 		date_switcher: {
-			return: 'Return to current month'
+			return: 'Return to current month',
+			not_current_month: 'The selected month is the current one'
 		},
 		options: {
 			import_data: {

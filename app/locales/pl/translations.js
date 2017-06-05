@@ -16,7 +16,8 @@ export default {
 	},
 	components: {
 		date_switcher: {
-			return: 'Cofnij do aktualnego miesiąca'
+			return: 'Cofnij do aktualnego miesiąca',
+			not_current_month: 'Wybrany miesiąc nie jest aktualnym miesiącem'
 		},
 		options: {
 			import_data: {

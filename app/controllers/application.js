@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
 	optionsService: Ember.inject.service(),
 	monthsService: Ember.inject.service(),
 
-	currentMonth: Ember.computed.alias('monthsService.currentMonth'),
+	selectedMonth: Ember.computed.alias('monthsService.selectedMonth'),
 
 	init(){
 		this.set('i18n.locale', this.get('optionsService').getCurrentLanguage());
@@ -13,8 +13,8 @@ export default Ember.Controller.extend({
 	},
 
 	actions: {
-		currentMonthChanged(newMonth){
-			this.set('currentMonth', newMonth);
+		selectedMonthChanged(newMonth){
+			this.set('selectedMonth', newMonth);
 		}
 	}
 });

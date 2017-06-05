@@ -1,48 +1,5 @@
 <div id="met-application">
-	<header class="section-header">
-		<div class="container">
-			<div class="title-boxes">
-				<h1 class="title">
-					{{img-comp class="logo" src="/assets/logo_white.svg"}}
-					{{t "app.title"}}
-				</h1>
-				<h4 class="subtitle">{{t "app.subtitle"}}</h4>
-			</div>
-			<nav class="nav">
-				<nav class="nav-left">
-					<strong class="nav-item app-title">
-						{{img-comp class="logo" src="/assets/logo_white.svg"}}
-					</strong>
-					<span class="nav-item">
-						{{#link-to "categories"}}
-							{{t "navigation.categories"}}
-						{{/link-to}}
-					</span>
-					<span class="nav-item">
-						{{#link-to "expenses"}}
-							{{t "navigation.expenses"}}
-						{{/link-to}}
-					</span>
-					<span class="nav-item">
-						{{#link-to "summary"}}
-							{{t "navigation.summary"}}
-						{{/link-to}}
-					</span>
-					<span class="nav-item">
-						{{#link-to "options"}}
-							{{t "navigation.options"}}
-						{{/link-to}}
-					</span>
-				</nav>
-
-				<nav class="nav-right">
-					<div class="nav-item">
-						{{date-switcher action=(action "currentMonthChanged") currentMonth=currentMonth}}
-					</div>
-				</nav>
-			</nav>
-		</div>
-	</header>
+	{{layout/lay-head selectedMonth=selectedMonth selectedMonthChanged=(action 'selectedMonthChanged')}}
 
 	{{global-notifications}}
 	<div class="route-content">

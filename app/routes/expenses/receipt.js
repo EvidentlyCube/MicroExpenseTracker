@@ -23,11 +23,11 @@ export default Ember.Route.extend({
 	},
 
 	generateReceiptDate(){
-		const currentMonthObj = this.get('monthsService.currentMonth');
+		const selectedMonthObj = this.get('monthsService.selectedMonth');
 		const date = moment();
 
-		date.month(currentMonthObj.get('month'));
-		date.year(currentMonthObj.get('year'));
+		date.month(selectedMonthObj.get('month'));
+		date.year(selectedMonthObj.get('year'));
 
 		return date.toDate();
 	}

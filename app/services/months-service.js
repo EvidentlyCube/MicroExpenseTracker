@@ -2,12 +2,12 @@ import Ember from "ember";
 import Month from "../models/month";
 
 export default Ember.Service.extend({
-	currentMonth: null,
+	selectedMonth: null,
 
 	_cache: {},
 
 	init(){
-		this.set('currentMonth', this.getCurrentMonthObject());
+		this.set('selectedMonth', this.getCurrentMonthObject());
 	},
 
 	getCurrentMonthObject(){
