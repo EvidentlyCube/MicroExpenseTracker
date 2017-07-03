@@ -1,12 +1,12 @@
 <div class="date-switcher">
-	<a {{action "switchMonth" -1}}>&lt;</a>
+	<a {{action "switchMonth" -1}} data-test-id="date-switcher-prev-month">&lt;</a>
 	<a class="current-month" {{action "resetMonth"}} title={{t "components.date_switcher.return"}}>
 		{{selectedMonth.year}}-{{pad-start selectedMonth.displayMonth 2 '0'}}
 		{{#if (not isCurrentMonthSelected)}}
-		<span class="not-current-month-warning" title={{t "components.date_switcher.not_current_month"}}>
-			{{fa-icon "warning"}}
+		<span class="not-current-month-warning" data-test-id="date-switcher-warning-icon" title={{t "components.date_switcher.not_current_month"}} >
+			<i class="fa fa-warning"></i>
 		</span>
 		{{/if}}
 	</a>
-	<a {{action "switchMonth" 1}}>&gt;</a>
+	<a {{action "switchMonth" 1}} data-test-id="date-switcher-next-month">&gt;</a>
 </div>

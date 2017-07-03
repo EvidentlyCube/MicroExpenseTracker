@@ -6,7 +6,7 @@ moduleForAcceptance('Acceptance | categories/new');
 
 ['01-2015', '10-2010', '07-2025'].forEach(function (data) {
 	const [month, year] = data.split('-');
-	test(`Default receipt purchase date depends on current month (case:`, async function (assert) {
+	test(`Default receipt purchase date depends on current month (case: ${data})`, async function (assert) {
 		const monthsService = this.application.monthsService;
 		const newMonthObject = monthsService.getMonthObject(year, month);
 		monthsService.set('selectedMonth', newMonthObject);

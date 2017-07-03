@@ -69,11 +69,10 @@
 						{{#if row.category}}
 							{{{row.category.namePathForHtml}}}
 
-							{{#link-to "expenses.index"
-							           (query-params filter-category-id=row.category.id)
-							           title=(t "section.expenses.index.filter_by_category")}}
-								{{fa-icon "filter" size="lg"}}
-							{{/link-to}}
+							<a href="{{href-to "expenses.index" (query-params filter-category-id=row.category.id)}}"
+							   title={{t "section.expenses.index.filter_by_category"}}>
+								<i class="fa fa-filter fa-lg"></i>
+							</a>
 						{{else}}
 							{{t "section.expenses.index.missing_category"}}
 						{{/if}}
@@ -87,13 +86,15 @@
 					</td>
 					<td class="actions-cell">
 	                    <span class="icon">
-		                    {{#link-to "expenses.edit" row.id title=(t "section.expenses.index.action.edit" expense=row.name)}}
-			                    {{fa-icon "edit"}}
-		                    {{/link-to}}
+
+							<a href="{{href-to "expenses.edit"}}"
+							   title={{t "section.expenses.index.action.edit" expense=row.name}}>
+								<i class="fa fa-edit"></i>
+							</a>
 	                    </span>
 						<span class="icon">
 	                        <a href="#" {{action "deleteExpense" row.id}} title={{t "section.expenses.index.action.delete" expense=row.name}}>
-		                        {{fa-icon "remove"}}
+                                <i class="fa fa-remove fa-lg"></i>
 	                        </a>
 	                    </span>
 					</td>
