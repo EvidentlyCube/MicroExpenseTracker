@@ -48,65 +48,6 @@
 	</nav>
 
 	<article>
-		<table class="table data-table">
-			<thead>
-			<tr>
-				<th>{{t "section.expenses.index.product"}}</th>
-				<th>{{t "section.expenses.index.final_price"}}</th>
-				<th>{{t "section.expenses.index.category"}}</th>
-				<th>{{t "section.expenses.index.expense_date"}}</th>
-				<th class="actions-cell">{{t "section.expenses.index.actions"}}</th>
-			</tr>
-			</thead>
-			<tbody>
-			{{#each sortedExpenses as |row|}}
-				<tr>
-					<td>{{{row.name}}}</td>
-					<td>
-						{{currency-format row.realPrice}}
-					</td>
-					<td>
-						{{#if row.category}}
-							{{{row.category.namePathForHtml}}}
-
-							<a href="{{href-to "expenses.index" (query-params filter-category-id=row.category.id)}}"
-							   title={{t "section.expenses.index.filter_by_category"}}>
-								<i class="fa fa-filter fa-lg"></i>
-							</a>
-						{{else}}
-							{{t "section.expenses.index.missing_category"}}
-						{{/if}}
-					</td>
-					<td>
-						{{#if row.purchasedAt}}
-							{{moment-format row.purchasedAt "DD-MM-YYYY"}}
-						{{else}}
-							{{t "section.expenses.index.missing_expense_date"}}
-						{{/if}}
-					</td>
-					<td class="actions-cell">
-	                    <span class="icon">
-
-							<a href="{{href-to "expenses.edit"}}"
-							   title={{t "section.expenses.index.action.edit" expense=row.name}}>
-								<i class="fa fa-edit"></i>
-							</a>
-	                    </span>
-						<span class="icon">
-	                        <a href="#" {{action "deleteExpense" row.id}} title={{t "section.expenses.index.action.delete" expense=row.name}}>
-                                <i class="fa fa-remove fa-lg"></i>
-	                        </a>
-	                    </span>
-					</td>
-				</tr>
-			{{else}}
-				<tr class="no-data">
-					<td colspan="5">
-						{{{t "section.expenses.index.empty_row" button=(t "section.categories.index.add_new_category")}}}
-					</td>
-				</tr>
-			{{/each}}
-			</tbody>
-		</table>
+		{{expenses/expense-table expenses=expenses page=safePage}}
 	</article>
 </div>

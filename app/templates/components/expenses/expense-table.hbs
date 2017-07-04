@@ -1,0 +1,17 @@
+<table class="table data-table">
+	{{expenses/expense-table-header}}
+
+	<tbody>
+	{{#each pagedExpenses as |row|}}
+		{{expenses/expense-table-row row=row}}
+	{{else}}
+		<tr class="no-data">
+			<td colspan="5">
+				{{{t "section.expenses.index.empty_row" button=(t "section.categories.index.add_new_category")}}}
+			</td>
+		</tr>
+	{{/each}}
+	</tbody>
+</table>
+
+{{expenses/expense-table-pagination page=page expensesCount=expenses.length}}

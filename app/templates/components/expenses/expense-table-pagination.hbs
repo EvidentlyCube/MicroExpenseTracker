@@ -1,0 +1,13 @@
+{{#if pagesCount}}
+	<nav class="pagination is-centered">
+		<ul class="pagination-list">
+			{{#each pages as |index|}}
+				<li>
+					<a class="pagination-link {{if (eq page index) "is-current"}}" href="{{href-to "expenses.index" (query-params page=index)}}">
+						{{add index 1}}
+					</a>
+				</li>
+			{{/each}}
+		</ul>
+	</nav>
+{{/if}}

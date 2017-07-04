@@ -23,6 +23,7 @@ export default Ember.Route.extend({
 	resetController(controller, isExiting) {
 		if (isExiting) {
 			controller.set('filterCategoryId', null);
+			controller.set('page', 0);
 		}
 	}
 });
